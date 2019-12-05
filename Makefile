@@ -8,7 +8,7 @@ JVM = java
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-CLASSES = *.java
+CLASSES = src/*.java
 
 MAIN = ProcessingShowcase
 
