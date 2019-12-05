@@ -1,10 +1,7 @@
-JFLAGS = -g -cp ".:/opt/processing-3.5.3/core/library/core.jar"
-JVMFLAGS = -cp ".:/opt/processing-3.5.3/core/library/core.jar"
+JFLAGS = -g -cp "./src:/opt/processing-3.5.3/core/library/core.jar"
+JVMFLAGS = -cp "./src:/opt/processing-3.5.3/core/library/core.jar"
 JC = javac
 JVM = java
-PRC = /opt/processing-3.5.3/processing-java
-OPT = --sketch=$1 --force --output=$1-parsed  --build
-SHOWCASE_ROOT="/home/arnaud/eclipse-workspace/processing-showcas>
 SKETCH_DIRS = pde/*
 
 
@@ -27,5 +24,5 @@ classes: procparse $(CLASSES:.java=.class)
 clean:
 	$(RM) src/*.class
 
-run: $(MAIN).class
+run:
 	$(JVM) $(JVMFLAGS) $(MAIN)
