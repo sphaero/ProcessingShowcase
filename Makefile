@@ -14,12 +14,12 @@ CLASSES = src/*.java
 
 MAIN = ProcessingShowcase
 
-procparse:
-	./processing-parse.sh pde/*
-
 default: classes
 
-classes: procparse $(CLASSES:.java=.class)
+classes: $(CLASSES:.java=.class)
+
+procparse:
+	./processing-parse.sh pde/*
 
 clean:
 	$(RM) src/*.class
