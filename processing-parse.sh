@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 PRC="/opt/processing-3.5.3/processing-java"
-SRC_DIR="./src"
+SRC_DIR="./src/pde"
 OPT=""
 
 SRCCODE=""

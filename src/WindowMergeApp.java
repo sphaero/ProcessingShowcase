@@ -1,7 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
-import processing.core.PApplet;
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
 
+
+import java.util.HashMap; 
+import java.util.List; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
 
 public class WindowMergeApp extends PApplet {
 	
@@ -11,7 +22,6 @@ public class WindowMergeApp extends PApplet {
     
 	public void setup()
 	{	
-		println("hmm1");
 		//surface.setResizable(true);
 		sketch = sketches.get(currentIndex).sketch;
 		if (sketch.g== null )
@@ -45,6 +55,7 @@ public class WindowMergeApp extends PApplet {
 	
 	public void draw()
 	{
+		//playSounds();
 		sketch.handleDraw();
 	}
 	
@@ -57,6 +68,8 @@ public class WindowMergeApp extends PApplet {
 	{  
 		size(640, 360);
 		currentIndex = 0;
+		// order is the pattern number!!!
+        sketches.add(new SketchShit("Rondjes_groterwordend.pde", new Rondjes_groterwordend()));
         sketches.add(new SketchShit("Artwork02.pde", new Artwork02()));
         sketches.add(new SketchShit("Jules_Janssen_Mondriaan.pde", new Jules_Janssen_Mondriaan()));
         sketches.add(new SketchShit("Mondriaan.pde", new Mondriaan()));

@@ -1,5 +1,5 @@
-JFLAGS = -g -cp "./src:/opt/processing-3.5.3/core/library/core.jar"
-JVMFLAGS = -cp "./src:/opt/processing-3.5.3/core/library/core.jar"
+JFLAGS = -g -cp "./src:./src/pde:/opt/processing-3.5.3/core/library/core.jar"
+JVMFLAGS = -cp "./src:./src/pde:/opt/processing-3.5.3/core/library/core.jar"
 JC = javac
 JVM = java
 SKETCH_DIRS = pde/*
@@ -22,7 +22,7 @@ procparse:
 	./processing-parse.sh pde/*
 
 clean:
-	$(RM) src/*.class
+	$(RM) src/*.class src/pde/*.class
 
 run:
 	$(JVM) $(JVMFLAGS) $(MAIN)
