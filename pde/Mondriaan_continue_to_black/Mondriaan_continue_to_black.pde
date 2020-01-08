@@ -8,7 +8,7 @@ void setup() {
   size(640, 360);
   colorMode(RGB);
   smooth();
-  frameRate(30);
+  //frameRate(30);
   background(255);
   strokeCap(PROJECT);
   stroke(0);
