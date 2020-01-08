@@ -69,18 +69,22 @@ public class WindowMergeApp extends PApplet {
 		size(640, 360);
 		currentIndex = 0;
 		// order is the pattern number!!!
-        sketches.add(new SketchShit("Rondjes_groterwordend.pde", new Rondjes_groterwordend()));
-        sketches.add(new SketchShit("Artwork02.pde", new Artwork02()));
-        sketches.add(new SketchShit("Jules_Janssen_Mondriaan.pde", new Jules_Janssen_Mondriaan()));
-        sketches.add(new SketchShit("Mondriaan.pde", new Mondriaan()));
-        sketches.add(new SketchShit("Mondriaan_.pde", new Mondriaan_()));
-        sketches.add(new SketchShit("Mondriaan_continue_to_black.pde", new Mondriaan_continue_to_black()));
-        sketches.add(new SketchShit("Mondriaan_inspratie_beeld.pde", new Mondriaan_inspratie_beeld()));
-        sketches.add(new SketchShit("Skillslab_Picasso.pde", new Skillslab_Picasso()));
-        sketches.add(new SketchShit("mondriaan.pde", new mondriaan()));
-        sketches.add(new SketchShit("mondriaan_eind.pde", new mondriaan_eind()));
-        sketches.add(new SketchShit("test.pde", new test()));
-        sketches.add(new SketchShit("truman_zon.pde", new truman_zon()));
+		sketches.add(new SketchShit("Artwork02.pde", new Artwork02()));
+		sketches.add(new SketchShit("JeltjeDeKoning_draft.pde", new JeltjeDeKoning_draft()));
+		sketches.add(new SketchShit("Jules_Janssen_Mondriaan.pde", new Jules_Janssen_Mondriaan()));
+		sketches.add(new SketchShit("Les_5.pde", new Les_5()));
+		sketches.add(new SketchShit("Maureen_te_Braak_animatie_voor_muziek.pde", new Maureen_te_Braak_animatie_voor_muziek()));
+		sketches.add(new SketchShit("Mondriaan_.pde", new Mondriaan_()));
+		sketches.add(new SketchShit("Mondriaan_continue_to_black.pde", new Mondriaan_continue_to_black()));
+		sketches.add(new SketchShit("Mondriaan_inspratie_beeld.pde", new Mondriaan_inspratie_beeld()));
+		sketches.add(new SketchShit("Rondjes_groterwordend.pde", new Rondjes_groterwordend()));
+		sketches.add(new SketchShit("Skillslab_Picasso.pde", new Skillslab_Picasso()));
+		sketches.add(new SketchShit("mondriaan.pde", new mondriaan()));
+		sketches.add(new SketchShit("mondriaan_eind.pde", new mondriaan_eind()));
+		sketches.add(new SketchShit("probeersel_bewegende_rondjes.pde", new probeersel_bewegende_rondjes()));
+		sketches.add(new SketchShit("test.pde", new test()));
+		sketches.add(new SketchShit("truman_zon.pde", new truman_zon()));
+
 	}
 	
 	static public void main(String[] passedArgs) 
