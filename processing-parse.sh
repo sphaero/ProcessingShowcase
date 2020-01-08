@@ -6,8 +6,22 @@ OPT=""
 
 SRCCODE=""
 
+create_music_pde() {
+    cat > $1 << EOF
+int currentPosition = 0;
+int currentPattern = 0;
+void loadSounds() {}
+void loadSounds(int s, int e) {}
+void playSounds() {}
+EOF
+}
+
 for dir in "$@"
 do
+    #if ! [ -e "$dir/music.pde" ]; then
+    echo "creating $dir/music.pde"
+    create_music_pde $dir/music.pde
+    #fi
     OPT="--sketch=$dir --force --output=$dir-parsed  --build"
     echo $PRC $OPT
     $PRC $OPT
