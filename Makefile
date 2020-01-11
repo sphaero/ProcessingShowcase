@@ -1,7 +1,7 @@
-JFLAGS = -g -cp "./src:./src/pde:/opt/processing-3.5.3/core/library/core.jar"
-JVMFLAGS = -cp "./src:./src/pde:/opt/processing-3.5.3/core/library/core.jar"
+JFLAGS = -g -cp "./src:./src/pde:core.jar:minim.jar:jogl-all.jar"
+JVMFLAGS = -cp "./src:./src/pde:core.jar:minim.jar:jsminim.jar:jogl-all.jar:gluegen-rt.jar:mp3spi1.9.5.jar:tritonus_aos.jar:tritonus_share.jar"
 JC = javac
-JVM = java
+JVM = /opt/processing-3.5.3/java/bin/java
 SKETCH_DIRS = pde/*
 
 
