@@ -18,16 +18,19 @@ public class WindowMergeApp extends PApplet {
 	
 	List<SketchShit> sketches = new ArrayList<>();
     int currentIndex;
+    int _runningIndex;
     PApplet sketch;
     
 	public void setup()
 	{	
 		//surface.setResizable(true);
 		sketch = sketches.get(currentIndex).sketch;
+		_runningIndex = currentIndex;
 		if (sketch.g== null )
 		{
 			sketch.g = this.g;
 			sketch.setSize(this.width, this.height);
+			sketch.sketchPath(this.sketchPath());
 			// is protected unfortunately so we can't use
 			// frameRate() methods
 			//sketch.surface = this.getSurface;
@@ -36,6 +39,8 @@ public class WindowMergeApp extends PApplet {
 		{
 			sketch.setSize(this.width, this.height);
 		}
+		sketch.resetMatrix();
+		rectMode(CORNER);
 		clear();
         try 
         {
@@ -50,13 +55,25 @@ public class WindowMergeApp extends PApplet {
 
 	public void postEvent(processing.event.Event pe) 
 	{
-		sketch.postEvent(pe);
+		if (sketch != null) sketch.postEvent(pe);
 	}
 	
 	public void draw()
 	{
 		//playSounds();
-		sketch.handleDraw();
+		try {
+			pushMatrix();
+			sketch.handleDraw();
+			popMatrix();
+		}
+		catch (Exception e)
+		{
+			println(e.getMessage());
+		}
+		if ( currentIndex != _runningIndex )
+		{
+			frameCount = -1; // triggers setup
+		}
 	}
 	
 	public void frameResized(int w, int h)
@@ -66,25 +83,68 @@ public class WindowMergeApp extends PApplet {
 	
 	public void settings() 
 	{  
-		size(640, 360);
+		size(720, 480);
 		currentIndex = 0;
-		// order is the pattern number!!!
-		sketches.add(new SketchShit("Artwork02.pde", new Artwork02()));
-		sketches.add(new SketchShit("JeltjeDeKoning_draft.pde", new JeltjeDeKoning_draft()));
-		sketches.add(new SketchShit("Jules_Janssen_Mondriaan.pde", new Jules_Janssen_Mondriaan()));
-		sketches.add(new SketchShit("Les_5.pde", new Les_5()));
-		sketches.add(new SketchShit("Maureen_te_Braak_animatie_voor_muziek.pde", new Maureen_te_Braak_animatie_voor_muziek()));
-		sketches.add(new SketchShit("Mondriaan_.pde", new Mondriaan_()));
-		sketches.add(new SketchShit("Mondriaan_continue_to_black.pde", new Mondriaan_continue_to_black()));
-		sketches.add(new SketchShit("Mondriaan_inspratie_beeld.pde", new Mondriaan_inspratie_beeld()));
-		sketches.add(new SketchShit("Rondjes_groterwordend.pde", new Rondjes_groterwordend()));
-		sketches.add(new SketchShit("Skillslab_Picasso.pde", new Skillslab_Picasso()));
-		sketches.add(new SketchShit("mondriaan.pde", new mondriaan()));
-		sketches.add(new SketchShit("mondriaan_eind.pde", new mondriaan_eind()));
-		sketches.add(new SketchShit("probeersel_bewegende_rondjes.pde", new probeersel_bewegende_rondjes()));
-		sketches.add(new SketchShit("test.pde", new test()));
-		sketches.add(new SketchShit("truman_zon.pde", new truman_zon()));
-
+		// order is the pattern number!!! (78+51=129)
+		sketches.add(new SketchShit("demo_intro.pde", new demo_intro()));
+		sketches.add(new SketchShit("pat1.pde", new pat1()));
+		sketches.add(new SketchShit("pat2.pde", new pat2()));
+		sketches.add(new SketchShit("pat3.pde", new pat3()));
+		sketches.add(new SketchShit("pat4.pde", new pat4()));
+		sketches.add(new SketchShit("pat27_28.pde", new pat27_28())); // 5 not used
+		sketches.add(sketches.get(5)); // 6 not used
+		sketches.add(sketches.get(5)); // 7 not used
+		sketches.add(new SketchShit("pat8.pde", new pat8()));
+		sketches.add(new SketchShit("pat_9_9.pde", new pat_9_9()));
+		sketches.add(new SketchShit("pat10_11.pde", new pat10_11()));
+		sketches.add(new SketchShit("pat10_11.pde", new pat10_11()));
+		sketches.add(new SketchShit("pat12.pde", new pat12()));
+		sketches.add(new SketchShit("pat13.pde", new pat13()));
+		sketches.add(new SketchShit("pad141515.pde", new pad141515()));
+		sketches.add(new SketchShit("pad141515.pde", new pad141515()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("path20.pde", new path20()));
+		sketches.add(new SketchShit("pad19.pde", new pad19()));
+		sketches.add(new SketchShit("pad21.pde", new pad21()));
+		sketches.add(new SketchShit("pad22.pde", new pad22()));
+		sketches.add(new SketchShit("pad23.pde", new pad23()));
+		sketches.add(new SketchShit("Pattern_24_House.pde", new Pattern_24_House()));
+		sketches.add(new SketchShit("Pattern_25_BOUNCING_BALLS.pde", new Pattern_25_BOUNCING_BALLS()));
+		sketches.add(new SketchShit("Pattern_26_LANDSCAPE.pde", new Pattern_26_LANDSCAPE()));
+		sketches.add(new SketchShit("pat27_28.pde", new pat27_28())); 
+		sketches.add(new SketchShit("pat27_28.pde", new pat27_28()));
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31())); 
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
+		sketches.add(new SketchShit("Pattern_32_KONFETTI_CANON.pde", new Pattern_32_KONFETTI_CANON()));
+		sketches.add(new SketchShit("Pattern_33_ROAD.pde", new Pattern_33_ROAD()));
+		sketches.add(new SketchShit("path34.pde", new path34()));
+		sketches.add(new SketchShit("path35.pde", new path35()));
+		sketches.add(new SketchShit("pad36.pde", new pad36()));
+		sketches.add(sketches.get(5)); // 37 not used
+		sketches.add(new SketchShit("pat_38_39_39_40_40.pde", new pat_38_39_39_40_40()));
+		sketches.add(new SketchShit("pat_38_39_39_40_40.pde", new pat_38_39_39_40_40()));
+		sketches.add(new SketchShit("pat_38_39_39_40_40.pde", new pat_38_39_39_40_40()));
+		sketches.add(new SketchShit("pat41_42.pde", new pat41_42()));
+		sketches.add(new SketchShit("pat41_42.pde", new pat41_42()));
+		sketches.add(new SketchShit("pat43_44.pde", new pat43_44()));
+		sketches.add(new SketchShit("pat43_44.pde", new pat43_44()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("Pattern_50_CUBES.pde", new Pattern_50_CUBES()));
+		sketches.add(new SketchShit("Pattern_51_ROOTS.pde", new Pattern_51_ROOTS()));
+		sketches.add(sketches.get(5)); // 52
+		sketches.add(sketches.get(5)); // 53
+		sketches.add(sketches.get(5)); // 54
+		sketches.add(sketches.get(5)); // 55
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
 	}
 	
 	static public void main(String[] passedArgs) 
