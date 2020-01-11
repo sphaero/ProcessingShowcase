@@ -213,10 +213,6 @@ public class ProcessingShowcase {
 		                String dir = name.substring(0, name.lastIndexOf('.'));
 	
 						textApp.set_filename("pde/" + dir + "/" + name);
-	
-		                // setting the frameCount to -1 makes sure setup will be 
-		                // called again.
-						windowApp.frameCount = -1;
 					}
 				}
 				Thread.sleep(100);
