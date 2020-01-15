@@ -4,7 +4,7 @@ int ts = 0;
 void setup(){
   size(720,480,P2D);
   loadSounds(0,0);
-  font = createFont("/home/arnaud/src/processing-showcase/ArcadeClassic.ttf", 64);
+  font = createFont("/home/arnaud/src/processing-showcase/RetrovilleNC.ttf", 64);
 }
 
 void draw(){
