@@ -26,7 +26,7 @@ String[] greetz = {
 void setup(){
   size(720,480);
   loadSounds(0,0);
-  font = createFont("/home/arnaud/src/processing-showcase/RetrovilleNC.ttf", 64);
+  font = createFont("RetrovilleNC.ttf", 64);
 }
 
 void draw(){
