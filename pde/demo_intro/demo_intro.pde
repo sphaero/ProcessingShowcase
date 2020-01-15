@@ -2,7 +2,7 @@ PFont font;
 int ts = 0;
 
 void setup(){
-  size(720,480,P2D);
+  size(720,480);
   loadSounds(0,0);
   font = createFont("RetrovilleNC.ttf", 64);
 }
@@ -21,12 +21,12 @@ void draw(){
     bars++;
   }
   textFont(font);    
-  textSize(128);
+  textSize(84);
   textAlign(CENTER);
   fill(0);
   if ( millis()-ts > 3320) text("THIS", width/2, height/2-64); 
   if (millis()-ts > 4038 ) text("IS NOT", width/2, height/2); 
-  textSize(192);
+  textSize(128);
   if (millis()-ts > 6161 ) 
   {
     // random flicker
