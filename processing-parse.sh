@@ -6,6 +6,8 @@ OPT=""
 
 SRCCODE=""
 
+mkdir -p $SRC_DIR
+
 create_music_pde() {
     cat > $1 << EOF
 int currentPosition = 0;
