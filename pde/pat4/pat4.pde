@@ -5,7 +5,6 @@ int x_pos, y_pos;
 
 void setup()
 {
-  surface.setResizable(true);
   size(720, 380);
   
 }

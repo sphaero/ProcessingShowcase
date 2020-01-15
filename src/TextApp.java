@@ -73,7 +73,7 @@ public class TextApp extends PApplet {
 	public void settings() 
 	{ 
 		size(630, 360);
-		//fullscreen(1);
+		//fullScreen(1);
 	}
 	
 	static public void main(String[] passedArgs) 
