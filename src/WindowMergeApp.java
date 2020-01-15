@@ -85,6 +85,7 @@ public class WindowMergeApp extends PApplet {
 	public void settings() 
 	{  
 		size(720, 480);
+		//fullScreen(2);
 		currentIndex = 0;
 		// order is the pattern number!!! (78+51=129)
 		sketches.add(new SketchShit("demo_intro.pde", new demo_intro()));
