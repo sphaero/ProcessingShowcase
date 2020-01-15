@@ -23,7 +23,6 @@ public class WindowMergeApp extends PApplet {
     
 	public void setup()
 	{	
-		//surface.setResizable(true);
 		sketch = sketches.get(currentIndex).sketch;
 		_runningIndex = currentIndex;
 		if (sketch.g== null )
@@ -41,6 +40,7 @@ public class WindowMergeApp extends PApplet {
 		}
 		sketch.resetMatrix();
 		rectMode(CORNER);
+		textAlign(LEFT);
 		clear();
         try 
         {
