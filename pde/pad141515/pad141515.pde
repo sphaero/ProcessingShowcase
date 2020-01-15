@@ -32,7 +32,7 @@ void strobe(int freq){    // strobe functie die een getal als parameter krijgt
   if (count == freq)     // als count gelijk is aan de meegegeven parameter (freq) 
   {
     background(255);     // dan achtergrond wit
-    background(bg);       // anders is de achtergrond afbeelding
+    //background(bg);       // anders is de achtergrond afbeelding
     count = 0;           // zet count weer terug op 0
   } else
   {
@@ -47,7 +47,7 @@ void setup() {
  loadSounds(87,98);
  
   size(640, 360);
-  bg = loadImage("BG2.jpeg");            //Laad hier de achtergrond
+  //bg = loadImage("BG2.jpeg");            //Laad hier de achtergrond
   y = random(height);                      //Rect begint op willekeurige hoogte
   x = -width*0.05;
   angle=0;
