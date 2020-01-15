@@ -12,7 +12,6 @@ float rheight = random(1,1.1);
 void setup() {
   size(640,360,P3D);
   background(0);
-  surface.setResizable(true);
   noStroke();
 }
 

@@ -15,7 +15,6 @@ void setup(){
   size(720,480);
   background(darkblue);
   noStroke();
-  surface.setResizable(true);
   for (int i=0; i < bunt.length; i++){
     bunt[i] = new Konfetti();
   }

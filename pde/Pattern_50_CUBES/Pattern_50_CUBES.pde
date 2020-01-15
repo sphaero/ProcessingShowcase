@@ -7,7 +7,6 @@ Cube bg;
 void setup() {
   size(720,480,P3D);
   background(0);
-  surface.setResizable(true);
   noStroke();
   bg = new Cube("j");
   
