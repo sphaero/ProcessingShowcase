@@ -70,9 +70,10 @@ public class WindowMergeApp extends PApplet {
 		{
 			println(e.getMessage());
 		}
-		if ( currentIndex != _runningIndex )
+		if ( currentIndex != _runningIndex)
 		{
-			frameCount = -1; // triggers setup
+			if (sketches.get(currentIndex) == null ) _runningIndex = currentIndex; // just continue if next is null
+			else frameCount = -1; // triggers setup
 		}
 	}
 	
@@ -114,7 +115,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(new SketchShit("Pattern_25_BOUNCING_BALLS.pde", new Pattern_25_BOUNCING_BALLS()));
 		sketches.add(new SketchShit("Pattern_26_LANDSCAPE.pde", new Pattern_26_LANDSCAPE()));
 		sketches.add(new SketchShit("pat27_28.pde", new pat27_28())); 
-		sketches.add(new SketchShit("pat27_28.pde", new pat27_28()));
+		sketches.add(null);
 		sketches.add(new SketchShit("pat29_31.pde", new pat29_31())); 
 		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
 		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
@@ -138,7 +139,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
 		sketches.add(new SketchShit("Pattern_50_CUBES.pde", new Pattern_50_CUBES()));
 		sketches.add(new SketchShit("Pattern_51_ROOTS.pde", new Pattern_51_ROOTS()));
-		sketches.add(sketches.get(5)); // 52
+		sketches.add(sketches.get(5)); // 52 missing
 		sketches.add(sketches.get(5)); // 53
 		sketches.add(sketches.get(5)); // 54
 		sketches.add(sketches.get(5)); // 55

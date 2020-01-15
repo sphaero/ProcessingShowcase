@@ -17,7 +17,7 @@ public class ProcessingShowcase {
 	AudioPlayer snip;
 
 	int startPos = 0;   
-	int endPos = 6;     
+	int endPos = 107;     
 	int currentPos = 0;
 	int currentPositie = 0;
 	int currentPattern = 0;
@@ -33,9 +33,6 @@ public class ProcessingShowcase {
 
 	public void _loadSounds(PApplet sketch) 
 	{
-	  // save the end/start positions
-	  startPos = 0;
-	  endPos = 107;
 	  // load the sound file
 	  String soundfile = "sound/psychotech.wav";
 	  System.out.println( "Loading: " + soundfile);
@@ -198,14 +195,13 @@ public class ProcessingShowcase {
 		
 		while(true){
 
-			
 			//using a broad exception to just skip over any sketches that have problems
 			try {
 				int pos = inst.playSounds();
 				if ( pos != -1 )
 				{
 					int patt = inst.pospatterns[pos][1];
-					if ( windowApp.currentIndex != patt )
+					if ( windowApp.currentIndex != patt && windowApp.sketches.get( patt % windowApp.sketches.size() ) != null )
 					{
 						windowApp.currentIndex = patt % windowApp.sketches.size();
 						
