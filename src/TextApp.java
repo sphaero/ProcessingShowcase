@@ -56,7 +56,7 @@ public class TextApp extends PApplet {
 				cursorY += 20;
 				fill(0,100,20);
 				text(i+1, 5, cursorY+1);
-				fill(0,255,100);
+				fill(100,255,100);
 				text(content[i], 40, cursorY);
 			}
 		}
