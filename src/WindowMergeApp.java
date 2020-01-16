@@ -140,13 +140,14 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
 		sketches.add(new SketchShit("Pattern_50_CUBES.pde", new Pattern_50_CUBES()));
 		sketches.add(new SketchShit("Pattern_51_ROOTS.pde", new Pattern_51_ROOTS()));
-		sketches.add(sketches.get(5)); // 52 missing
-		sketches.add(sketches.get(5)); // 53
-		sketches.add(sketches.get(5)); // 54
+		sketches.add(new SketchShit("pat52.pde", new pat52()));
+		sketches.add(new SketchShit("pattern53.pde", new pattern53()));
+		sketches.add(new SketchShit("pattern54.pde", new pattern54()));
 		sketches.add(sketches.get(5)); // 55
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("demo_outro.pde", new demo_outro()));
 	}
 	
 	static public void main(String[] passedArgs) 
