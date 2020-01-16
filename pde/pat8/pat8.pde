@@ -17,9 +17,24 @@ void draw(){
   int bars=0;
   while(bars<10)
   {
-    drawBar(cos((bars/5.)+frameCount*0.04)*(height/2)+height/2, 20, new PVector(bars*25,255,0));
+    drawBar(cos((bars/5.)+frameCount*0.028)*(height/2)+height/2, 20, new PVector(bars*25,255,0));
     bars++;
   }
+  textFont(font);    
+  textSize(56);
+  textAlign(CENTER);
+  fill(255,255,0);
+  text("music:", width/2+4, height/2-64); 
+  text("psychopatic nerd", width/2+4, height/2-0); 
+  text("1993", width/2+4, height/2+64); 
+  textFont(font);    
+  textSize(56);
+  textAlign(CENTER);
+  fill(0,0,0);
+  text("music:", width/2, height/2-64); 
+  text("psychopatic nerd", width/2, height/2-0); 
+  text("1993", width/2, height/2+64); 
+
 }
 
 void drawBar(float y, float barheight, PVector col)

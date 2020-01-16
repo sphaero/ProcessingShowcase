@@ -17,7 +17,7 @@ public class ProcessingShowcase {
 	AudioPlayer snip;
 
 	int startPos = 0;   
-	int endPos = 107;     
+	int endPos = 104;     
 	int currentPos = 0;
 	int currentPositie = 0;
 	int currentPattern = 0;

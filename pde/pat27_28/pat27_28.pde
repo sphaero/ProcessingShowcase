@@ -39,7 +39,7 @@ void draw(){
   int bars=0;
   while(bars<10)
   {
-    drawBar(cos((bars/5.)+frameCount*0.04)*(height/2)+height/2, 20, new PVector(255,0,bars*25));
+    drawBar(cos((bars/5.)+frameCount*0.028)*(height/2)+height/2, 20, new PVector(255,0,bars*25));
     bars++;
   }
   textFont(font);    
