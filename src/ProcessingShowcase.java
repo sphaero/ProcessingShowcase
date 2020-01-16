@@ -41,8 +41,9 @@ public class ProcessingShowcase {
 	  currentPositie = startPos;
 	  currentPattern = pospatterns[currentPositie][1];
 	  System.out.println( "playing position: "+ currentPositie + " pattern: " + currentPattern );
-	  snip.setLoopPoints(startPos * 6666, (endPos+1) * 6666);
+	  //snip.setLoopPoints(startPos * 6666, (endPos+1) * 6666);
 	  snip.loop(-1); //infinite loop
+	  //snip.play();
 	}
 
 	public int playSounds() {
