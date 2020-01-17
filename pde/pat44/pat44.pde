@@ -4,6 +4,7 @@ int angle=0;
 void setup() {
   loadSounds(68,69);
   size(720,480);
+  noStroke();
 }
 
 void draw(){
