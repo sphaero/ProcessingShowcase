@@ -113,9 +113,6 @@ void setup() {
     // set the size of the window
     size(720, 480, P3D);
 
-    // disable resizing
-    surface.setResizable(false);
-
     // disable the stroke
     noStroke();
 

@@ -23,7 +23,6 @@ color col = colAll[int(random(1,4))];;
 void setup() {
   size(640,360,P3D);
   background(0);
-  surface.setResizable(true);
   noStroke();
   pg = createGraphics(200,200);
 }

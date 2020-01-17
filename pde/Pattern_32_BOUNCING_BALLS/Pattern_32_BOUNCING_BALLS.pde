@@ -23,8 +23,6 @@ void setup(){
   background(darkblue);
   noStroke();
   blendMode(NORMAL);
-  surface.setTitle("Bouncing Balls");
-  surface.setResizable(true);
   
   // Initialize bouncing balls
   for(int i=0; i<balls.length; i++){

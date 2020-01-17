@@ -145,7 +145,6 @@ color red = color(164,0,51);
 color[] colAll = { darkblue, midblue, lightblue, white, red};
 
 void setup() {
-    surface.setResizable(true);
     size(1200, 800);
 
     // loop
