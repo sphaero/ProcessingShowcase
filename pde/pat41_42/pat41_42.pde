@@ -32,20 +32,6 @@ void draw()
   textSize(200);
 
 
-fill(250, 0, 0);
-text("2JLT",200,360);
-
-fill(250, 240, 0);
-text("2JLT",210,370);
-
-fill(0, 240, 240);
-text("2JLT",220,380);
-
-fill(255, 0, 255);
-text("2JLT",230,390);
-
-
-
 pushMatrix();
 
   translate(200,-450);
