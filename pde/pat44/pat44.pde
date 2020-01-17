@@ -1,5 +1,3 @@
-import processing.sound.*;
-
 int strobe=0; 
 int angle=0;
 
