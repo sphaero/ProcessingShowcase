@@ -8,9 +8,11 @@ int colorspeed = 10;
 int kleurrood = 255;
 int kleurgroen = 0;
 
+
+
 void setup()
 {
-  size(640,360);
+  size(720,480);
   background(0);
   
 }
@@ -84,6 +86,9 @@ void draw()
   fill(kleurgroen,kleurrood,255);
   rect(535,height-ypos,100,100);
   
+  fill(kleurgroen,kleurrood,255);
+  rect(640,ypos,100,100);
+  
   fill(kleurrood,kleurgroen,255);
   ellipse(xpos,ypos,100,100);
   
@@ -134,7 +139,7 @@ void draw()
   {
     
     textSize(32);
-text("Fatal Windows Error", width*0.25,height/2);
+text("Fatal Windows Error", width*0.3,height/2);
     
     
     fill(255);
@@ -171,7 +176,7 @@ text("Fatal Windows Error", width*0.25,height/2);
     rect(5,115,100,5);
     
   textSize(32);
-text("Shutting down in 3", width*0.25,height*0.75);
+text("Shutting down in 3", width*0.3,height*0.75);
   }
   
   if (clock >= 420)
@@ -189,21 +194,21 @@ text("Shutting down in 3", width*0.25,height*0.75);
   if (clock >= 450)
   {
     fill(0,0,255);
-  rect(width*0.25,height*0.60,400,50);
+  rect(width*0.3,height*0.60,400,50);
   
   textSize(32);
   fill(255);
-text("Shutting down in 2", width*0.25,height*0.75);
+text("Shutting down in 2", width*0.3,height*0.75);
   }
   
   if (clock >= 500)
   {
      fill(0,0,255);
-  rect(width*0.25,height*0.60,400,50);
+  rect(width*0.3,height*0.60,400,50);
     
   textSize(32);
   fill(255);
-text("Shutting down in 1", width*0.25,height*0.75);
+text("Shutting down in 1", width*0.3,height*0.75);
   }
   
   //if (clock >= 550)
@@ -215,17 +220,17 @@ text("Shutting down in 1", width*0.25,height*0.75);
   ////fill(255);
   ////text("Shutting down in 0", width*0.25,height*0.75);
   ////}
-  if (clock >= 550)
-  {
-  fill(255);
-  rect(0,0,640,360);
-  }
+  //if (clock >= 550)
+  //{
+  //fill(255);
+  //rect(0,0,640,360);
+  //}
   
-  if (clock >= 555)
-  {
-  fill(0);
-  rect(0,0,640,360);
-  }
+  //if (clock >= 555)
+  //{
+  //fill(0);
+  //rect(0,0,640,360);
+  //}
   
   if(clock >= 600)
   {
