@@ -27,3 +27,7 @@ clean:
 
 run:
 	$(JVM) $(JVMFLAGS) $(MAIN)
+
+dist:
+	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar minim.jar jsminim.jar mp3spi1.9.5.jar tritonus_aos.jar tritonus_share.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
+	jar cvfm thisnotvideo.jar MANIFEST.MF -C src src/*.class -C src/pde src/pde/*.class

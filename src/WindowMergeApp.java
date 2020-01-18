@@ -72,6 +72,10 @@ public class WindowMergeApp extends PApplet {
 		}
 		if ( currentIndex != _runningIndex)
 		{
+			if ( currentIndex == -1 )
+			{
+				build();
+			}
 			if (sketches.get(currentIndex) == null ) _runningIndex = currentIndex; // just continue if next is null
 			else frameCount = -1; // triggers setup
 		}
@@ -82,10 +86,9 @@ public class WindowMergeApp extends PApplet {
 		println(w,h);
 	}
 	
-	public void settings() 
-	{  
-		size(720, 480);
-		//fullScreen(2);
+	public void build()
+	{
+		sketches.clear();
 		currentIndex = 0;
 		// order is the pattern number!!! (78+51=129)
 		sketches.add(new SketchShit("demo_intro.pde", new demo_intro()));
@@ -147,7 +150,14 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
 		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
-		sketches.add(new SketchShit("demo_outro.pde", new demo_outro()));
+		sketches.add(new SketchShit("demo_outro.pde", new demo_outro()));		
+	}
+	
+	public void settings() 
+	{  
+		size(720, 480);
+		//fullScreen(2);
+		build();
 	}
 	
 	static public void main(String[] passedArgs) 

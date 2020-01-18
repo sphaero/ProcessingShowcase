@@ -213,6 +213,12 @@ public class ProcessingShowcase {
 					}
 				}
 				Thread.sleep(50);
+				if ( ! inst.snip.isPlaying() )
+				{
+					// rebuild the demo
+					System.out.println("rebuilding from scratch and restarting!");
+					windowApp.currentIndex = -1;
+				}
 			}
 			catch (Exception e) {
 				System.err.println("There was a problem running a sketch!");
