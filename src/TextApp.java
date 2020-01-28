@@ -11,12 +11,11 @@ public class TextApp extends PApplet {
 	{
 		surface.setResizable(true);
 		clear();
-		background(0);
 		PFont mono;
 		// The font "andalemo.ttf" must be located in the 
 		// current sketch's "data" directory to load successfully
 		mono = createFont("FreeMono.ttf", 30);
-		background(0);
+		background(255);
 		textFont(mono, 20);
 	}
 	
@@ -48,15 +47,16 @@ public class TextApp extends PApplet {
 	{
 		update();
 		clear();
+		background(255);
 		if (content != null)
 		{
 			int cursorY = 0;
 			for(int i = 0; i < content.length;i++)
 			{
 				cursorY += 20;
-				fill(0,100,20);
+				fill(196);//fill(0,100,20);
 				text(i+1, 5, cursorY+1);
-				fill(100,255,100);
+				fill(0,0,0);//fill(100,255,100);
 				text(content[i], 40, cursorY);
 			}
 		}
