@@ -28,6 +28,7 @@ void setup(){
   size(720,480);
   loadSounds(0,0);
   font = createFont("RetrovilleNC.ttf", 64);
+  ts = 0;
 }
 
 void draw(){

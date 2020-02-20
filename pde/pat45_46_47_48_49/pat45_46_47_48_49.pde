@@ -19,6 +19,22 @@ float b = 255;  //kleur blauw
 void setup() {
   size(640,360);
   loadSounds(42,48);
+	count = 0;    // globale variabele voor de strobe functie
+	xpos = 0; 
+	xspeed = 10;
+
+
+	xposs = 640; //x positie voor de opposite cirkel
+
+	ypos = 0;     // globale variabele voor de y positie van de cirkel (ellips)
+	yspeed = 10;  // globale variabele voor de snelheid van de cirkel 
+
+	sq_size = 20;  //size vierkantjes
+	xepos, yepos;  //posities vierkantjes
+
+	r = 255;  //kleur rood
+	g = 255;  //kleur groen
+	b = 255;
 }
 
 void strobe(int freq) 
