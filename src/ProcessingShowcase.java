@@ -9,12 +9,10 @@ import java.io.OutputStream;
 import java.io.IOException; 
 
 import processing.core.PApplet;
-import ddf.minim.*; 
 
 public class ProcessingShowcase {
 
-	Minim minim;
-	AudioPlayer snip;
+	procmod2.ModPlayer mplayer;
 
 	int startPos = 0;   
 	int endPos = 104;     
@@ -31,23 +29,19 @@ public class ProcessingShowcase {
 		loadSounds();
 	}
 
-	public void _loadSounds(PApplet sketch) 
+	public void loadMusic(PApplet sketch) 
 	{
 	  // load the sound file
-	  String soundfile = "sound/psychotech.wav";
-	  System.out.println( "Loading: " + soundfile);
-	  minim = new Minim(sketch);
-	  snip = minim.loadFile(soundfile);
+	  String modfile = "go.mod";
+	  System.out.println( "Loading: " + modfile);
+	  mplayer = new procmod2.ModPlayer(sketch, modfile);
 	  currentPositie = startPos;
 	  currentPattern = pospatterns[currentPositie][1];
-	  System.out.println( "playing position: "+ currentPositie + " pattern: " + currentPattern );
-	  snip.setLoopPoints(startPos * 6666, (endPos+1) * 6666);
-	  snip.loop(-1); //infinite loop
-	  //snip.play();
+	  mplayer.play();
 	}
 
 	public int playSounds() {
-		int musicpos = snip.position();
+		/*int musicpos = snip.position();
 		if ( currentPositie != PApplet.parseInt(musicpos / 6666 ) &&  PApplet.parseInt(musicpos / 6666 ) - currentPositie <= 1 )
 		{
 			if( musicpos >= (endPos+1) * 6666 )
@@ -62,7 +56,7 @@ public class ProcessingShowcase {
 			System.out.println( "playing position: "+ currentPositie + " pattern: " + currentPattern );
 			return currentPositie;
 
-		}
+		}*/
 		return -1;
 	}
 	
@@ -190,7 +184,7 @@ public class ProcessingShowcase {
 		String[] wa_args = new String[]{"ProcessingShowcase"};
 		PApplet.runSketch(wa_args, windowApp);
 
-		inst._loadSounds(windowApp);
+		inst.loadMusic(windowApp);
 		
 		int currentSketchIndex = 0;
 		
@@ -213,12 +207,12 @@ public class ProcessingShowcase {
 					}
 				}
 				Thread.sleep(50);
-				if ( ! inst.snip.isPlaying() )
+				/*if ( ! inst.snip.isPlaying() )
 				{
 					// rebuild the demo
 					System.out.println("rebuilding from scratch and restarting!");
 					windowApp.currentIndex = -1;
-				}
+				}*/
 			}
 			catch (Exception e) {
 				System.err.println("There was a problem running a sketch!");
