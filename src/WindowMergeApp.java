@@ -7,6 +7,7 @@ import processing.opengl.*;
 import java.util.HashMap; 
 import java.util.List; 
 import java.util.ArrayList; 
+import java.util.Arrays; 
 import java.io.File; 
 import java.io.BufferedReader; 
 import java.io.PrintWriter; 
@@ -17,19 +18,22 @@ import java.lang.reflect.*;
 
 public class WindowMergeApp extends PApplet {
 	
-	List<SketchShit> sketches = new ArrayList<>();
+	List<List<SketchShit>> sketches = new ArrayList<>();
     int currentIndex;
     int _runningIndex;
+    int loopIndex;
     PApplet sketch;
     
 	public void setup()
-	{	
-		sketch = sketches.get(currentIndex).sketch;
+	{
+		SketchShit sht = getShit();
+		sketch = sht.sketch;
 		_runningIndex = currentIndex;
 		if (sketch.g== null )
 		{
 			sketch.g = this.g;
 			sketch.setSize(this.width, this.height);
+			
 			sketch.sketchPath(this.sketchPath());
 			// is protected unfortunately so we can't use
 			// frameRate() methods
@@ -77,7 +81,10 @@ public class WindowMergeApp extends PApplet {
 			{
 				build();
 			}
-			if (sketches.get(currentIndex) == null ) _runningIndex = currentIndex; // just continue if next is null
+			if ( getShit()  == null ) 
+			{
+				_runningIndex = currentIndex; // just continue if next is null
+			}
 			else frameCount = -1; // triggers setup
 		}
 	}
@@ -102,8 +109,9 @@ public class WindowMergeApp extends PApplet {
 	
 	public void modPatternEvent( int pattern, int position )
 	{
-		println("BWAAAAAH");
-		currentIndex = position;
+		System.out.println("pattern " + pattern + " , position " + position );
+		currentIndex = pattern;
+		if (position == 18 ) loopIndex++;
 	}
 	
 	public void build()
@@ -111,11 +119,28 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		// order is the pattern number!!! (78+51=129)
-		sketches.add(new SketchShit("Skillslabfinal_part_2.pde", new Skillslabfinal_part_2()));
-		sketches.add(new SketchShit("Skillslabfinal_part_3.pde", new Skillslabfinal_part_3()));
-		sketches.add(new SketchShit("part2.pde", new part2()));
-		sketches.add(new SketchShit("part3.pde", new part3()));
+		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_astridBirrd.pde", new sketch_200610a_astridBirrd())));
 		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_2_v2.pde", new Skillslabfinal_part_2_v2()), 
+				                   new SketchShit("part2.pde", new part2()),
+				                   new SketchShit("Dave_Haverkort_skillslab_patt2_GO_GO.pde", new Dave_Haverkort_skillslab_patt2_GO_GO())
+								));
+		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_3_v2.pde", new Skillslabfinal_part_3_v2()), 
+								   new SketchShit("part3.pde", new part3()),
+								   new SketchShit("Dave_Haverkort_skillslab_patt3_GO_GO.pde", new Dave_Haverkort_skillslab_patt3_GO_GO())
+						   		));
+		sketches.add(Arrays.asList(new SketchShit("part2.pde", new part2())));
+		sketches.add(Arrays.asList(new SketchShit("part3.pde", new part3())));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_astridBirrd.pde", new sketch_200610a_astridBirrd())));
+	}
+	
+	public SketchShit getShit()
+	{
+		List<SketchShit> lsht = sketches.get(currentIndex);
+		if (lsht == null) return null;
+		return sketches.get(currentIndex).get(loopIndex % lsht.size());
 	}
 	
 	public void settings() 
