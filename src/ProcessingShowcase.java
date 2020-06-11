@@ -32,7 +32,7 @@ public class ProcessingShowcase {
 	public void loadMusic(PApplet sketch) 
 	{
 	  // load the sound file
-	  String modfile = "go.mod";
+	  String modfile = "data/go.mod";
 	  System.out.println( "Loading: " + modfile);
 	  mplayer = new procmod2.ModPlayer(sketch, modfile);
 	  mplayer.play();
