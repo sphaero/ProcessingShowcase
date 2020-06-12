@@ -39,7 +39,6 @@ void setup() {
   mplayer = new ModPlayer(this, dataPath("patt4.mod"));
   //  play it rightaway
   mplayer.play();
-  frameRate(30);
   noStroke();
 }
 
@@ -71,7 +70,7 @@ void go_draw_for(int frames) // frames = het aantal frames dat je wilt tekenen
     
     
       textSize(100);
-      text("GO", random(700), random(450));
+      text("GO", random(1,700), random(1,450));
     
     //
     // einde draw dingen
@@ -82,7 +81,7 @@ void go_draw_for(int frames) // frames = het aantal frames dat je wilt tekenen
 
 void draw() {
   background(0);     
-    
+  pushMatrix();    
     fill(blauw, 95);
     translate(width/2,height/2);
     if (frameCount > 5 ) {
@@ -251,6 +250,7 @@ void draw() {
     ellipse(0,0,10,10);
     s23 = s23 + 0.005;
   }
+  popMatrix();
   go_draw_for(10);
    
 }

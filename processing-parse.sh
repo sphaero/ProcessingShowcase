@@ -33,6 +33,6 @@ do
     #echo "new $PDENAME();"
     #echo "sketches.add(new SketchShit(\"$PDENAME.pde\", new $PDENAME()));"
     rm -rf $dir-parsed
-    SRCCODE="$SRCCODE\nsketches.add(new SketchShit(\"$PDENAME.pde\", new $PDENAME()));"
+    SRCCODE="$SRCCODE\nnew SketchShit(\"$PDENAME.pde\", new $PDENAME())"
 done
 echo -e $SRCCODE

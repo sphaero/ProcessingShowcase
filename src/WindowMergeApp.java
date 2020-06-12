@@ -129,10 +129,14 @@ public class WindowMergeApp extends PApplet {
 								   new SketchShit("part3.pde", new part3()),
 								   new SketchShit("Dave_Haverkort_skillslab_patt3_GO_GO.pde", new Dave_Haverkort_skillslab_patt3_GO_GO())
 						   		));
-		sketches.add(Arrays.asList(new SketchShit("part2.pde", new part2())));
-		sketches.add(Arrays.asList(new SketchShit("part3.pde", new part3())));
+		sketches.add(Arrays.asList(new SketchShit("MuziekGo.pde", new MuziekGo()),
+								   new SketchShit("muziekding2.pde", new muziekding2())
+						));
+		sketches.add(Arrays.asList(new SketchShit("Patt5_Bloem.pde", new Patt5_Bloem()),
+								   new SketchShit("Patt5_3.pde", new Patt5_3())
+						));
 		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("credits.pde", new credits())));
 		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_astridBirrd.pde", new sketch_200610a_astridBirrd())));
 	}
 	
