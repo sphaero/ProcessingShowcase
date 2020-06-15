@@ -23,9 +23,12 @@ int[][] positions2;
 float start;
 int roze = #F0278B;
 int blauw = #2A2EE8;
+PFont fnt;
 
 void setup() {
   size(720,480);
+  fnt = createFont("impact.ttf", 24);
+  textFont(fnt);
   textSize(30);
   start = millis();
   Collections.shuffle(Arrays.asList(positions));
@@ -40,9 +43,10 @@ void setup() {
 
 void draw() 
 {
-  textSize(30);
+  textFont(fnt);
+  textSize(36);
   background(0);
-  float alpha = 1.1 - (millis() - start)/8000;
+  float alpha = 1.0 - (millis() - start)/8000;
   for (int i=0;i<nicknames.length;i++)
   {
     int kleur = roze;
