@@ -48,6 +48,7 @@ public class WindowMergeApp extends PApplet {
 			sketch.setSize(this.width, this.height);
 		}
 		sketch.resetMatrix();
+		colorMode(RGB, 255, 255, 255);
 		rectMode(CORNER);
 		textAlign(LEFT);
 		clear();

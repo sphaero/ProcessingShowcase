@@ -22,6 +22,8 @@ void setup() {
   colorMode(#2A2EE8);
   background(#F0278B) ;
   
+  theta = 0.0;
+  
     mplayer = new ModPlayer(this, dataPath("patt5.mod"));
   //  play it rightaway
   mplayer.play();

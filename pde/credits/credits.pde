@@ -1,37 +1,60 @@
+import java.util.Collections;
+import java.util.Arrays;
 
 String[] nicknames = {"Dtrxch", "ilomax", "Asthettic", "Muurten", "Mother of Jezus", "Son of Maria", "Seal", "sphaero", "Suusuki","Loyte", "Mr. Job","Eva", "jk"};
-int[][] positions; 
+int[][] positions = {
+                      {0,0},
+                      {1,1},
+                      {2,2},
+                      {3,0},
+                      {4,1},
+                      {0,2},
+                      {1,0},
+                      {2,1},
+                      {3,2},
+                      {4,0},
+                      {0,1},
+                      {1,2},
+                      {2,0},
+                      {3,1},
+                      {4,2},
+                    };
+int[][] positions2;
 float start;
+int roze = #F0278B;
+int blauw = #2A2EE8;
 
 void setup() {
   size(720,480);
-  textSize(20);
+  textSize(30);
   start = millis();
-  positions = new int[nicknames.length][2];
-  for (int i=0;i<nicknames.length;i++)
+  Collections.shuffle(Arrays.asList(positions));
+  positions2 = new int[positions.length][2];
+  for(int i=0;i<positions.length;i++)
   {
-    int posx = int(random(500/20))* 19 + 100;
-    int posy = int(random(400/5))* 4 + 40;
-    positions[i][0] = posx;
-    positions[i][1] = posy;
+    positions2[i][0] = positions[i][0]*80+80+int(random(-30,30));
+    positions2[i][1] = positions[i][1]*200+100+int(random(-30,30));
   }
   background(0);
 }
 
 void draw() 
 {
+  textSize(30);
   background(0);
-  float alpha = 1 - (millis() - start)/8000;
+  float alpha = 1.1 - (millis() - start)/8000;
   for (int i=0;i<nicknames.length;i++)
   {
+    int kleur = roze;
+    if (i%2 == 0 ) kleur = blauw;
     int count = 1;
     while(count <10)
     {
-      int dposx = int(random(5));
-      int dposy = int(random(5));
-      fill(255, 50 * alpha);
-      if (count == 9 ) fill(255,100 * alpha);
-      text(nicknames[i], positions[i][0]+dposx, positions[i][1]+dposy );
+      int dposx = int(random(7));
+      int dposy = int(random(7));
+      fill(kleur, 50 * alpha);
+      if (count == 9 ) fill(kleur,250 * alpha);
+      text(nicknames[i], positions2[i][1]+dposx, positions2[i][0]+dposy );
       count += 1;
     }
   }

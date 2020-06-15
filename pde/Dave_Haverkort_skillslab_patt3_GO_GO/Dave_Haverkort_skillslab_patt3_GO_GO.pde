@@ -20,7 +20,10 @@ void setup() {
 // Uncomment the following two lines to see the available fonts 
   //String[] fontList = PFont.list();
   //printArray(fontList);
-
+  bgcolor = 0;
+  ellipseding = 0;
+  rectding = 0;
+  rectdingen = 0;
 
   size(720,480);
   font = createFont("DrukXCondensed-Super", 24);

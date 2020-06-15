@@ -28,8 +28,9 @@ void draw(){
  
 }
   
-  void objectjes (int xPos, int yPos){
-    // hoe ver uit elkaar
+void objectjes (int xPos, int yPos){
+  pushMatrix();
+  // hoe ver uit elkaar
   a = a +0.02;
   // hoe groot
   s = cos (a)*0.8;
@@ -43,10 +44,10 @@ void draw(){
   fill(blauw);
   rect(width/2,height/2,200,200);
   angle = angle +3.5;
-    }
+  popMatrix();
+}
 
 void slap(int xPos, int yPos, int hoogte, int breedte){
-  frameRate(15);
  beginShape();
     for (int iter = hand; iter< 150; iter ++){
     fill(random(0,255),random(0,255),random (0,255));

@@ -12,7 +12,7 @@ float c = cos(angle);
 void setup() {
    size(720, 480);
    mplayer = new ModPlayer(this, dataPath("patt5.mod"));
-    mplayer.play();    
+   mplayer.play();    
 }
 
 void draw() {
@@ -20,7 +20,7 @@ void draw() {
   a = a +0.02;
   // hoe groot
   s = cos (a)*0.8;
-  
+  pushMatrix();
   translate(width/2, height/2);
   rotate(angle);
   scale(s);
@@ -31,5 +31,5 @@ void draw() {
   fill(blauw);
   rect(width/2,height/2,50,50);
   angle = angle +3.5;
-  
+  popMatrix(); 
 }

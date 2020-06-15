@@ -21,6 +21,7 @@ void setup() {
   size(720, 480);
   colorMode(#2A2EE8);
   background(#F0278B) ;
+  theta = 0.0;
   
     mplayer = new ModPlayer(this, dataPath("patt4.mod"));
   //  play it rightaway

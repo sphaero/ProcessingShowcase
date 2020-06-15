@@ -28,7 +28,6 @@ mplayer.play();
 diameter = height - 10;
 noStroke();
 
-frameRate(60);
 colorMode(#2A2EE8);
 background(#F0278B) ;
 
