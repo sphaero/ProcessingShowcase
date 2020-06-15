@@ -26,6 +26,7 @@ public class WindowMergeApp extends PApplet {
     
     int go_played;
     int go_draw_frame_count = 0;
+    float choose = 0.0f;
     
 	public void setup()
 	{
@@ -101,33 +102,21 @@ public class WindowMergeApp extends PApplet {
 	  {
 	    go_draw_frame_count = frames;
 	    go_played = 0;
+	    choose = random(1);
 	  }
 	  if (go_draw_frame_count != 0 )
 	  {
 	    //
 	    // Vanaf hier kun je je eigen draw dingen doen
 	    //
-	    //int alpha = PApplet.parseInt((PApplet.parseFloat(go_draw_frame_count) / frames) * 255); // maak een alpha waarde op basis van hoelang we al aan het tekenen zijn (fadeout effect)
-	    //fill(255, alpha); 
-	    ellipse(width/2, height/2, 200, 200);
-	    fill(121, 134, 210);
-	    text("GO", 160, 140);
-	      textSize(100);
-	      fill(254, 237, 246);
-	    text("GO", 360, 240);
-	    textSize(200);
-	        fill(255, 83, 191);
-	    text("GO", 560, 40);
-	    textSize(50);
-	      fill(255, 83, 191);
-	    text("GO", 120, 290);
-	      textSize(100);
-	      fill(121, 134, 210);
-	    text("GO", 700, 300);
-	    textSize(200);
-	        fill(254, 237, 246);
-	    text("GO", 230, 60);
-	    textSize(50);
+		if ( choose > 0.5 )
+		{
+			go_bleep();
+		}
+		else
+		{
+			go_gogov2();
+		}
 	    
 	    // einde draw dingen
 	    //
@@ -135,6 +124,41 @@ public class WindowMergeApp extends PApplet {
 	  }
 	}
 	
+	public void go_bleep()
+	{
+	  fill(121, 134, 210);
+	  text("GO", 160, 140);
+	    textSize(100);
+	    fill(254, 237, 246);
+	  text("GO", 360, 240);
+	  textSize(200);
+	      fill(255, 83, 191);
+	  text("GO", 560, 40);
+	  textSize(50);
+	    fill(255, 83, 191);
+	  text("GO", 120, 290);
+	    textSize(100);
+	    fill(121, 134, 210);
+	  text("GO", 700, 300);
+	  textSize(200);
+	      fill(254, 237, 246);
+	  text("GO", 230, 60);
+	  textSize(50);
+	}
+	
+	public void go_gogov2()
+	{
+	    fill(121,134,210);
+	    text("GO",-30,550);
+	    textSize(400);
+	    fill(255,83,191);
+	    
+	    text("GO",330,260);
+	    fill(254,237,246);
+	    
+	    text("GO",100,380);
+	}
+		
 	public void frameResized(int w, int h)
 	{
 		println(w,h);
