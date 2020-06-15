@@ -6,7 +6,7 @@ ModPlayer mplayer;
 float beat = 0;
 
 void setup() {
-  size(640,360);
+  size(720,480);
   background(0);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("part3.mod"));

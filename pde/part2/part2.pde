@@ -6,7 +6,7 @@ ModPlayer mplayer;
 float beat = 0;
 
 void setup() {
-  size(640,360);
+  size(720,480);
   background(0);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("part2.mod"));
@@ -18,11 +18,11 @@ void draw() {
   //background(0);
   fill(0,random(200),beat);
   float wave = sin(radians(frameCount));
-  arc(0, 180 + wave * 180, width*beat, height*400, 0, 200*PI / beat);
+  arc(0, 250 + wave * 180, width*beat, height*400, 0, 200*PI / beat);
   
    fill(random(200),beat,0);
   float wave2 = sin(radians(frameCount));
-  arc(0, 180 + wave * 180, width*beat, height*400, -200*PI / beat, 0);
+  arc(0, 250 + wave2 * 180, width*beat, height*400, -200*PI / beat, 0);
   //rect(320 + wave * 300,0,20,500);
   //text("tekst", 40, 180);
   

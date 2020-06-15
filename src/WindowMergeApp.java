@@ -21,8 +21,11 @@ public class WindowMergeApp extends PApplet {
 	List<List<SketchShit>> sketches = new ArrayList<>();
     int currentIndex;
     int _runningIndex;
-    int loopIndex;
+    int loopIndex[] = {0,0,0,0,0,0,0,0,0};
     PApplet sketch;
+    
+    int go_played;
+    int go_draw_frame_count = 0;
     
 	public void setup()
 	{
@@ -56,6 +59,7 @@ public class WindowMergeApp extends PApplet {
             println(e);
             e.printStackTrace();
         }
+        go_played = 0;
 	}
 
 	public void postEvent(processing.event.Event pe) 
@@ -65,7 +69,6 @@ public class WindowMergeApp extends PApplet {
 	
 	public void draw()
 	{
-		//playSounds();
 		try {
 			pushMatrix();
 			sketch.handleDraw();
@@ -75,6 +78,9 @@ public class WindowMergeApp extends PApplet {
 		{
 			println(e.getMessage());
 		}
+		g.beginDraw();
+		go_draw_for(20);
+		g.endDraw();
 		if ( currentIndex != _runningIndex)
 		{
 			if ( currentIndex == -1 )
@@ -87,6 +93,46 @@ public class WindowMergeApp extends PApplet {
 			}
 			else frameCount = -1; // triggers setup
 		}
+	}
+	
+	public void go_draw_for(int frames) // frames = het aantal frames dat je wilt tekenen
+	{
+	  if ( go_played == 1 )
+	  {
+	    go_draw_frame_count = frames;
+	    go_played = 0;
+	  }
+	  if (go_draw_frame_count != 0 )
+	  {
+	    //
+	    // Vanaf hier kun je je eigen draw dingen doen
+	    //
+	    //int alpha = PApplet.parseInt((PApplet.parseFloat(go_draw_frame_count) / frames) * 255); // maak een alpha waarde op basis van hoelang we al aan het tekenen zijn (fadeout effect)
+	    //fill(255, alpha); 
+	    ellipse(width/2, height/2, 200, 200);
+	    fill(121, 134, 210);
+	    text("GO", 160, 140);
+	      textSize(100);
+	      fill(254, 237, 246);
+	    text("GO", 360, 240);
+	    textSize(200);
+	        fill(255, 83, 191);
+	    text("GO", 560, 40);
+	    textSize(50);
+	      fill(255, 83, 191);
+	    text("GO", 120, 290);
+	      textSize(100);
+	      fill(121, 134, 210);
+	    text("GO", 700, 300);
+	    textSize(200);
+	        fill(254, 237, 246);
+	    text("GO", 230, 60);
+	    textSize(50);
+	    
+	    // einde draw dingen
+	    //
+	    go_draw_frame_count = go_draw_frame_count - 1;
+	  }
 	}
 	
 	public void frameResized(int w, int h)
@@ -105,13 +151,38 @@ public class WindowMergeApp extends PApplet {
 	    	System.out.println("No modRowEvent found in the sketch!");
 	    	// no such method, or an error.. which is fine, just ignore
 	    }
+		//  We reageren alleen op instrument 2
+	    if (instrument == 2)
+		{
+		    println(channel +":"+ instrument +":"+ note);
+		    //  Whatever instrument is being played just set a background color from the note played.
+		    go_played = 1;
+		}
 	}
 	
 	public void modPatternEvent( int pattern, int position )
 	{
 		System.out.println("pattern " + pattern + " , position " + position );
+		if ( currentIndex != pattern )
+		{
+			if (pattern == 4 ) // we're coming from position 6
+			{
+				loopIndex[2]++;
+				loopIndex[3]++;
+			}
+			if ( pattern == 7 )
+			{
+				loopIndex[4]++;
+				loopIndex[5]++;
+				loopIndex[2]++;
+				loopIndex[3]++;
+			}
+			if (pattern != 2 && pattern != 3 && pattern != 4 && pattern != 5  )
+			{
+				loopIndex[pattern]++;
+			}
+		}
 		currentIndex = pattern;
-		if (position == 18 ) loopIndex++;
 	}
 	
 	public void build()
@@ -119,7 +190,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		// order is the pattern number!!! (78+51=129)
-		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_astridBirrd.pde", new sketch_200610a_astridBirrd())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_2_v2.pde", new Skillslabfinal_part_2_v2()), 
 				                   new SketchShit("part2.pde", new part2()),
@@ -130,21 +201,22 @@ public class WindowMergeApp extends PApplet {
 								   new SketchShit("Dave_Haverkort_skillslab_patt3_GO_GO.pde", new Dave_Haverkort_skillslab_patt3_GO_GO())
 						   		));
 		sketches.add(Arrays.asList(new SketchShit("MuziekGo.pde", new MuziekGo()),
-								   new SketchShit("muziekding2.pde", new muziekding2())
+								   new SketchShit("muziekding2.pde", new muziekding2()),
+								   new SketchShit("skillslab_sketch_patroon45_susanne.pde", new skillslab_sketch_patroon45_susanne())
 						));
 		sketches.add(Arrays.asList(new SketchShit("Patt5_Bloem.pde", new Patt5_Bloem()),
 								   new SketchShit("Patt5_3.pde", new Patt5_3())
 						));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("credits.pde", new credits())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_astridBirrd.pde", new sketch_200610a_astridBirrd())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
 	}
 	
 	public SketchShit getShit()
 	{
 		List<SketchShit> lsht = sketches.get(currentIndex);
 		if (lsht == null) return null;
-		return sketches.get(currentIndex).get(loopIndex % lsht.size());
+		return lsht.get(loopIndex[currentIndex] % lsht.size());
 	}
 	
 	public void settings() 

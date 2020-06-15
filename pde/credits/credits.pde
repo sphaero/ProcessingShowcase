@@ -1,5 +1,5 @@
 
-String[] nicknames = {"ilomax", "Asthettic", "MariaSerberie", "Seal"};
+String[] nicknames = {"Dtrxch", "ilomax", "Asthettic", "Muurten", "Mother of Jezus", "Son of Maria", "Seal", "sphaero", "Suusuki","Loyte", "Mr. Job","Eva", "jk"};
 int[][] positions; 
 float start;
 
@@ -11,7 +11,7 @@ void setup() {
   for (int i=0;i<nicknames.length;i++)
   {
     int posx = int(random(500/20))* 19 + 100;
-    int posy = int(random(400/10))* 9 + 40;
+    int posy = int(random(400/5))* 4 + 40;
     positions[i][0] = posx;
     positions[i][1] = posy;
   }
@@ -21,8 +21,7 @@ void setup() {
 void draw() 
 {
   background(0);
-  float alpha = 1 - (millis() - start)/4000;
-  println(alpha);
+  float alpha = 1 - (millis() - start)/8000;
   for (int i=0;i<nicknames.length;i++)
   {
     int count = 1;
