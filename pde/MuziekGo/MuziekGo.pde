@@ -40,6 +40,30 @@ void setup() {
   //  play it rightaway
   mplayer.play();
   noStroke();
+  s = 0;
+  s2 = 0;
+  s3 = 0;
+  s4 = 0;
+  s5 = 0;
+  s6 = 0;
+  s7 = 0;
+  s8 = 0;
+  s9 = 0;
+  s10 = 0;
+  s11 = 0;
+  s12 = 0;
+  s13 = 0;
+  s14 = 0;
+  s15 = 0;
+  s16 = 0;
+  s17 = 0;
+  s18 = 0;
+  s19 = 0;
+  s20 = 0;
+  s21 = 0;
+  s22 = 0;
+  s23 = 0;
+
 }
 
 /// go_draw_frame_count houdt bij hoe vaak we al getekend hebben

@@ -1,6 +1,6 @@
 PRC=/opt/processing-3.5.3
-JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar"
-JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:jsminim.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:mp3spi1.9.5.jar:tritonus_aos.jar:tritonus_share.jar"
+JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:javamod.jar"
+JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:javamod.jar"
 JC = javac
 JVM = $(PRC)/java/bin/java
 SKETCH_DIRS = pde/*
@@ -28,6 +28,6 @@ clean:
 run:
 	$(JVM) $(JVMFLAGS) $(MAIN)
 
-dist:
-	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar minim.jar jsminim.jar mp3spi1.9.5.jar tritonus_aos.jar tritonus_share.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
-	jar cvfm thisnotvideo.jar MANIFEST.MF -C src src/*.class -C src/pde src/pde/*.class
+dist: classes
+	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar javamod.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
+	jar cvfm dist/birrrd.jar MANIFEST.MF -C src src/*.class -C src/pde src/pde/*.class data/*
