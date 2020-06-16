@@ -26,7 +26,7 @@ void setup() {
   rectdingen = 0;
 
   size(720,480);
-  font = createFont("DrukXCondensed-Super", 24);
+  font = createFont("DrukXCondensed-Super.otf", 24);
   textFont(font);
   
   img = loadImage("gabber2.png");
