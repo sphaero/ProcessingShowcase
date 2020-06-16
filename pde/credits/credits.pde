@@ -1,7 +1,7 @@
 import java.util.Collections;
 import java.util.Arrays;
 
-String[] nicknames = {"Dtrxch", "ilomax", "Asthettic", "Muurten", "Mother of Jezus", "Son of Maria", "Seal", "sphaero", "Suusuki","Loyte", "Mr. Job","Eva", "jk"};
+String[] nicknames = {"Dtrxch", "ilomax", "Asthettic", "Muurten", "Mother of Jezus", "Son of Maria", "Seal", "Sphaero", "Suusuki","Loyte", "Mr. Job","Eva", "jk", "Neurodancer"};
 int[][] positions = {
                       {0,0},
                       {1,1},
@@ -61,5 +61,6 @@ void draw()
       text(nicknames[i], positions2[i][1]+dposx, positions2[i][0]+dposy );
       count += 1;
     }
+    
   }
 }
