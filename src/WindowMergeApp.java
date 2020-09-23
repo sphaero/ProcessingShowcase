@@ -22,7 +22,9 @@ public class WindowMergeApp extends PApplet {
     int currentIndex;
     int _runningIndex;
     int loopIndex[] = {0,0,0,0,0,0,0,0,0};
+    int loopCount = -1;
     PApplet sketch;
+    Boolean presentation = false;
     
     int go_played;
     int go_draw_frame_count = 0;
@@ -71,6 +73,7 @@ public class WindowMergeApp extends PApplet {
 	
 	public void draw()
 	{
+		frame.setLocation(1, 1);
 		try {
 			pushMatrix();
 			sketch.handleDraw();
@@ -190,19 +193,24 @@ public class WindowMergeApp extends PApplet {
 		System.out.println("pattern " + pattern + " , position " + position );
 		if ( currentIndex != pattern )
 		{
-			if (pattern == 4 ) // we're coming from position 6
+			if ( pattern == 8 )
+			{
+				loopCount++;
+				if (loopCount == sketches.get(5).size() ) System.exit(0);
+			}
+			else if (pattern == 4 ) // we're coming from position 6
 			{
 				loopIndex[2]++;
 				loopIndex[3]++;
 			}
-			if ( pattern == 7 )
+			else if ( pattern == 7 )
 			{
 				loopIndex[4]++;
 				loopIndex[5]++;
 				loopIndex[2]++;
 				loopIndex[3]++;
 			}
-			if (pattern != 2 && pattern != 3 && pattern != 4 && pattern != 5  )
+			else if (pattern != 2 && pattern != 3 && pattern != 4 && pattern != 5  )
 			{
 				loopIndex[pattern]++;
 			}
@@ -219,10 +227,12 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_2_v2.pde", new Skillslabfinal_part_2_v2()), 
 				                   new SketchShit("part2.pde", new part2()),
+				                   new SketchShit("Dave_Haverkort_skillslab_patt2_BYOB.pde", new Dave_Haverkort_skillslab_patt2_BYOB()),
 				                   new SketchShit("Dave_Haverkort_skillslab_patt2_GO_GO.pde", new Dave_Haverkort_skillslab_patt2_GO_GO())
 								));
 		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_3_v2.pde", new Skillslabfinal_part_3_v2()), 
 								   new SketchShit("part3.pde", new part3()),
+								   new SketchShit("Dave_Haverkort_skillslab_patt3_BYOB.pde", new Dave_Haverkort_skillslab_patt3_BYOB()),
 								   new SketchShit("Dave_Haverkort_skillslab_patt3_GO_GO.pde", new Dave_Haverkort_skillslab_patt3_GO_GO())
 						   		));
 		sketches.add(Arrays.asList(new SketchShit("MuziekGo.pde", new MuziekGo()),
@@ -250,8 +260,10 @@ public class WindowMergeApp extends PApplet {
 	
 	public void settings() 
 	{  
-		size(720, 480);
-		//fullScreen(2);
+		if ( presentation )
+			fullScreen(2);
+		else
+			size(720, 480);
 		build();
 	}
 	

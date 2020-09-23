@@ -3,6 +3,7 @@ import processing.core.PFont;
 
 public class TextApp extends PApplet {
 
+	Boolean presentation = false;
 	String filename = "";
 	Boolean changed = false;
 	String[] content = {"Hello world"};
@@ -72,8 +73,10 @@ public class TextApp extends PApplet {
 	
 	public void settings() 
 	{ 
-		size(630, 360);
-		//fullScreen(1);
+		if ( presentation )
+			fullScreen(1);
+		else
+			size(630, 360);
 	}
 	
 	static public void main(String[] passedArgs) 
