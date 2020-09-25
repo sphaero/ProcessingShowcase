@@ -20,6 +20,7 @@ public class WindowMergeApp extends PApplet {
     int currentIndex;
     int _runningIndex;
     PApplet sketch;
+    Boolean presentation = false;
     
 	public void setup()
 	{	
@@ -155,8 +156,10 @@ public class WindowMergeApp extends PApplet {
 	
 	public void settings() 
 	{  
-		size(720, 480);
-		//fullScreen(2);
+		if ( presentation )
+			fullScreen(2);
+		else
+			size(720, 480);
 		build();
 	}
 	

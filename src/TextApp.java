@@ -6,6 +6,7 @@ public class TextApp extends PApplet {
 	String filename = "";
 	Boolean changed = false;
 	String[] content = {"Hello world"};
+	Boolean presentation = false;
 	
 	public void setup()
 	{
@@ -47,16 +48,18 @@ public class TextApp extends PApplet {
 	{
 		update();
 		clear();
-		background(255);
+		background(0);
 		if (content != null)
 		{
 			int cursorY = 0;
 			for(int i = 0; i < content.length;i++)
 			{
 				cursorY += 20;
-				fill(196);//fill(0,100,20);
+				//fill(196);
+				fill(0,100,20);
 				text(i+1, 5, cursorY+1);
-				fill(0,0,0);//fill(100,255,100);
+				//fill(0,0,0);
+				fill(130,255,150);
 				text(content[i], 40, cursorY);
 			}
 		}
@@ -72,8 +75,10 @@ public class TextApp extends PApplet {
 	
 	public void settings() 
 	{ 
-		size(630, 360);
-		//fullScreen(1);
+		if ( presentation )
+			fullScreen(1);
+		else
+			size(630, 360);
 	}
 	
 	static public void main(String[] passedArgs) 

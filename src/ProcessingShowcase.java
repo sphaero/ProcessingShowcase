@@ -42,8 +42,8 @@ public class ProcessingShowcase {
 	  currentPattern = pospatterns[currentPositie][1];
 	  System.out.println( "playing position: "+ currentPositie + " pattern: " + currentPattern );
 	  snip.setLoopPoints(startPos * 6666, (endPos+1) * 6666);
-	  snip.loop(-1); //infinite loop
-	  //snip.play();
+	  //snip.loop(-1); //infinite loop
+	  snip.play();
 	}
 
 	public int playSounds() {
@@ -179,11 +179,23 @@ public class ProcessingShowcase {
 	
 	public static void main(String[] args)
 	{
+		Boolean pres = false;
+		for (int i = 0; i < args.length; i++) 
+	    {
+	    	if ( args[i].contains("-p") ) 
+    		{
+	    		pres = true;
+	    		System.out.println("enabling presentation mode");
+    		}
+	    }
+		
 		ProcessingShowcase inst = new ProcessingShowcase();
 		
 		TextApp textApp = new TextApp();
 		WindowMergeApp windowApp = new WindowMergeApp();
-
+		textApp.presentation = pres;
+		windowApp.presentation = pres;
+		
 		String[] ta_args = {""};
 		PApplet.runSketch(ta_args, textApp);
 
@@ -215,9 +227,8 @@ public class ProcessingShowcase {
 				Thread.sleep(50);
 				if ( ! inst.snip.isPlaying() )
 				{
-					// rebuild the demo
-					System.out.println("rebuilding from scratch and restarting!");
-					windowApp.currentIndex = -1;
+					// exit the demo
+					System.exit(0);
 				}
 			}
 			catch (Exception e) {
