@@ -30,8 +30,8 @@ void setup() {
 
 //fullScreen();
   size(720,480);
-  font = createFont("SharpGroteskSmBold23", 24);
-  textFont(font);
+  //font = createFont("SharpGroteskSmBold23", 24);
+  //textFont(font);
   
 img = loadImage("electro-02-02.png");
   background(bgcolor);
