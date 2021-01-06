@@ -22,7 +22,7 @@ public class WindowMergeApp extends PApplet {
     int currentIndex;
     int _runningIndex;
     int loopIndex[] = {0,0,0,0,0,0,0,0,0};
-    int loopCount = -1;
+    int loopCount = 0;
     PApplet sketch;
     Boolean presentation = false;
     
@@ -196,7 +196,7 @@ public class WindowMergeApp extends PApplet {
 			if ( pattern == 8 )
 			{
 				loopCount++;
-				if (loopCount == sketches.get(5).size() ) System.exit(0);
+				if (loopCount >= sketches.get(5).size() -1 ) System.exit(0);
 			}
 			else if (pattern == 4 ) // we're coming from position 6
 			{
