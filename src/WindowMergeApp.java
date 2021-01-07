@@ -21,7 +21,7 @@ public class WindowMergeApp extends PApplet {
 	List<List<SketchShit>> sketches = new ArrayList<>();
     int currentIndex;
     int _runningIndex;
-    int loopIndex[] = {0,0,0,0,0,0,0,0,0};
+    int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int loopCount = 0;
     PApplet sketch;
     Boolean presentation = false;
@@ -178,7 +178,7 @@ public class WindowMergeApp extends PApplet {
                             new Class[] { int.class, int.class, int.class });
 	      modRowEvent.invoke(sketch, channel, instrument, note );
 	    } catch (Exception e) {
-	    	System.out.println("No modRowEvent found in the sketch!");
+	    	//System.out.println("No modRowEvent found in the sketch!");
 	    	// no such method, or an error.. which is fine, just ignore
 	    }
 		//  We reageren alleen op instrument 2
@@ -195,27 +195,8 @@ public class WindowMergeApp extends PApplet {
 		System.out.println("pattern " + pattern + " , position " + position );
 		if ( currentIndex != pattern )
 		{
-			if ( pattern == 8 )
-			{
-				loopCount++;
-				if (loopCount >= sketches.get(5).size() -1 ) System.exit(0);
-			}
-			else if (pattern == 4 ) // we're coming from position 6
-			{
-				loopIndex[2]++;
-				loopIndex[3]++;
-			}
-			else if ( pattern == 7 )
-			{
-				loopIndex[4]++;
-				loopIndex[5]++;
-				loopIndex[2]++;
-				loopIndex[3]++;
-			}
-			else if (pattern != 2 && pattern != 3 && pattern != 4 && pattern != 5  )
-			{
-				loopIndex[pattern]++;
-			}
+			loopCount++;
+			loopIndex[pattern]++;
 		}
 		currentIndex = pattern;
 	}
@@ -226,15 +207,23 @@ public class WindowMergeApp extends PApplet {
 		currentIndex = 0;
 		// order is the pattern number!!! (78+51=129)
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
+		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("position6.pde", new position6())));
 		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5())));
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("position9.pde", new position9())));
+		sketches.add(null);
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
+		sketches.add(null);
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat15_18.pde", new pat15_18())));
-
-
+		sketches.add(Arrays.asList(new SketchShit("Pattern_55_Femke.pde", new Pattern_55_Femke())));
+		sketches.add(Arrays.asList(new SketchShit("tune6_pattern56.pde", new tune6_pattern56())));
 		/*
 		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
 		sketches.add(null);
