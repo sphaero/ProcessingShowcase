@@ -24,9 +24,9 @@ do
     #echo "creating $dir/music.pde"
     #create_music_pde $dir/music.pde
     #fi
-    # replace illegal methods
     PDENAME=`basename $dir`
-    sed -i 's/frameRate/\/\/frameRate/g' $dir/$PDENAME.pde
+    # replace illegal methods
+    sed -i 's/frameRate(/\/\/frameRate(/g' $dir/$PDENAME.pde
     OPT="--sketch=$dir --force --output=$dir-parsed  --build"
     echo $PRC $OPT
     $PRC $OPT
@@ -38,6 +38,8 @@ do
     #echo "new $PDENAME();"
     #echo "sketches.add(new SketchShit(\"$PDENAME.pde\", new $PDENAME()));"
     rm -rf $dir-parsed
+    # undo replace illegal methods
+    sed -i 's/\/\/frameRate(/frameRate(/g' $dir/$PDENAME.pde
     SRCCODE="$SRCCODE\nsketches.add(Arrays.asList(new SketchShit(\"$PDENAME.pde\", new $PDENAME())));"
     #SRCCODE="$SRCCODE\nnew SketchShit(\"$PDENAME.pde\", new $PDENAME())"
 done
