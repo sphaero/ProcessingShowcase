@@ -83,9 +83,11 @@ public class WindowMergeApp extends PApplet {
 		{
 			println(e.getMessage());
 		}
+		/*
 		g.beginDraw();
 		go_draw_for(15);
 		g.endDraw();
+		*/
 		if ( currentIndex != _runningIndex)
 		{
 			if ( currentIndex == -1 )
