@@ -1,5 +1,6 @@
 package procmod2;
 
+
 import processing.core.*;
 
 import java.io.File;
@@ -8,6 +9,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.lang.reflect.*;
 
+//import de.quippy.*;
 import de.quippy.javamod.main.JavaModMainBase;
 import de.quippy.javamod.main.gui.PlayThread;
 import de.quippy.javamod.main.gui.PlayThreadEventListener;
@@ -60,31 +62,39 @@ public class ModPlayer extends JavaModMainBase implements PlayThreadEventListene
 		super(false);
 		myParent = theParent;
 		
-		try
-		{
-			modFileName = new URL( myParent.dataPath(modFile) );
-		}
-		catch (MalformedURLException ex) // This is evil, but I dont want to test on local files myself...
-		{
-			try
-			{
-				modFileName = (new File(modFile)).toURI().toURL();
+		// first try to handle old examples using dataPath
+		File f = new File(modFile);
+		if(f.exists() && !f.isDirectory()) { 
+			try {
+				modFileName = f.toURI().toURL();
 			}
-			catch (MalformedURLException exe) // This is even more evil...
+			catch (MalformedURLException ex)
 			{
-				Log.error("This is not parsable: " + modFile, ex);
-				System.exit(-1);
+				Log.error("Cannot find file in path: " + modFile, ex);
 			}
-		}
-		// just a lame test to see if the file is there before we init.
-		if ( new File(modFileName.getPath() ).isFile() )
-		{
-			initJavaMod();
 		}
 		else
 		{
-			Log.error("Cannot find " + modFileName.getPath());
+			File dir = new File( myParent.sketchPath(), "data" );			
+			f = new File(dir, modFile);
+			if( !(f.exists() && !f.isDirectory()) )
+			{
+				Log.error("File doesn't exist or is a directory: " + modFile);
+				System.exit(-1);
+			}
+			try
+			{
+				modFileName = (new File(dir, modFile)).toURI().toURL();
+			}
+			catch (MalformedURLException ex)
+			{
+				Log.error("Cannot find: " + modFile, ex);
+				System.exit(-1);
+			}
 		}
+		
+		initJavaMod();
+		
 		// check to see if the host applet implements
 	    // public void modRowEvent ...
 	    try {
