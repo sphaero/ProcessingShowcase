@@ -211,18 +211,18 @@ public class WindowMergeApp extends PApplet {
 	public void build()
 	{
 		sketches.clear();
-		currentIndex = 0;
+		currentIndex = 1;
 		// order is the pattern number!!! (78+51=129)
-		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
+		sketches.add(Arrays.asList(new SketchShit("pat_0.pde", new pat_0())));
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("position6.pde", new position6())));
 		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5()))); // 5
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
+		sketches.add(Arrays.asList(new SketchShit("Pat7.pde", new Pat7())));
 		sketches.add(null);
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("position9.pde", new position9())));
+		sketches.add(Arrays.asList(new SketchShit("pat_9.pde", new pat_9())));
 		sketches.add(null); // 10
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
@@ -238,7 +238,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null); // 25
+		sketches.add(Arrays.asList(new SketchShit("pat25_Eline.pde", new pat25_Eline()))); // 25
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
@@ -261,7 +261,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null); // 45
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat48.pde", new pat48())));
 		sketches.add(null);
 		sketches.add(null); // 50
 		sketches.add(null);
