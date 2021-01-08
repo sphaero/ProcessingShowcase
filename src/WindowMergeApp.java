@@ -21,7 +21,7 @@ public class WindowMergeApp extends PApplet {
 	List<List<SketchShit>> sketches = new ArrayList<>();
     int currentIndex;
     int _runningIndex;
-    int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int loopCount = 0;
     PApplet sketch;
     Boolean presentation = false;
@@ -29,9 +29,12 @@ public class WindowMergeApp extends PApplet {
     int go_played;
     int go_draw_frame_count = 0;
     float choose = 0.0f;
-    
+    PFont mono = null;
+	
+
 	public void setup()
 	{
+		if (mono == null)  mono = createFont("FreeMono.ttf", 30);
 		SketchShit sht = getShit();
 		sketch = sht.sketch;
 		_runningIndex = currentIndex;
@@ -83,11 +86,15 @@ public class WindowMergeApp extends PApplet {
 		{
 			println(e.getMessage());
 		}
-		/*
+		
 		g.beginDraw();
-		go_draw_for(15);
+		fill(255);
+		stroke(0);
+		textFont(mono);
+		text("pattern: "+ currentIndex, 10,25);
+		//go_draw_for(15);
 		g.endDraw();
-		*/
+		
 		if ( currentIndex != _runningIndex)
 		{
 			if ( currentIndex == -1 )
@@ -211,19 +218,68 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("position6.pde", new position6())));
-		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5())));
+		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5()))); // 5
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("position9.pde", new position9())));
-		sketches.add(null);
+		sketches.add(null); // 10
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pat15_18.pde", new pat15_18())));
-		sketches.add(Arrays.asList(new SketchShit("Pattern_55_Femke.pde", new Pattern_55_Femke())));
+		sketches.add(Arrays.asList(new SketchShit("pat15_18.pde", new pat15_18()))); // 15
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 20
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 25
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 30
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 40
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 45
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 50
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("Pattern_55_Femke.pde", new Pattern_55_Femke()))); // 55
 		sketches.add(Arrays.asList(new SketchShit("tune6_pattern56.pde", new tune6_pattern56())));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 60
+		sketches.add(Arrays.asList(new SketchShit("pat61.pde", new pat61())));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); // 65
+
 		/*
 		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
 		sketches.add(null);
