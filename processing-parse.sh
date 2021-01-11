@@ -34,7 +34,7 @@ do
     echo "copying `basename $dir` sources to $SRC_DIR"
     cp $dir-parsed/source/$PDENAME.java $SRC_DIR/
     if [[ -d $dir/data ]]; then
-        cp -r $dir/data/* data/
+        cp -r $dir/data/* data/ &> /dev/null | true
     fi
     #echo "new $PDENAME();"
     #echo "sketches.add(new SketchShit(\"$PDENAME.pde\", new $PDENAME()));"

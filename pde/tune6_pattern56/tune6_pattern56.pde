@@ -16,7 +16,7 @@ void setup() {
   mplayer = new ModPlayer(this, dataPath("pat56.mod"));
   //  play it rightaway
   mplayer.play();
-  //frameRate(30);
+  frameRate(30);
 }
 
 void draw() {
