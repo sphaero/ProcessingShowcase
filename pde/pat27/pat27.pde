@@ -1,5 +1,5 @@
 //Daan Vroom
-//pat29
+//pat27
 
 int dim;
 
@@ -19,7 +19,7 @@ void setup() {
   size(720,480);
   background(0);
   //  Load the supplied test.mod file
-  mplayer = new ModPlayer(this, dataPath("pat29.mod"));
+  mplayer = new ModPlayer(this, dataPath("pat27.mod"));
   //  play it rightaway
   mplayer.play();
   
@@ -32,20 +32,18 @@ background(0);
 }
 
 void draw() {
-
   for (int x = 0; x <= height; x+=dim) {
-drawGradient(x, width/6);
+drawGradient(x, width/4);
 }
 }
 
 void drawGradient(float x, float y) {
 int radius = dim;
-float h = random(0, 700);
-for (int r = radius; r > 4; --r) {
+float h = random(0, 100);
+for (int r = radius; r > 2; --r) {
 fill(h, r-150, 20,20);
 rect(x, r, 1000, r);
-h = (h + 6) % 500;
-
+h = (h + 1) % 360;
 }
 }
 
