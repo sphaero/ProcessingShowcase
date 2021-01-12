@@ -242,7 +242,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pat24.pde", new pat24())));
 		sketches.add(Arrays.asList(new SketchShit("pat25.pde", new pat25()))); // 25
 		sketches.add(Arrays.asList(new SketchShit("pat26.pde", new pat26())));
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat27.pde", new pat27())));
 		sketches.add(Arrays.asList(new SketchShit("pat28.pde", new pat28())));
 		sketches.add(Arrays.asList(new SketchShit("pat29.pde", new pat29())));
 		sketches.add(Arrays.asList(new SketchShit("pat30_chrisboender.pde", new pat30_chrisboender()))); // 30
@@ -272,7 +272,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("tune_5_pattern_54_Mijs_versie_1.pde", new tune_5_pattern_54_Mijs_versie_1())));
 		sketches.add(Arrays.asList(new SketchShit("nr55laraoostveen.pde", new nr55laraoostveen()))); // 55
 		sketches.add(Arrays.asList(new SketchShit("pat56.pde", new pat56())));
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat57_59.pde", new pat57_59())));
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat60.pde", new pat60()))); // 60
