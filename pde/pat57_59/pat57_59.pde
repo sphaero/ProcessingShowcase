@@ -1,7 +1,6 @@
 import procmod.*;
 
-String nicks = "- Sphaero - REDNEOB - meddelaif - supr.tom - Krullenbos - Juicy L. - Sabi - LukeWarmMayonnaise - Yecatzs - Mizzle - Marnie - Juliavocado - yarikanari - sp4tad3r - Totti - panlat - biceppapi - Ellie - Lilo - Ammie - ohokhaha - Mulamoes - Lili - lara -";
-
+String nicks = "- lara - Lili - Mulamoes - ohokhaha - Ammie - Lilo - Ellie - biceppapi - panlat - Totti - sp4tad3r - yarikanari - Juliavocado - Marnie - Mizzle - Yecatzs - LukeWarmMayonnaise - Sabi - Juicy L. - Krullenbos - supr.tom  - meddelaif - REDNEOB - Sphaero -";
 ModPlayer plr;
 
 int start = 0;
