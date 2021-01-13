@@ -5,7 +5,7 @@ ModPlayer plr;
 
 int start = 0;
 int cSamplePlayed = 0;
-float intromult = 0.1;
+float intromult = 0.3;
 
 color circleFillCol = color(42,247,2);
 color circleBorderCol = color(22,129,1);
