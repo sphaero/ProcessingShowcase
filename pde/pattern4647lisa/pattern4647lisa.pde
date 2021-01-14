@@ -1,15 +1,12 @@
 import procmod.*;
-// gebasseerd op: https://processing.org/examples/radialgradient.html
-//  define a new instance of the ModPlayer
+
 ModPlayer mplayer;
 
 
 void setup() {
   size(720, 480);
-  background(0);
-  //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("tune5.mod"));
-  //  play it rightaway
+
   mplayer.play();
  
 }
@@ -37,13 +34,11 @@ void drawGradient(float x, float y) {
   float h = random(0, 360);
   for (int r = radius; r > 0; --r) {
     fill(h, 40, 90);
-   
     ellipse(x, y, r, r);
     ellipse (x, y, r, h);
     rect (120, 90, r,h);
     stroke (30,40, r ,r );
     rect (482,90,r,h);
-    fill (#474BF2);
     stroke (x,y,r,r);
     stroke (y,x,r,r);
     h = (h + 1) % 360;
