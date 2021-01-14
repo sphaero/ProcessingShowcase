@@ -25,7 +25,8 @@ void movieEvent(Movie video) {
 void draw() {
   video.loadPixels();
   image(video, 0, 0);
-  if ( (video.pixels.length > 0) )
+  if ( (video.pixels.length > 0) ) 
+  {
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
       int x = i*videoScale;
