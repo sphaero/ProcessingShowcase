@@ -14,6 +14,7 @@ int X_AXIS = 2;
 void setup() {
   size(720,480);
   background(0);
+  frameRate(30);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("pat0.mod"));
   //  play it rightaway

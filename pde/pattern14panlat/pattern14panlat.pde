@@ -12,7 +12,7 @@ int sample_played = 0;
 
 void setup() {
   size (740, 480);
-  frameRate(30);
+  frameRate (30);
   strokeWeight(5);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("pat14.mod"));

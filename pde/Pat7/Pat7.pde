@@ -15,6 +15,7 @@ float t;
 void setup() {
   size(720,480);
   background(0);
+  frameRate(30);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("pat7.mod"));
   //  play it rightaway
@@ -24,7 +25,7 @@ void setup() {
 
 void draw() {
 
-frameRate(30);
+
   
 background(0,0,0);
 stroke(152,191,232);

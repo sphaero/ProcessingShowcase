@@ -31,7 +31,7 @@ rect(x, y, 50, 50);
 // draw a diamond using quad();
 fill(ch1color);
 noStroke();
-quad( x + 4, y + -4, x + 4, y + 4, x + 4, y + 4, x + -2 , y + 1);
+quad( x + 16, y + -4, x + 70, y + 32, x + 32, y + 35, x + -2 , y + 1*ch1color );
 }
 }
 }
