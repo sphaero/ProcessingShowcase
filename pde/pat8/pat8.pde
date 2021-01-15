@@ -16,6 +16,7 @@ void setup() {
   mplayer = new ModPlayer(this, dataPath("pat8.mod"));
   //  play it rightaway
   mplayer.play();
+  strokeWeigth(7);
 }
 
 float x,y,x2,y2,w;
