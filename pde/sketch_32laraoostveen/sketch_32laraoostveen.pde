@@ -7,7 +7,7 @@ int sample_played = 1;
 int dim;
 
 void setup() {
-  size(640, 360);
+  size(720, 480);
   dim = height/6;
   
    mplayer = new ModPlayer(this, dataPath("pat32.mod"));
@@ -30,7 +30,7 @@ void draw() {
 void drawGradient(float x, float y) {
   int radius = dim/2;
   float h = random(12, 360);
-  for (int r = radius; r > 0; --r) {
+  for (int r = radius; r > 0; r-=200) {
     fill(h, 40, 95,r);
     ellipse(x, y, 40, 30);
     ellipse(x, y, 40, 50);
