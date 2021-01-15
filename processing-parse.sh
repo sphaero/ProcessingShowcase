@@ -27,6 +27,7 @@ do
     PDENAME=`basename $dir`
     # replace illegal methods
     sed -i 's/frameRate(/\/\/frameRate(/g' $dir/$PDENAME.pde
+    sed -i 's/frameRate\ (/\/\/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/surface./\/\/surface./g' $dir/$PDENAME.pde
     OPT="--sketch=$dir --force --output=$dir-parsed  --build"
     echo $PRC $OPT
@@ -41,6 +42,7 @@ do
     rm -rf $dir-parsed
     # undo replace illegal methods
     sed -i 's/\/\/frameRate(/frameRate(/g' $dir/$PDENAME.pde
+    sed -i 's/\/\/frameRate\ (/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/\/\/surface./surface./g' $dir/$PDENAME.pde
     SRCCODE="$SRCCODE\nsketches.add(Arrays.asList(new SketchShit(\"$PDENAME.pde\", new $PDENAME())));"
     #SRCCODE="$SRCCODE\nnew SketchShit(\"$PDENAME.pde\", new $PDENAME())"

@@ -55,6 +55,7 @@ public class WindowMergeApp extends PApplet {
 		sketch.resetMatrix();
 		colorMode(RGB, 255, 255, 255);
 		rectMode(CORNER);
+		imageMode(CORNER);
 		textAlign(LEFT);
 		fill(255);
 		stroke(0);
@@ -226,8 +227,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
 		sketches.add(Arrays.asList(new SketchShit("Pat7.pde", new Pat7())));
 		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
-		sketches.add(Arrays.asList(new SketchShit("pat_9.pde", new pat_9()),
-									new SketchShit("pat9.pde", new pat9())));
+		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
 		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10()))); // 10
 		sketches.add(Arrays.asList(new SketchShit("pat11.pde", new pat11())));
 		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
@@ -237,9 +237,9 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null); // 20
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat19.pde", new pat19())));
+		sketches.add(Arrays.asList(new SketchShit("pat20.pde", new pat20()))); // 20
+		sketches.add(Arrays.asList(new SketchShit("pat21.pde", new pat21())));
 		sketches.add(Arrays.asList(new SketchShit("pat22.pde", new pat22())));
 		sketches.add(Arrays.asList(new SketchShit("pat23.pde", new pat23())));
 		sketches.add(Arrays.asList(new SketchShit("pat24.pde", new pat24())));
