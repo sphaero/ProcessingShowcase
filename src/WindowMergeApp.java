@@ -224,7 +224,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null); // intro
 		sketches.add(Arrays.asList(new SketchShit("pat4.pde", new pat4())));
 		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5()))); // 5
-		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
+		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6()), new SketchShit("position6.pde", new position6())));
 		sketches.add(Arrays.asList(new SketchShit("Pat7.pde", new Pat7())));
 		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
 		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
@@ -255,11 +255,11 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("Pat34.pde", new Pat34())));
 		sketches.add(Arrays.asList(new SketchShit("PAT35.pde", new PAT35())));
 		sketches.add(Arrays.asList(new SketchShit("PAT36.pde", new PAT36())));
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("patt56.pde", new patt56())));
 		sketches.add(Arrays.asList(new SketchShit("PAT38.pde", new PAT38())));
 		sketches.add(Arrays.asList(new SketchShit("PAT39.pde", new PAT39())));
-		sketches.add(null); // 40
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("Pattern_40.pde", new Pattern_40()))); // 40
+		sketches.add(Arrays.asList(new SketchShit("pattern_41.pde", new pattern_41())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("PAT_43.pde", new PAT_43())));
 		sketches.add(Arrays.asList(new SketchShit("PAT_44.pde", new PAT_44())));
@@ -274,7 +274,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("tune_5_Pattern_53_Mijs_versie_2.pde", new tune_5_Pattern_53_Mijs_versie_2())));
 		sketches.add(Arrays.asList(new SketchShit("tune_5_pattern_54_Mijs_versie_2.pde", new tune_5_pattern_54_Mijs_versie_2())));
 		sketches.add(Arrays.asList(new SketchShit("nr_55Laraoostveen.pde", new nr_55Laraoostveen()))); // 55
-		sketches.add(Arrays.asList(new SketchShit("pat56.pde", new pat56())));
+		sketches.add(Arrays.asList(new SketchShit("tune6_pattern56.pde", new tune6_pattern56())));
 		sketches.add(Arrays.asList(new SketchShit("pat57_59.pde", new pat57_59())));
 		sketches.add(null);
 		sketches.add(null);
