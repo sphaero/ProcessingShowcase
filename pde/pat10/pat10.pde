@@ -23,7 +23,7 @@ float x,y,x2,y2,w;
 
 void draw(){
 for (int x = 0; x < 720; x += 20) {
-for (int y = 0; y < 4800; y += 20) {
+for (int y = 0; y < 4800; y += 200) {
 if ( random(0,10) > 5 ){
 fill(ch2color);
 rect(x, y, 50, 50);

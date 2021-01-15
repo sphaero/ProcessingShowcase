@@ -103,7 +103,7 @@ void scrollText()
   strokeWeight(1.0);
   fill(255);
   textFont(fnt);
-  text("we need a title", 800 - ((frameCount-start)*3), height/2+16);
+  text("Rigid Tinkerer", 800 - ((frameCount-start)*3), height/2+16);
 }
 void modRowEvent(int chan, int instr, int note)
 {
