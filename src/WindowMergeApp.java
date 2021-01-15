@@ -94,8 +94,8 @@ public class WindowMergeApp extends PApplet {
 		g.beginDraw();
 		fill(255);
 		stroke(0);
-		textFont(mono);
-		text("pattern: "+ currentIndex, 10,25);
+		//textFont(mono);
+		//text("pattern: "+ currentIndex, 10,25);
 		//go_draw_for(15);
 		g.endDraw();
 		

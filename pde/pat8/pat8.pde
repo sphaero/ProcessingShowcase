@@ -11,12 +11,12 @@ color ch4color;
 void setup() {
   size(720,480);
   background(0);
-  frameRate(30);
+  //frameRate(30);
   //  Load the supplied test.mod file
   mplayer = new ModPlayer(this, dataPath("pat8.mod"));
   //  play it rightaway
   mplayer.play();
-  strokeWeigth(7);
+  strokeWeight(7);
 }
 
 float x,y,x2,y2,w;
