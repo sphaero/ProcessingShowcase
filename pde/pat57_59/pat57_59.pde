@@ -6,6 +6,7 @@ ModPlayer plr;
 int start = 0;
 int cSamplePlayed = 0;
 float intromult = 0.3;
+float intromultdelta = 0.0;
 
 color circleFillCol = color(42,247,2);
 color circleBorderCol = color(22,129,1);
@@ -39,14 +40,24 @@ void draw() {
   
   scrollText();
   // variabelen om op de instrumenten te reageren
-  if (intromult > 0.3)
+  /*if (intromult > 0.3 && intromultdelta > 0)
   {
-    intromult -= 0.0096;
-  }
+    intromult += intromultdelta;
+  }*/
+  intromult += intromultdelta;
   if (cSamplePlayed == 1)
   {
-    intromult = 1.3;
+    intromultdelta = +0.04;
     cSamplePlayed = 0;
+  }
+  if (intromult > 1.3 && intromultdelta > 0)
+  {
+    intromultdelta = -0.01;
+  }
+  if (intromult < 0.3)
+  {
+     intromult = 0.3;
+     intromultdelta = 0.0;
   }
 }
 

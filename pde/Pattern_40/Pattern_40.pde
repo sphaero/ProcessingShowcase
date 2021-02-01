@@ -2,125 +2,147 @@ import procmod.*;
 
 ModPlayer plr;
 
-int introSamplePlayed = 0;
-int chorusSamplePlayed = 0;
-float intromult = 0.1;
+  int introSamplePlayed = 0;
+  int chorusSamplePlayed = 0;
+  float intromult = 0.1;
 
-color circleFillCol = color(42,247,2);
-color circleBorderCol = color(22,129,1);
-color noiseCol = color(3,255,243);
+  color circleFillCol = color(42,247,2);
+  color circleBorderCol = color(22,129,1);
+  color noiseCol = color(3,255,243);
+  
+  PFont fnt;
 
-PFont fnt;
-  
-  
+  //cirkels
+  float diameter; 
+  float angle = 0;
+
+  //noise
+  float increment = 0.01;
+  float zoff = 0.0;  
+  float zincrement = 0.02; 
+
   void setup() {
   size(720, 480);
+  println(frameRate);
   frameRate(30);
-  }
+  diameter = height - 10;
+  noStroke();
+  
+}
 
   void draw() {
+  
   background(0);
+{
   
   
- {
-  for (int i = 0; i < width; i++) {
-    float r = random(125);
-    stroke(r);
-    line(i, 0, 1, height);
-  }
-  }
+  
+  //noise
+  loadPixels();
 
+  float xoff = 0.0; // Start xoff at 0
   
-   {
-  float val = randomGaussian();
+ 
+  for (int x = 0; x < width; x++) {
+    xoff += increment;   // Increment xoff 
+    float yoff = 0.0;   // For every xoff, start yoff at 0
+    for (int y = 0; y < height; y++) {
+      yoff += increment; // Increment yoff
+      
+      float bright = random(0,255);
+      
 
-  float sd = 60;                
-  float mean = width/5;          
-  float x = ( val * sd ) + mean;  
+      pixels[x+y*width] = color(bright,bright,bright);
+    }
+  }
+  updatePixels();
+  
+  zoff += zincrement; // Increment zoff
+  
+  
+}
+  //cirkels:
+  
+  stroke(126);
+  float d1 = 10 + (sin(angle) * diameter/2) + diameter/2;
+  float d2 = 10 + (sin(angle + PI/2) * diameter/2) + diameter/2;
+  float d3 = 10 + (sin(angle + PI) * diameter/2) + diameter/2;
+  //ellipse(width/2, height/2, d2, d2);
+  
+  //cirkels links
+  fill(0, 0, 0);
+  ellipse(0, height/1, d1, d1);
+  ellipse(0, height/4, d1, d1);
+  
   noStroke();
-  fill(80,10,80);
-  ellipse(x, height/2.5, 42, 42); 
-  ellipse(x, height/6.5, 42, 42); 
-  ellipse(x, height/1.5, 42, 42); 
-  ellipse(x, height/3.5, 42, 42); 
+  colorMode(HSB, 100);
+  for (int i = 0; i < 100; i++) {
+  for (int j = 0; j < 100; j++) {
+    stroke(i, j, 100);
   }
-   {
-  float val = randomGaussian();
-
-  float sd = 60;                
-  float mean = width/1;          
-  float x = ( val * sd ) + mean;  
+}
+  ellipse(0, height/4, d3, d3);
+  ellipse(0, height/1, d3, d3);
+  
+  // cirkels rechts
+  fill(0, 0, 0);
+  ellipse(width, height/4, d3, d3);
+  ellipse(width, height/1, d3, d3);
+  
   noStroke();
-  fill(100,10,80);
-  ellipse(x, height/2.5, 42, 42); 
-  ellipse(x, height/6.5, 42, 42); 
-  ellipse(x, height/1.5, 42, 42); 
-  ellipse(x, height/3.5, 42, 42); 
+  colorMode(HSB, 100);
+  for (int i = 0; i < 100; i++) {
+  for (int j = 0; j < 100; j++) {
+    stroke(i, j, 100);
   }
+}
+  ellipse(width/1, height/1, d2, d2);
+  ellipse(width/1, height/4, d2, d2);
+ 
+  angle += 0.02;
   
-   {
-  float val = randomGaussian();
-
-  float sd = 60;                
-  float mean = width/2;          
-  float x = ( val * sd ) + mean;  
+  
+  // sterren:
+  // ster links
+  
   noStroke();
-  fill(100,10,80);
-  ellipse(x, height/2.5, 42, 42); 
-  ellipse(x, height/6.5, 42, 42); 
-  ellipse(x, height/1.5, 42, 42); 
-  ellipse(x, height/3.5, 42, 42); 
+  colorMode(RGB, 100);
+  for (int i = 0; i < 100; i++) {
+  for (int j = 0; j < 100; j++) {
+    stroke(i, j, 0);
   }
+}
   
-  //roze ster helemaal links
-  fill(200,100,150);
-  pushMatrix();
-  translate(width*0.005, height*0.5);
-  rotate(frameCount / 2.0);
-  star(0, 0, 5, 70, 3); 
-  popMatrix();
-  
-  
-  {
-  for (int i = 0; i < width; i++) {
-    float r = random(125);
-    stroke(r);
-    line(1, 0, i, height);
-  }
-  }
-  
-  
-//roze ster helemaal rechts
-  fill(200,100,150);
-  pushMatrix();
-  translate(width*1, height*0.5);
-  rotate(frameCount / 2.0);
-  star(0, 0, 5, 70, 3); 
-  popMatrix();
-  
-  //paarse ster links
-  fill(150,50,150);
+  fill(255,255,255);
   pushMatrix();
   translate(width*0.2, height*0.5);
   rotate(frameCount / 1.0);
-  star(5, 0, 5, 70, 3); 
-  popMatrix();
-  
-  // roze ster in het midden
-  fill(200,100,150);
-  pushMatrix();
-  translate(width*0.5, height*0.5);
-  rotate(frameCount / 2.0);
   star(0, 0, 5, 70, 3); 
   popMatrix();
   
-  // paarse ster rechts
-  fill(150,50,150);
+  // ster in het midden
+  fill(0,0,255);
   pushMatrix();
-  translate(width*0.8, height*0.5);
+  translate(width*0.5, height*0.5);
   rotate(frameCount / 1.0);
   star(5, 0, 5, 70, 3); 
   popMatrix();
+  
+  fill(255,255,255);
+  pushMatrix();
+  translate(width*0.5, height*0.5);
+  rotate(frameCount / 1.0);
+  star(0, 0, 5, 70, 3); 
+  popMatrix();
+  
+  // ster rechts
+  fill(255,255,255);
+  pushMatrix();
+  translate(width*0.8, height*0.5);
+  rotate(frameCount / 1.0);
+  star(0, 0, 5, 70, 3); 
+  popMatrix();
+ 
   }
 
   void star(float x, float y, float radius1, float radius2, int npoints) {
@@ -137,7 +159,9 @@ PFont fnt;
   }
   endShape(CLOSE);
 }
-void modRowEvent(int chan, int instr, int note)
+
+
+  void modRowEvent(int chan, int instr, int note)
 {
   if( instr != 0 ) println(instr);
   if (chan == 0 && instr == 13)
