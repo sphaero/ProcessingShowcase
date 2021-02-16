@@ -59,13 +59,13 @@ void draw() {
      intromult = 0.3;
      intromultdelta = 0.0;
   }
-  if( frameCount > 100)
+  if( frameCount > 1100)
   {
-    fill(0,0,0,0+(frameCount-100));
+    fill(0,0,0,0+(frameCount-1100));
     noStroke();
     rect(0,0,width,height);
   }
-  if( frameCount > 100 + 255)
+  if( frameCount > 1100 + 255)
   {
     System.exit(0);
   }
