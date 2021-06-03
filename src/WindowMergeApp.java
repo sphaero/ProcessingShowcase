@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import netP5.*; 
+import oscP5.*; 
 
 import java.util.HashMap; 
 import java.util.List; 
@@ -26,15 +28,13 @@ public class WindowMergeApp extends PApplet {
     PApplet sketch;
     Boolean presentation = false;
     
-    int go_played;
-    int go_draw_frame_count = 0;
-    float choose = 0.0f;
     PFont mono = null;
-	
-
+    OscP5 oscP5 = null;
+    
 	public void setup()
 	{
-		if (mono == null)  mono = createFont("FreeMono.ttf", 30);
+		if (mono == null)  mono = createFont("ArcadeClassic.ttf", 30);
+		if (oscP5 == null) oscP5 = new OscP5(this,6200);
 		SketchShit sht = getShit();
 		sketch = sht.sketch;
 		_runningIndex = currentIndex;
@@ -70,7 +70,6 @@ public class WindowMergeApp extends PApplet {
             println(e);
             e.printStackTrace();
         }
-        go_played = 0;
 	}
 
 	public void postEvent(processing.event.Event pe) 
@@ -96,7 +95,6 @@ public class WindowMergeApp extends PApplet {
 		stroke(0);
 		//textFont(mono);
 		//text("pattern: "+ currentIndex, 10,25);
-		//go_draw_for(15);
 		g.endDraw();
 		
 		if ( currentIndex != _runningIndex)
@@ -111,74 +109,45 @@ public class WindowMergeApp extends PApplet {
 			}
 			else frameCount = -1; // triggers setup
 		}
-	}
-	
-	public void go_draw_for(int frames) // frames = het aantal frames dat je wilt tekenen
-	{
-	  if ( go_played == 1 )
-	  {
-	    go_draw_frame_count = frames;
-	    go_played = 0;
-	    choose = random(1);
-	  }
-	  if (go_draw_frame_count != 0 )
-	  {
-	    //
-	    // Vanaf hier kun je je eigen draw dingen doen
-	    //
-		if ( choose > 0.5 )
-		{
-			go_bleep();
-		}
-		else
-		{
-			go_gogov2();
-		}
-	    
-	    // einde draw dingen
-	    //
-	    go_draw_frame_count = go_draw_frame_count - 1;
-	  }
-	}
-	
-	public void go_bleep()
-	{
-	  fill(121, 134, 210);
-	  text("GO", 160, 140);
-	    textSize(100);
-	    fill(254, 237, 246);
-	  text("GO", 360, 240);
-	  textSize(200);
-	      fill(255, 83, 191);
-	  text("GO", 560, 40);
-	  textSize(50);
-	    fill(255, 83, 191);
-	  text("GO", 120, 290);
-	    textSize(100);
-	    fill(121, 134, 210);
-	  text("GO", 700, 300);
-	  textSize(200);
-	      fill(254, 237, 246);
-	  text("GO", 230, 60);
-	  textSize(50);
-	}
-	
-	public void go_gogov2()
-	{
-	    fill(121,134,210);
-	    text("GO",-30,550);
-	    textSize(400);
-	    fill(255,83,191);
-	    
-	    text("GO",330,260);
-	    fill(254,237,246);
-	    
-	    text("GO",100,380);
-	}
+	}	
 		
 	public void frameResized(int w, int h)
 	{
 		println(w,h);
+	}
+	
+	public void oscEvent(OscMessage message) 
+	{
+		if (message.checkAddrPattern("/patternevent" ) )
+        {
+		    /* print the address pattern and the typetag of the received OscMessage */
+		    //print("### received an osc message.");
+		    //print(" addrpattern: "+message.addrPattern());
+		    //println(" typetag: "+message.typetag());
+		    
+		    //songposition = message.get(0).intValue();
+		    int pattern = message.get(1).intValue();
+		    //System.out.println(pattern);
+		    //patternrow = message.get(2).intValue();
+		    if ( currentIndex != pattern )
+			{
+				loopCount++;
+				loopIndex[pattern]++;
+			}
+			currentIndex = pattern;
+		}
+		
+		try
+		{
+	      Method oscEvent = sketch.getClass().getMethod("oscEvent",
+	                        new Class[] { OscMessage.class });
+	      oscEvent.invoke(sketch, message );
+	    } 
+		catch (Exception e) {
+	    	//System.out.println("No modRowEvent found in the sketch!");
+	    	// no such method, or an error.. which is fine, just ignore
+	    }
+
 	}
 	
 	public void modRowEvent( int channel, int instrument, int note )
@@ -197,8 +166,7 @@ public class WindowMergeApp extends PApplet {
 		{
 		    println(channel +":"+ instrument +":"+ note);
 		    //  Whatever instrument is being played just set a background color from the note played.
-		    go_played = 1;
-		}
+ 		}
 	}
 	
 	public void modPatternEvent( int pattern, int position )
@@ -215,8 +183,36 @@ public class WindowMergeApp extends PApplet {
 	public void build()
 	{
 		sketches.clear();
-		currentIndex = 1;
-		// order is the pattern number!!! (78+51=129)
+		currentIndex = 0;
+		List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
+		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(fill); //5
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); //10
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); //15
+		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
+		sketches.add(Arrays.asList(new SketchShit("pattern17.pde", new pattern17())));
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("Pattern19_2.pde", new Pattern19_2())));
+		sketches.add(null); //20
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(null); //25
+				// order is the pattern number!!! (78+51=129)
+		/*
 		sketches.add(Arrays.asList( new SketchShit("pat_0.pde", new pat_0()),
 									new SketchShit("pat0.pde", new pat0())));
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
@@ -284,34 +280,6 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pat63.pde", new pat63())));
 		sketches.add(null);
 		sketches.add(null); // 65
-
-		/*
-		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_2_v2.pde", new Skillslabfinal_part_2_v2()), 
-				                   new SketchShit("part2.pde", new part2()),
-				                   new SketchShit("Dave_Haverkort_skillslab_patt2_BYOB.pde", new Dave_Haverkort_skillslab_patt2_BYOB()),
-				                   new SketchShit("Dave_Haverkort_skillslab_patt2_GO_GO.pde", new Dave_Haverkort_skillslab_patt2_GO_GO())
-								));
-		sketches.add(Arrays.asList(new SketchShit("Skillslabfinal_part_3_v2.pde", new Skillslabfinal_part_3_v2()), 
-								   new SketchShit("part3.pde", new part3()),
-								   new SketchShit("Dave_Haverkort_skillslab_patt3_BYOB.pde", new Dave_Haverkort_skillslab_patt3_BYOB()),
-								   new SketchShit("Dave_Haverkort_skillslab_patt3_GO_GO.pde", new Dave_Haverkort_skillslab_patt3_GO_GO())
-						   		));
-		sketches.add(Arrays.asList(new SketchShit("MuziekGo.pde", new MuziekGo()),
-								   new SketchShit("muziekding2.pde", new muziekding2()),
-								   new SketchShit("Eind_visual_Skillslab_4.pde", new Eind_visual_Skillslab_4()),
-								   new SketchShit("skillslab_sketch_patroon45_susanne.pde", new skillslab_sketch_patroon45_susanne())
-						));
-		sketches.add(Arrays.asList(new SketchShit("Patt5_Bloem.pde", new Patt5_Bloem()),
-				                   new SketchShit("MuziekBlokken.pde", new MuziekBlokken()),
-				                   new SketchShit("Eind_visual_Skillslab_5.pde", new Eind_visual_Skillslab_5()),
-				                   new SketchShit("skillslab_sketch_samengevoegd_patroon5.pde", new skillslab_sketch_samengevoegd_patroon5()),
-								   new SketchShit("Patt5_3.pde", new Patt5_3())
-						));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("credits.pde", new credits())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_200610a_maartenastridagnes.pde", new sketch_200610a_maartenastridagnes())));
 		*/
 	}
 	

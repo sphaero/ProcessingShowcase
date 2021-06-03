@@ -29,6 +29,7 @@ do
     sed -i 's/frameRate(/\/\/frameRate(/g' $dir/$PDENAME.pde
     sed -i 's/frameRate\ (/\/\/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/surface./\/\/surface./g' $dir/$PDENAME.pde
+    sed -e '/new OscP5/s/^/\/\//g' -i $dir/$PDENAME.pde
     OPT="--sketch=$dir --force --output=$dir-parsed  --build"
     echo $PRC $OPT
     $PRC $OPT
@@ -44,6 +45,7 @@ do
     sed -i 's/\/\/frameRate(/frameRate(/g' $dir/$PDENAME.pde
     sed -i 's/\/\/frameRate\ (/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/\/\/surface./surface./g' $dir/$PDENAME.pde
+    sed -e '/new OscP5/s/^\/\///g' -i $dir/$PDENAME.pde
     SRCCODE="$SRCCODE\nsketches.add(Arrays.asList(new SketchShit(\"$PDENAME.pde\", new $PDENAME())));"
     #SRCCODE="$SRCCODE\nnew SketchShit(\"$PDENAME.pde\", new $PDENAME())"
 done
