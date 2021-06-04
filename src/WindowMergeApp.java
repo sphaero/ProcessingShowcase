@@ -30,6 +30,27 @@ public class WindowMergeApp extends PApplet {
     
     PFont mono = null;
     OscP5 oscP5 = null;
+    //int patternnr = 0;
+    int patternrow = 0;
+    int colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
+    int strobe = 0;
+    int channel1instr = 0;
+    int channel2instr = 0;
+    int channel3instr = 0;
+    int channel4instr = 0;
+    int channel1note = 0;
+    int channel2note = 0;
+    int channel3note = 0;
+    int channel4note = 0;
+    char channel1effect;
+    char channel2effect;
+    char channel3effect;
+    char channel4effect;
+    String channel1effect_param = "00";
+    String channel2effect_param = "00";
+    String channel3effect_param = "00";
+    String channel4effect_param = "00";
+    
     
 	public void setup()
 	{
@@ -91,10 +112,20 @@ public class WindowMergeApp extends PApplet {
 		}
 		
 		g.beginDraw();
-		fill(255);
-		stroke(0);
+		/*stroke(0);
+		for (int i = 0; i < height; i+=2)
+		{
+		    line(0, i, width, i);
+		}
+		*/
 		//textFont(mono);
 		//text("pattern: "+ currentIndex, 10,25);
+		if (strobe != patternrow && channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =patternrow; background(colors[1]); }
+        else if (strobe != patternrow && channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = patternrow; background(colors[2]);}
+	    else if (strobe != patternrow && channel4instr == 28 && channel1instr == 28) { strobe = patternrow; background(colors[3]);}
+	    else if (strobe != patternrow && channel4instr == 28) { strobe = patternrow; background(colors[4]);}
+        else if (strobe != patternrow && channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = patternrow; background(colors[0]);}
+		
 		g.endDraw();
 		
 		if ( currentIndex != _runningIndex)
@@ -127,6 +158,23 @@ public class WindowMergeApp extends PApplet {
 		    
 		    //songposition = message.get(0).intValue();
 		    int pattern = message.get(1).intValue();
+		    patternrow = message.get(2).intValue();
+		    channel1note = message.get(3).intValue();
+		    channel1instr = message.get(4).intValue();
+		    channel1effect = message.get(5).charValue();
+		    channel1effect_param = message.get(6).stringValue();
+		    channel2note = message.get(7).intValue();
+		    channel2instr = message.get(8).intValue();
+		    channel2effect = message.get(9).charValue();
+		    channel2effect_param = message.get(10).stringValue();    
+		    channel3note = message.get(11).intValue();
+		    channel3instr = message.get(12).intValue();
+		    channel3effect = message.get(13).charValue();
+		    channel3effect_param = message.get(14).stringValue();
+		    channel4note = message.get(15).intValue();;
+		    channel4instr = message.get(16).intValue();
+		    channel4effect = message.get(17).charValue();
+		    channel4effect_param = message.get(18).stringValue();
 		    //System.out.println(pattern);
 		    //patternrow = message.get(2).intValue();
 		    if ( currentIndex != pattern )
@@ -190,15 +238,15 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(fill); //5
+		sketches.add(Arrays.asList(new SketchShit("pattern_5_6.pde", new pattern_5_6()))); //5
 		sketches.add(null);
-		sketches.add(null);
+		sketches.add(fill);
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null); //10
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
 		sketches.add(null);
 		sketches.add(null); //15
 		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
