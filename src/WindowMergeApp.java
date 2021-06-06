@@ -77,7 +77,9 @@ public class WindowMergeApp extends PApplet {
 		colorMode(RGB, 255, 255, 255);
 		rectMode(CORNER);
 		imageMode(CORNER);
+		ellipseMode(CENTER);
 		textAlign(LEFT);
+		blendMode(BLEND);
 		fill(255);
 		stroke(0);
 		strokeWeight(1);
@@ -113,11 +115,10 @@ public class WindowMergeApp extends PApplet {
 		
 		g.beginDraw();
 		/*stroke(0);
-		for (int i = 0; i < height; i+=2)
+		for (int i = 0; i < height; i+=3)
 		{
 		    line(0, i, width, i);
-		}
-		*/
+		}*/
 		//textFont(mono);
 		//text("pattern: "+ currentIndex, 10,25);
 		if (strobe != patternrow && channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =patternrow; background(colors[1]); }
@@ -240,24 +241,24 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern_5_6.pde", new pattern_5_6()))); //5
 		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pattern8_rambo.pde", new pattern8_rambo())));
+		sketches.add(null);
 		sketches.add(fill);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null); //10
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("Spekkerts_Melting.pde", new Spekkerts_Melting()))); //10
+		sketches.add(Arrays.asList(new SketchShit("kerktoren_pat11_12.pde", new kerktoren_pat11_12())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
-		sketches.add(null);
-		sketches.add(null); //15
-		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
+		sketches.add(fill);
+		sketches.add(fill); //15
+		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
 		sketches.add(Arrays.asList(new SketchShit("pattern17.pde", new pattern17())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("Pattern19_2.pde", new Pattern19_2())));
-		sketches.add(null); //20
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pattern18MarenStam2.pde", new pattern18MarenStam2())));
+		sketches.add(Arrays.asList(new SketchShit("Pattern19_3.pde", new Pattern19_3())));
+		sketches.add(Arrays.asList(new SketchShit("pattern20.pde", new pattern20()))); //20
+		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
+		sketches.add(Arrays.asList(new SketchShit("pattern_22.pde", new pattern_22())));
+		sketches.add(Arrays.asList(new SketchShit("pattern_23.pde", new pattern_23())));
+		sketches.add(fill);
 		sketches.add(null); //25
 				// order is the pattern number!!! (78+51=129)
 		/*
