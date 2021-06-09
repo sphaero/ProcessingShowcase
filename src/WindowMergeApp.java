@@ -247,7 +247,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(sketches.get(5));
 		sketches.add(Arrays.asList(new SketchShit("pattern8_rambo.pde", new pattern8_rambo())));
 		sketches.add(null);
-		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("pattern_9.pde", new pattern_9())));
 		sketches.add(Arrays.asList(new SketchShit("Spekkerts_Melting.pde", new Spekkerts_Melting()))); //10
 		sketches.add(Arrays.asList(new SketchShit("kerktoren_pat11_12.pde", new kerktoren_pat11_12())));
 		sketches.add(sketches.get(11));
@@ -262,8 +262,8 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_22.pde", new pattern_22())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_23.pde", new pattern_23())));
-		sketches.add(fill);
-		sketches.add(null); //25
+		sketches.add(Arrays.asList(new SketchShit("outro.pde", new outro())));
+		sketches.add(sketches.get(0)); //25
 				// order is the pattern number!!! (78+51=129)
 		/*
 		sketches.add(Arrays.asList( new SketchShit("pat_0.pde", new pat_0()),

@@ -8,10 +8,17 @@ get_abs_path() {
 SCRIPT_ROOT=$(get_abs_path `dirname $0`)
 GIT_ROOT=$(get_abs_path $SCRIPT_ROOT/..)
 
+if [ -z "$1" ]; then 
+    echo "need zip url to download"
+    exit 1
+fi
+
+wget $1 -O /tmp/pjc.zip
+
 rm -rf /tmp/pjcpde && true
 mkdir /tmp/pjcpde
 # de zip file van projectcampus
-unzip $1 -d /tmp/pjcpde
+unzip /tmp/pjc.zip -d /tmp/pjcpde
 cd /tmp/pjcpde
 
 for i in `ls *.pde`; 
@@ -27,6 +34,7 @@ done
 for i in `ls *.zip`; 
 do
     unzip $i
+    rm $i
 done
 find . -iname "*DS_store*" | xargs rm -rf
 rm -rf __MACOSX
