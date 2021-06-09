@@ -120,12 +120,16 @@ public class WindowMergeApp extends PApplet {
 		    line(0, i, width, i);
 		}*/
 		//textFont(mono);
-		//text("pattern: "+ currentIndex, 10,25);
-		if (strobe != patternrow && channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =patternrow; background(colors[1]); }
-        else if (strobe != patternrow && channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = patternrow; background(colors[2]);}
-	    else if (strobe != patternrow && channel4instr == 28 && channel1instr == 28) { strobe = patternrow; background(colors[3]);}
-	    else if (strobe != patternrow && channel4instr == 28) { strobe = patternrow; background(colors[4]);}
-        else if (strobe != patternrow && channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = patternrow; background(colors[0]);}
+		text("pattern: "+ currentIndex, 10,25);
+		if (strobe != patternrow )
+		{
+			if (strobe == -1) { strobe =patternrow; background(colors[1]); }
+			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); }
+	        else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = -1; background(colors[2]);}
+		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]);}
+		    else if (channel4instr == 28) { strobe = -1; background(colors[4]);}
+	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]);}
+		}
 		
 		g.endDraw();
 		
@@ -240,15 +244,15 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern_5_6.pde", new pattern_5_6()))); //5
-		sketches.add(null);
+		sketches.add(sketches.get(5));
 		sketches.add(Arrays.asList(new SketchShit("pattern8_rambo.pde", new pattern8_rambo())));
 		sketches.add(null);
 		sketches.add(fill);
 		sketches.add(Arrays.asList(new SketchShit("Spekkerts_Melting.pde", new Spekkerts_Melting()))); //10
 		sketches.add(Arrays.asList(new SketchShit("kerktoren_pat11_12.pde", new kerktoren_pat11_12())));
-		sketches.add(null);
+		sketches.add(sketches.get(11));
 		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
-		sketches.add(fill);
+		sketches.add(sketches.get(13));
 		sketches.add(fill); //15
 		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
 		sketches.add(Arrays.asList(new SketchShit("pattern17.pde", new pattern17())));
