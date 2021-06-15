@@ -1,6 +1,6 @@
 PRC=/opt/processing-3.5.4
-JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:javamod.jar:video.jar:gst1-java-core-1.2.0.jar:jl1.0.1.jar:jna.jar:gluegen-rt.jar"
-JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:javamod.jar:video.jar:gst1-java-core-1.2.0.jar:jl1.0.1.jar:jna.jar"
+JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar"
+JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:oscP5.jar"
 JC = javac #/usr/bin/javac
 JVM = $(PRC)/java/bin/java
 SKETCH_DIRS = pde/*

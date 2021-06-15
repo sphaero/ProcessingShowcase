@@ -1,6 +1,11 @@
 //Spekkerts Melting
 //o no my dear spekkies melting in the heat of the techno ravvvE!
 // delta * -1 
+
+String message =  "o no my dear spekkies melting in the heat of the techno ravvvE!";
+float x, y; // X n Y coordinaten tekst
+float hr, vr;  // horizontale n vertic radius
+
 Spekkie mySpekkie;
 void setup() {
   size(720, 480);
@@ -13,9 +18,15 @@ int strobeSpeed = 10;
 
 void draw() {
 
+  
+{
+  int m = millis();
+  noStroke();
+  fill(m % 255);
+  rect(25, 25, 50, 50);
+}
 
-
-  background(255);
+  background(113);
   mySpekkie.display();
   mySpekkie.drive();
 
@@ -29,8 +40,18 @@ void draw() {
 
 
   String s = "o no my dear spekkies melting in the heat of the techno ravvvE!";
-  fill(50);
-  text(s, 400, 400, 200, 200);  // text die in tekstvak zit, definieren van tekstvak
+  fill(255,0,127);
+  text(s, 450, 100, 192, 324);  // text die in tekstvak zit, definieren van tekstvak
+  
+  {
+    
+      
+  // Lettertype
+  textFont(createFont("georgia", 15));
+  textAlign(CENTER, CENTER);
+  
+  }
+  
 }
 class Spekkie {
   int xPos;
@@ -46,17 +67,17 @@ class Spekkie {
 
   //spekkie I
   void display() {
-    fill(255, 255, 0);
+    fill(243, 167, 18);
     quad(xPos, yPos, 126, 60, 109, 103, 70, 116);
-    fill(255, 182, 193);
+    fill(255,0,127);
     quad (xPos+1, yPos+1, 126, 60, 109, 103, 70, 116);
 
     //spekkie II
     pushMatrix();
     translate(208, 10);
-    fill(255, 255, 0);
+    fill(243, 167, 18);
     quad(xPos, yPos, 126, 60, 109, 103, 70, 116);
-    fill(255, 182, 193);
+    fill(255,0,127);
     quad(xPos+1, yPos+1, 126, 60, 109, 103, 70, 116);
     popMatrix();
 
@@ -65,35 +86,73 @@ class Spekkie {
     //spekkie III
     pushMatrix();
     translate(-5, -5);
-    fill(255, 255, 0);
+    fill(243, 167, 18);
     quad(78, 71, 126, 60, 109, 103, 70, 116);
-    fill(255, 182, 193);
+    fill(255,0,127);
     quad(88, 71, 126, 60, 109, 103, 70, 116);
     popMatrix();
 
 
     //sateprikker I
 
-    fill (255, 222, 173);
+    fill (61, 220, 151);
     rect(300, 72, 5, 900);
 
     //sateprikker II
-    fill (255, 222, 173);
+    fill (61, 220, 151);
     rect(91, 102, 5, 900);
+
 
     //spekkie 4
     pushMatrix();
-    translate(205, 2);
-    fill(255, 255, 0);
+    translate(-5, 160);
+    fill(243, 167, 18);
     quad(78, 71, 126, 60, 109, 103, 70, 116);
-    fill(255, 182, 193);
+    fill(255,0,127);
+    quad(88, 71, 126, 60, 109, 103, 70, 116);
+    popMatrix();
+
+    //spekkie 5
+    pushMatrix();
+    translate(-5, 300);
+    fill(243, 167, 18);
+    quad(78, 71, 126, 60, 109, 103, 70, 116);
+    fill(255,0,127);
+    quad(88, 71, 126, 60, 109, 103, 70, 116);
+    popMatrix();
+
+
+    //spekkie 6
+    pushMatrix();
+    translate(205, 2);
+    fill(243, 167, 18);
+    quad(78, 71, 126, 60, 109, 103, 70, 116);
+    fill(255,0,127);
+    quad(88, 71, 126, 60, 109, 103, 70, 116);
+    popMatrix();
+   
+     //spekkie 7
+    pushMatrix();
+    translate(205, 160);
+    fill(243, 167, 18);
+    quad(78, 71, 126, 60, 109, 103, 70, 116);
+    fill(255,0,127);
+    quad(88, 71, 126, 60, 109, 103, 70, 116);
+    popMatrix();
+    
+       //spekkie 8
+    pushMatrix();
+    translate(205, 310);
+    fill(243, 167, 18);
+    quad(78, 71, 126, 60, 109, 103, 70, 116);
+    fill(255,0,127);
     quad(88, 71, 126, 60, 109, 103, 70, 116);
     popMatrix();
   }
   void drive() {
  
     xPos = xPos + delta; //spekkert naar rechts laten bewegen. delta gebruik ik hier als variabele om de xPos aan te passen
-    if (xPos>=width) { 
+    if (xPos>=20) { 
       delta = -1;
     }
 

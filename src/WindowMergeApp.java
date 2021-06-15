@@ -51,6 +51,7 @@ public class WindowMergeApp extends PApplet {
     String channel3effect_param = "00";
     String channel4effect_param = "00";
     
+    NetAddress lichttafel = new NetAddress("10.2.4.29",7700);
     
 	public void setup()
 	{
@@ -120,15 +121,21 @@ public class WindowMergeApp extends PApplet {
 		    line(0, i, width, i);
 		}*/
 		//textFont(mono);
-		text("pattern: "+ currentIndex, 10,25);
+		//text("pattern: "+ currentIndex, 10,25);
 		if (strobe != patternrow )
 		{
-			if (strobe == -1) { strobe =patternrow; background(colors[1]); }
-			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); }
-	        else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = -1; background(colors[2]);}
-		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]);}
-		    else if (channel4instr == 28) { strobe = -1; background(colors[4]);}
-	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]);}
+			OscMessage lamp1on = new OscMessage("/lamp1");
+			lamp1on.add(255); /* add an int to the osc message */
+
+			OscMessage lamp1off = new OscMessage("/lamp1");
+			lamp1off.add(0); /* add an int to the osc message */
+
+			if (strobe == -1) { strobe =patternrow; background(colors[1]); oscP5.send(lamp1off, lichttafel); }
+			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); oscP5.send(lamp1on, lichttafel); }
+	        else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = -1; background(colors[2]); oscP5.send(lamp1on, lichttafel);}
+		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]); oscP5.send(lamp1on, lichttafel);}
+		    else if (channel4instr == 28) { strobe = -1; background(colors[4]); oscP5.send(lamp1on, lichttafel);}
+	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]); oscP5.send(lamp1on, lichttafel);}
 		}
 		
 		g.endDraw();
@@ -245,21 +252,21 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern_5_6.pde", new pattern_5_6()))); //5
 		sketches.add(sketches.get(5));
-		sketches.add(Arrays.asList(new SketchShit("pattern8_rambo.pde", new pattern8_rambo())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_9.pde", new pattern_9())));
-		sketches.add(Arrays.asList(new SketchShit("Spekkerts_Melting.pde", new Spekkerts_Melting()))); //10
+		sketches.add(Arrays.asList(new SketchShit("sketch_7_rambo.pde", new sketch_7_rambo())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_8_rambo.pde", new sketch_8_rambo())));
+		sketches.add(Arrays.asList(new SketchShit("Pattern9_Lance_Hardwood.pde", new Pattern9_Lance_Hardwood())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_210604a.pde", new sketch_210604a()))); //10
 		sketches.add(Arrays.asList(new SketchShit("kerktoren_pat11_12.pde", new kerktoren_pat11_12())));
 		sketches.add(sketches.get(11));
 		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
 		sketches.add(sketches.get(13));
 		sketches.add(fill); //15
 		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
-		sketches.add(Arrays.asList(new SketchShit("pattern17.pde", new pattern17())));
+		sketches.add(Arrays.asList(new SketchShit("pattern17_2.pde", new pattern17_2())));
 		sketches.add(Arrays.asList(new SketchShit("pattern18MarenStam2.pde", new pattern18MarenStam2())));
-		sketches.add(Arrays.asList(new SketchShit("Pattern19_3.pde", new Pattern19_3())));
+		sketches.add(Arrays.asList(new SketchShit("Pattern19_4.pde", new Pattern19_4())));
 		sketches.add(Arrays.asList(new SketchShit("pattern20.pde", new pattern20()))); //20
-		sketches.add(Arrays.asList(new SketchShit("sketch_210528aANIMATIE_OP_MUZIEKversie1.pde", new sketch_210528aANIMATIE_OP_MUZIEKversie1())));
+		sketches.add(Arrays.asList(new SketchShit("pattern21_Merel.pde", new pattern21_Merel())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_22.pde", new pattern_22())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_23.pde", new pattern_23())));
 		sketches.add(Arrays.asList(new SketchShit("outro.pde", new outro())));
