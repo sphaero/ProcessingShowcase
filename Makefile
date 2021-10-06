@@ -29,5 +29,11 @@ run:
 	$(JVM) -XX:+AlwaysPreTouch -Xss256k -Xms1g -Xmx1g $(JVMFLAGS) $(MAIN)
 
 dist: classes
-	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar javamod.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
-	jar cvfm dist/dopeonthetoilet.jar MANIFEST.MF -C src src/*.class -C src/pde src/pde/*.class data/*
+	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar ./oscP5.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
+	jar cvfm dist/dopeonthetoilet.jar MANIFEST.MF
+	cd src; jar uvf ../dist/dopeonthetoilet.jar *.class
+	cd src/pde;	jar uvf ../../dist/dopeonthetoilet.jar *.class 
+	jar uvf dist/dopeonthetoilet.jar data/*
+	mkdir .oscp5
+	cd .oscp5; jar -xf ../oscP5.jar; rm -rf META-INF; jar uvf ../dist/dopeonthetoilet.jar *
+	rm -rf .oscp5
