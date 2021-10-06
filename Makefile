@@ -33,7 +33,7 @@ dist: classes
 	jar cvfm dist/dopeonthetoilet.jar MANIFEST.MF
 	cd src; jar uvf ../dist/dopeonthetoilet.jar *.class
 	cd src/pde;	jar uvf ../../dist/dopeonthetoilet.jar *.class 
-	jar uvf dist/dopeonthetoilet.jar data/*
+	jar uvf dist/dopeonthetoilet.jar data/* ${SKETCH_DIRS}
 	mkdir .oscp5
 	cd .oscp5; jar -xf ../oscP5.jar; rm -rf META-INF; jar uvf ../dist/dopeonthetoilet.jar *
 	rm -rf .oscp5
