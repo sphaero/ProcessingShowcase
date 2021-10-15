@@ -1,45 +1,37 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.io.File; 
-import java.io.BufferedReader; 
-import java.io.PrintWriter; 
-import java.io.InputStream; 
-import java.io.OutputStream; 
-import java.io.IOException; 
-
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 import processing.core.PApplet;
 
-public class ProcessingShowcase {
+@Command(name = "processingshowcase", version = "ProcessingShowcase 1.0", mixinStandardHelpOptions = true) 
+public class ProcessingShowcase implements Runnable {
 
-	int startPos = 0;   
+	@Option(names = { "-p", "--present" }, description = "Enable present mode ") 
+	boolean present = false;
+
+    @Parameters(paramLabel = "<word>", defaultValue = "Hello, picocli", 
+               description = "Words to be translated into ASCII art.")
+    private String[] words = { "Hello,", "picocli" }; 
+    
+    int startPos = 0;   
 	int endPos = 104;     
 	int currentPos = 0;
 	int currentPositie = 0;
 	int currentPattern = 0;
-
-	public void loadSounds(int startPositie, int eindPositie)
-	{
-		loadSounds();
-	}
 	
-	public static void main(String[] args)
-	{
-		Boolean pres = false;
-		for (int i = 0; i < args.length; i++) 
-	    {
-	    	if ( args[i].contains("-p") ) 
-    		{
-	    		pres = true;
-	    		System.out.println("enabling presentation mode");
-    		}
-	    }
+	
+	@Override
+    public void run() { 
+        // The business logic of the command goes here...
+        // In this case, code for generation of ASCII art graphics
+        // (omitted for the sake of brevity).
 		ProcessingShowcase inst = new ProcessingShowcase();
 		
 		TextApp textApp = new TextApp();
 		WindowMergeApp windowApp = new WindowMergeApp();
-		textApp.presentation = pres;
-		windowApp.presentation = pres;
+		textApp.presentation = present;
+		windowApp.presentation = present;
 		
 		String[] ta_args = {""};
 		PApplet.runSketch(ta_args, textApp);
@@ -74,5 +66,11 @@ public class ProcessingShowcase {
 				break;
 			}
 		}
+    }
+	
+	public static void main(String[] args)
+	{
+		int exitCode = new CommandLine(new ProcessingShowcase()).execute(args); 
+        System.exit(exitCode); 
 	}
 }

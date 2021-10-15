@@ -245,106 +245,31 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_5_6.pde", new pattern_5_6()))); //5
-		sketches.add(sketches.get(5));
-		sketches.add(Arrays.asList(new SketchShit("sketch_7_rambo.pde", new sketch_7_rambo())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_8_rambo.pde", new sketch_8_rambo())));
-		sketches.add(Arrays.asList(new SketchShit("Pattern9_Lance_Hardwood.pde", new Pattern9_Lance_Hardwood())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_9.pde", new pattern_9()))); //10
-		sketches.add(Arrays.asList(new SketchShit("kerktoren_pat11_12.pde", new kerktoren_pat11_12())));
-		sketches.add(sketches.get(11));
-		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
-		sketches.add(sketches.get(13));
-		sketches.add(fill); //15
-		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
-		sketches.add(Arrays.asList(new SketchShit("pattern17_2.pde", new pattern17_2())));
-		sketches.add(Arrays.asList(new SketchShit("pattern18MarenStam2.pde", new pattern18MarenStam2())));
-		sketches.add(Arrays.asList(new SketchShit("Pattern19_4.pde", new Pattern19_4())));
-		sketches.add(Arrays.asList(new SketchShit("pattern20.pde", new pattern20()))); //20
-		sketches.add(Arrays.asList(new SketchShit("pattern21_Merel.pde", new pattern21_Merel())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_22.pde", new pattern_22())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_23.pde", new pattern_23())));
-		sketches.add(Arrays.asList(new SketchShit("outro.pde", new outro())));
-		sketches.add(sketches.get(0)); //25
-				// order is the pattern number!!! (78+51=129)
-		/*
-		sketches.add(Arrays.asList( new SketchShit("pat_0.pde", new pat_0()),
-									new SketchShit("pat0.pde", new pat0())));
-		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
-		sketches.add(null); // intro
-		sketches.add(null); // intro
-		sketches.add(Arrays.asList(new SketchShit("pat4.pde", new pat4())));
-		sketches.add(Arrays.asList(new SketchShit("pat5.pde", new pat5()))); // 5
-		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6()), new SketchShit("position6.pde", new position6())));
-		sketches.add(Arrays.asList(new SketchShit("Pat7.pde", new Pat7())));
-		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
-		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
-		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10()))); // 10
-		sketches.add(Arrays.asList(new SketchShit("pat11.pde", new pat11())));
-		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
-		sketches.add(Arrays.asList(new SketchShit("pattern13panlat.pde", new pattern13panlat())));
-		sketches.add(Arrays.asList(new SketchShit("pattern14panlat.pde", new pattern14panlat())));
-		sketches.add(Arrays.asList(new SketchShit("pat15_18.pde", new pat15_18()))); // 15
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pat19.pde", new pat19())));
-		sketches.add(Arrays.asList(new SketchShit("pat20.pde", new pat20()))); // 20
-		sketches.add(Arrays.asList(new SketchShit("pat21.pde", new pat21())));
-		sketches.add(Arrays.asList(new SketchShit("pat22.pde", new pat22())));
-		sketches.add(Arrays.asList(new SketchShit("pat23.pde", new pat23())));
-		sketches.add(Arrays.asList(new SketchShit("pat24.pde", new pat24())));
-		sketches.add(Arrays.asList(new SketchShit("pat25.pde", new pat25()))); // 25
-		sketches.add(Arrays.asList(new SketchShit("pat26.pde", new pat26())));
-		sketches.add(Arrays.asList(new SketchShit("pat27.pde", new pat27())));
-		sketches.add(Arrays.asList(new SketchShit("pat28.pde", new pat28())));
-		sketches.add(Arrays.asList(new SketchShit("pat29.pde", new pat29())));
-		sketches.add(Arrays.asList(new SketchShit("pat30_chrisboender.pde", new pat30_chrisboender()))); // 30
-		sketches.add(Arrays.asList(new SketchShit("pat31_chrisboender.pde", new pat31_chrisboender())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_32laraoostveen.pde", new sketch_32laraoostveen())));
-		sketches.add(Arrays.asList(new SketchShit("pat33_chrisboender.pde", new pat33_chrisboender())));
-		sketches.add(Arrays.asList(new SketchShit("Pat34.pde", new Pat34())));
-		sketches.add(Arrays.asList(new SketchShit("PAT35.pde", new PAT35())));
-		sketches.add(Arrays.asList(new SketchShit("PAT36.pde", new PAT36())));
-		sketches.add(Arrays.asList(new SketchShit("patt56.pde", new patt56())));
-		sketches.add(Arrays.asList(new SketchShit("PAT38.pde", new PAT38())));
-		sketches.add(Arrays.asList(new SketchShit("PAT39.pde", new PAT39())));
-		sketches.add(Arrays.asList(new SketchShit("Pattern_40.pde", new Pattern_40()))); // 40
-		sketches.add(Arrays.asList(new SketchShit("pattern_41.pde", new pattern_41())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("PAT_43.pde", new PAT_43())));
-		sketches.add(Arrays.asList(new SketchShit("PAT_44.pde", new PAT_44())));
-		sketches.add(Arrays.asList(new SketchShit("PAT_45.pde", new PAT_45()))); // 45
-		sketches.add(Arrays.asList(new SketchShit("pattern4647lisa.pde", new pattern4647lisa())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("lisa48.pde", new lisa48())));
-		sketches.add(Arrays.asList(new SketchShit("pat49.pde", new pat49())));
-		sketches.add(Arrays.asList(new SketchShit("pat50.pde", new pat50()))); // 50
-		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat51", new demo_sketch_pat51() )));
-		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat52", new demo_sketch_pat52() )));
-		sketches.add(Arrays.asList(new SketchShit("tune_5_Pattern_53_Mijs_versie_2.pde", new tune_5_Pattern_53_Mijs_versie_2())));
-		sketches.add(Arrays.asList(new SketchShit("tune_5_pattern_54_Mijs_versie_2.pde", new tune_5_pattern_54_Mijs_versie_2())));
-		sketches.add(Arrays.asList(new SketchShit("nr_55Laraoostveen.pde", new nr_55Laraoostveen()))); // 55
-		sketches.add(Arrays.asList(new SketchShit("tune6_pattern56.pde", new tune6_pattern56())));
-		sketches.add(Arrays.asList(new SketchShit("pat57_59.pde", new pat57_59())));
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pat60.pde", new pat60()))); // 60
-		sketches.add(Arrays.asList(new SketchShit("pat61.pde", new pat61())));
-		sketches.add(Arrays.asList(new SketchShit("Pat62.pde", new Pat62())));
-		sketches.add(Arrays.asList(new SketchShit("pat63.pde", new pat63())));
-		sketches.add(null);
-		sketches.add(null); // 65
-		*/
+		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("animatiejorinde.pde", new animatiejorinde())));
+		sketches.add(Arrays.asList(new SketchShit("animatierayan.pde", new animatierayan())));
+		sketches.add(Arrays.asList(new SketchShit("ballstothewall.pde", new ballstothewall())));
+		sketches.add(Arrays.asList(new SketchShit("estherdeboer_animatie_mettekst.pde", new estherdeboer_animatie_mettekst())));
+		sketches.add(Arrays.asList(new SketchShit("estherdeboer_makeitmove_animatie.pde", new estherdeboer_makeitmove_animatie())));
+		sketches.add(Arrays.asList(new SketchShit("mauritsmeijerspacey.pde", new mauritsmeijerspacey())));
+		sketches.add(Arrays.asList(new SketchShit("opdr4_nur.pde", new opdr4_nur())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_211001c_les4_bewegingen_cos_sin_triangletest.pde", new sketch_211001c_les4_bewegingen_cos_sin_triangletest())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_211005a.pde", new sketch_211005a())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_rect_ellipse.pde", new sketch_rect_ellipse())));
+		sketches.add(Arrays.asList(new SketchShit("skillslab_les5_5_zelf2.pde", new skillslab_les5_5_zelf2())));
+		sketches.add(Arrays.asList(new SketchShit("skillslab_les6_5_hoi.pde", new skillslab_les6_5_hoi())));
+		sketches.add(Arrays.asList(new SketchShit("sterreroza_sketch_mouseconfetti.pde", new sterreroza_sketch_mouseconfetti())));
+		sketches.add(Arrays.asList(new SketchShit("tekstanimatierayan.pde", new tekstanimatierayan())));
+		sketches.add(Arrays.asList(new SketchShit("tekstmauritsmeijer.pde", new tekstmauritsmeijer())));
+		sketches.add(Arrays.asList(new SketchShit("textanimatiejorinde.pde", new textanimatiejorinde())));
+		sketches.add(Arrays.asList(new SketchShit("vrije_animatie.pde", new vrije_animatie())));
+
 	}
 	
 	public SketchShit getShit()
 	{
+		if (currentIndex > sketches.size() - 1 )
+			currentIndex = currentIndex % sketches.size();
 		List<SketchShit> lsht = sketches.get(currentIndex);
 		if (lsht == null) return null;
 		return lsht.get(loopIndex[currentIndex] % lsht.size());
