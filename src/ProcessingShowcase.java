@@ -12,30 +12,15 @@ import processing.core.PApplet;
 
 public class ProcessingShowcase {
 
-	procmod2.ModPlayer mplayer;
-
 	int startPos = 0;   
 	int endPos = 104;     
 	int currentPos = 0;
 	int currentPositie = 0;
 	int currentPattern = 0;
 
-	public void loadSounds() {
-		System.out.println("fake loadSounds called");
-	}
-
 	public void loadSounds(int startPositie, int eindPositie)
 	{
 		loadSounds();
-	}
-
-	public void loadMusic(PApplet sketch) 
-	{
-	  // load the sound file
-	  //String modfile = "1995-house-megamix.mod";
-	  //System.out.println( "Loading: " + modfile);
-	  //mplayer = new procmod2.ModPlayer(sketch, modfile);
-	  //mplayer.play();
 	}
 	
 	public static void main(String[] args)
@@ -61,9 +46,7 @@ public class ProcessingShowcase {
 
 		String[] wa_args = new String[]{"ProcessingShowcase"};
 		PApplet.runSketch(wa_args, windowApp);
-
-		inst.loadMusic(windowApp);
-		
+	
 		int currentSketchIndex = -1;
 		
 		while(true){
