@@ -1,6 +1,6 @@
 PRC=/opt/processing-3.5.4
-JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar"
-JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:oscP5.jar"
+JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar:picocli-4.6.1.jar"
+JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:oscP5.jar:picocli-4.6.1.jar"
 JC = javac #/usr/bin/javac
 JVM = $(PRC)/java/bin/java
 SKETCH_DIRS = pde/*
@@ -29,7 +29,7 @@ run:
 	$(JVM) -XX:+AlwaysPreTouch -Xss256k -Xms1g -Xmx1g $(JVMFLAGS) $(MAIN)
 
 dist: classes
-	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar ./oscP5.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
+	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar ./oscP5.jar ./picocli-4.6.1.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
 	jar cvfm dist/dopeonthetoilet.jar MANIFEST.MF
 	cd src; jar uvf ../dist/dopeonthetoilet.jar *.class
 	cd src/pde;	jar uvf ../../dist/dopeonthetoilet.jar *.class 
