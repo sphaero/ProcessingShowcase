@@ -1,6 +1,7 @@
 # alleen getest met deze mod maar zour redelijk universeel moeten zijn
 # ref: http://www.aes.id.au/modformat.html
-f = open('/home/arnaud/Documents/HKU/skillslab/mods/95house-mix-edit.mod', 'rb')
+import sys
+f = open('/home/arnaud/Documents/HKU/skillslab/mods/anarchy_nef.mod', 'rb')
 b = f.read()
 f.close()
 
@@ -13,6 +14,7 @@ print("song positions {}".format(b[p_songlength]))
 for x in range(128):
 	print("{}:{}".format(x, b[p_pat_table+x]))
 
+sys.exit(0)
 ln = 1
 ba = bytearray(b)
 # write songlen = 1
