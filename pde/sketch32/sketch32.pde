@@ -8,7 +8,7 @@ void setup() {
 }
 
 void draw() { 
-  background(20, 20, 30);
+  background(0);
   noFill();
   stroke(270);
   
@@ -26,7 +26,7 @@ void draw() {
   float x4 = -random(d);
   float y4 = random(d);
   
-  stroke(random(4500),random(1),random(255));
+  stroke(random(4500),random(0),random(255));
   strokeWeight(3);
      pushMatrix();
      translate(i, j);
