@@ -245,25 +245,41 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
+		sketches.add(Arrays.asList(new SketchShit("sketch0.pde", new sketch0())));
+		sketches.add(Arrays.asList(new SketchShit("sketch1_demi.pde", new sketch1_demi())));
+		sketches.add(Arrays.asList(new SketchShit("sketch2.pde", new sketch2())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_3_ld_1.pde", new sketch_3_ld_1())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_4.pde", new sketch_4())));
+		sketches.add(fill); //5
 		sketches.add(fill);
-		sketches.add(Arrays.asList(new SketchShit("animatiejorinde.pde", new animatiejorinde())));
-		sketches.add(Arrays.asList(new SketchShit("animatierayan.pde", new animatierayan())));
-		sketches.add(Arrays.asList(new SketchShit("ballstothewall.pde", new ballstothewall())));
-		sketches.add(Arrays.asList(new SketchShit("estherdeboer_animatie_mettekst.pde", new estherdeboer_animatie_mettekst())));
-		sketches.add(Arrays.asList(new SketchShit("estherdeboer_makeitmove_animatie.pde", new estherdeboer_makeitmove_animatie())));
-		sketches.add(Arrays.asList(new SketchShit("mauritsmeijerspacey.pde", new mauritsmeijerspacey())));
-		sketches.add(Arrays.asList(new SketchShit("opdr4_nur.pde", new opdr4_nur())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_211001c_les4_bewegingen_cos_sin_triangletest.pde", new sketch_211001c_les4_bewegingen_cos_sin_triangletest())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_211005a.pde", new sketch_211005a())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_rect_ellipse.pde", new sketch_rect_ellipse())));
-		sketches.add(Arrays.asList(new SketchShit("skillslab_les5_5_zelf2.pde", new skillslab_les5_5_zelf2())));
-		sketches.add(Arrays.asList(new SketchShit("skillslab_les6_5_hoi.pde", new skillslab_les6_5_hoi())));
-		sketches.add(Arrays.asList(new SketchShit("sterreroza_sketch_mouseconfetti.pde", new sterreroza_sketch_mouseconfetti())));
-		sketches.add(Arrays.asList(new SketchShit("tekstanimatierayan.pde", new tekstanimatierayan())));
-		sketches.add(Arrays.asList(new SketchShit("tekstmauritsmeijer.pde", new tekstmauritsmeijer())));
-		sketches.add(Arrays.asList(new SketchShit("textanimatiejorinde.pde", new textanimatiejorinde())));
-		sketches.add(Arrays.asList(new SketchShit("vrije_animatie.pde", new vrije_animatie())));
-
+		sketches.add(Arrays.asList(new SketchShit("sketch0.pde", new sketch0())));
+		sketches.add(Arrays.asList(new SketchShit("sketch8.pde", new sketch8())));
+		sketches.add(Arrays.asList(new SketchShit("sketch9.pde", new sketch9())));
+		sketches.add(Arrays.asList(new SketchShit("sketch10.pde", new sketch10())));
+		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("sketch12.pde", new sketch12())));
+		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
+		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("sketch15.pde", new sketch15())));
+		sketches.add(Arrays.asList(new SketchShit("sketch16.pde", new sketch16())));
+		sketches.add(Arrays.asList(new SketchShit("sketch17.pde", new sketch17())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_211022a_pattern18_v2.pde", new sketch_211022a_pattern18_v2())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_19nur.pde", new sketch_19nur())));
+		sketches.add(Arrays.asList(new SketchShit("sketch20.pde", new sketch20())));
+		sketches.add(Arrays.asList(new SketchShit("sketch21.pde", new sketch21())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_22.pde", new sketch_22())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_23.pde", new sketch_23())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_23_24.pde", new sketch_23_24())));
+		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("sketch26.pde", new sketch26())));
+		sketches.add(Arrays.asList(new SketchShit("sketch27.pde", new sketch27())));
+		sketches.add(Arrays.asList(new SketchShit("sketch28.pde", new sketch28())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_29.pde", new sketch_29())));
+		sketches.add(fill);
+		sketches.add(Arrays.asList(new SketchShit("sketch_31sander.pde", new sketch_31sander())));
+		sketches.add(fill);  //niet nodig
+		sketches.add(fill);  //niet nodig
+		sketches.add(Arrays.asList(new SketchShit("sketch34.pde", new sketch34())));
 	}
 	
 	public SketchShit getShit()
