@@ -14,7 +14,7 @@ void setup() {
 int bpmToFrameCount(int bpm)
 {
   float bms = 60000/bpm;
-  float fms = 1000/frameRate;
+  float fms = 1000/60;
   return int(bms/fms);
 }
 

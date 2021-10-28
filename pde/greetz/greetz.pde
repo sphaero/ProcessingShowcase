@@ -27,30 +27,63 @@ PFont mono;
 
 int start = -1;
 
+String nicks[] = {
+"sphaero",
+"huis_anubis_fangirl@hotmail.com",
+"Eeeyytje",
+"5guy",
+"N00BAF",
+"ewaja",
+"Nelis",
+"S~",
+"Hyperion",
+"Spirit_Mooipaard",
+"zombiegurl666",
+"dointime",
+"stirring spatula",
+"Dewonq",
+"obi one kenobi two",
+"monke",
+"Rhea",
+"CAPRA",
+"mh",
+"ғᴜɴᴋʏsǫᴜᴏɴᴋ",
+"Thomessi10",
+"Hot_kpk",
+"MEC"
+};
+float[] speeds = new float[nicks.length];
+float[] xposs = new float[nicks.length];
+float[] yposs = new float[nicks.length];
+
 void setup()
 {
   size(720, 480);
   oscP5 = new OscP5(this,6200);
   mono = createFont("alot-of-love.ttf", 24);
   textFont(mono);
+  for (int i = 0;i<nicks.length;i++)
+  {
+    speeds[i] = random(0.5, 1.5);
+    xposs[i] = random(-width*2,0);
+    yposs[i] = random(64, height-48);
+  }
 }
 
-void tekensun()
+void tekensun(float delta, float size)
 {
   pushMatrix();
   translate(width/2, height/2);
-  rotate(frameCount*0.01%360);
+  rotate(frameCount*0.01%360*delta);
   color c[] = {color(200,0,0), color(200)};
   for (int i=0;i<20;i++)
   {
-    stroke(0);
+    noStroke();//stroke(0);
     fill(c[i%2]);
-    triangle(0,0,width,0,width,-100);
+    triangle(0,0,width,0,width,-size);
     rotate(-PI/9);
   }
   popMatrix();
-  fill(0);
-  rect(0,height/2, width, height);
 }
 
 void tekenlijnen(int progress)
@@ -104,71 +137,28 @@ void tekenbgbars()
   popMatrix();
 }
 
-String txts[] = {"HELP ME", "END ME"};
 void draw() 
 {
-  if (patternrow == 0 )
-  { 
-    start = frameCount;
-  }
-  int count = frameCount - start;
   background(0);
-  noStroke();
-  pushMatrix();
-  translate(-100+sin(frameCount*0.1)*100, -100+cos(frameCount*0.1)*100);
-  //tekenGrid(71, mouseX);
-  popMatrix();
-
-  pushMatrix();
-  translate(-100-sin(frameCount*0.1)*100, -100-cos(frameCount*0.1)*100);
-  //tekenGrid(71, 10);
-  popMatrix();
-
-  //tekensun();
   pushMatrix();
   rotate(PI);
   translate(-width,-height);
-  tekenbgbars();
+  //tekenbgbars();
   popMatrix();
-  tekenbgbars();
+  //tekenbgbars();
   //tekenlijnen(startcount%height);
-
-  if (patternrow > 24 && patternrow < 64)
+  tekensun(1.0, sin(millis()*0.001)*60+150);
+  //tekensun(-1.1, 197);
+  textAlign(LEFT);
+  textSize(48);
+  for (int i = 0;i<nicks.length;i++)
   {
     pushMatrix();
-    translate(width/2, height/2);
-    println(count);
-    scale(pow(0.1+(count-180)*0.008,2));
-    textSize(180);
-    textAlign(CENTER,CENTER);
-    int txtposx = 0;
-    int txtposy = -50;
-    outlinetext(txts[1], txtposx, txtposy);
-    //text(" END ME", txtposx, txtposy+52);
+    scale(speeds[i]);
+    outlinetext(nicks[i], (int(xposs[i] + millis() *0.1 * speeds[i]))%(width*2), int(yposs[i]));
     popMatrix();
+    //outlinetext(nicks[i], int(frameCount-(sin(i*(2*PI/nicks.length))*300-300)),int(sin(i*(2*PI/nicks.length))*height/2+height/2));
   }
-  
-  if (patternrow > 8 && patternrow < 40)
-  {
-    pushMatrix();
-    translate(width/2, height/2);
-    scale(pow(0.1+(count-60)*0.008,2));
-    textSize(180);
-    textAlign(CENTER,CENTER);
-    int txtposx = 0;
-    int txtposy = 50;
-    outlinetext(txts[0], txtposx, txtposy);
-    //text(" END ME", txtposx, txtposy+52);
-    popMatrix();
-  }
-  
-  /*if (patternnr == 0 )
-  {
-    noStroke();
-    fill(0,255-patternrow*8);
-    rect(0,0, width, height);
-  }*/
-
 }
 
 void oscEvent(OscMessage message) 
