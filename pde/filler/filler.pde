@@ -24,7 +24,7 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-color colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
+color colors[] = { color(255), color(210, 0, 0), color(255), color(210,0,0) };
 
 void setup()
 {
@@ -38,7 +38,8 @@ void draw()
   noStroke();
   int widthkwart = width/4;
   if (channel1instr != 0 )
-  { 
+  {
+    
     fill(colors[0]);
     rect(0, 0,  180, height);    
   }
@@ -57,11 +58,23 @@ void draw()
     fill(colors[3]);
     rect(540, 0, 180, height);    
   }
-  else 
+  
+  if ( channel1instr == 6 ||
+        channel2instr == 6 ||
+        channel3instr == 6 ||
+        channel4instr == 6 )
   {
-    background(0);
+    textSize(160);
+    fill(255);
+    text("END ME", width/2,height/2);
   }
   textAlign(CENTER);
+  textSize(16);
+  fill(0,127);
+  stroke(180,0,0);
+  strokeWeight(4);
+  rect(width/2-60, height/2-30, 120, 50);
+  fill(255);
   text("PAT:" + patternnr, width/2, height/2);
 }
 

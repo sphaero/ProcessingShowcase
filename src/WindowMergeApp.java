@@ -264,7 +264,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("sketch16.pde", new sketch16())));
 		sketches.add(Arrays.asList(new SketchShit("sketch17.pde", new sketch17())));
 		sketches.add(Arrays.asList(new SketchShit("sketch_211022a_pattern18_v2.pde", new sketch_211022a_pattern18_v2())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_19nur.pde", new sketch_19nur())));
+		sketches.add(Arrays.asList(new SketchShit("patern19.pde", new patern19())));
 		sketches.add(Arrays.asList(new SketchShit("sketch20.pde", new sketch20())));
 		sketches.add(Arrays.asList(new SketchShit("sketch21.pde", new sketch21())));
 		sketches.add(Arrays.asList(new SketchShit("sketch_22.pde", new sketch_22())));
@@ -277,7 +277,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("sketch_29.pde", new sketch_29())));
 		sketches.add(sketches.get(7));
 		sketches.add(Arrays.asList(new SketchShit("sketch_31sander.pde", new sketch_31sander())));
-		sketches.add(fill);  //niet nodig
+		sketches.add(Arrays.asList(new SketchShit("sketch32.pde", new sketch32())));
 		sketches.add(fill);  //niet nodig
 		sketches.add(Arrays.asList(new SketchShit("sketch34.pde", new sketch34())));
 	}

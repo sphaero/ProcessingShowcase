@@ -45,12 +45,14 @@ void setup()
 
 void draw() 
 {
-  if(channel1note == 160) {
+  if(channel3note == 151) {
     background(255);
-  } else if(channel2note == 160) {
+  } 
+  else if(  channel3note == 214 || channel3note == 169) 
+  {
     background(0);
   }
-  if(channel2note == 160) {
+  if(channel4instr != 0) {
     rondjes(50);
   }
 }
