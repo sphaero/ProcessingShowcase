@@ -4,7 +4,7 @@ void setup()
   println("opgestart");
 }
 
-int roze = (#F08080);
+int zwart = (#000000);
 int blauw = #40E0D0;
 
 float angle = 0;
@@ -24,9 +24,9 @@ void draw() {
   translate(width/2, height/2);
   rotate(angle);
   scale(s);
-  fill(roze);
+  fill(zwart);
   triangle(18, 18, 18, 360, 81, 360);
-  fill(roze);
+  fill(zwart);
   ellipse(width/2,height/2,50,50);
   fill(blauw);
   ellipse(width/2,height/2,50,50);

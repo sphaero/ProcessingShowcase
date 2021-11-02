@@ -25,107 +25,52 @@ String channel4effect_param = "00";
 String feedback_formatted = "";
 PFont mono;
 
+float angle;
+float jitter = 0.1;
+
+int randomXAddition;
+int randomYAddition;
+int randomR;
+int randomG;
+int randomB;
+
 void setup()
 {
   size(720, 480);
   oscP5 = new OscP5(this,6200);
-
+  mono = createFont("Andale Mono", 12);
+  //println(PFont.list());
+  textFont(mono);
 }
 
 void draw() 
 {
-
-
-  {
+  if(channel3note == 151) {
     background(255);
-
- 
- strokeWeight(8);
- ellipse(sin(frameCount*0.01)*300,300,20,20);
-  fill(0,0,210);
-  
-  ellipse(sin(frameCount*0.01)*250,250,20,20);
-  fill(0,0,210);
-   ellipse(sin(frameCount*0.01)*200,200,10,10);
-  fill(0,0,210);
-  
-    ellipse(sin(frameCount*0.01)*100,100,20,20);
-  fill(0,0,210);
-  
- ellipse(sin(frameCount*0.01)*190,190,20,20);
-  fill(0,0,210);
-  
-  ellipse(sin(frameCount*0.02)*120,120,20,20);
- fill(0,0,210); 
- 
- ellipse(sin(frameCount*0.10)*300,300,20,20);
- fill(0,0,210); 
- 
- 
- ellipse(sin(frameCount*0.01)*300,300,20,20);
-  fill(0,0,210);
-  
- // GROTE RONDJE rood
- ellipse(sin(frameCount*0.07)*100,100,200,200);
-  fill(0,0,210);
-  
-   ellipse(sin(frameCount*0.02)*100,100,200,200);
-  fill(0,0,210);
-  
- //blauw rondje
- ellipse(sin(frameCount*0.1)*200,200,200,200);
-  fill(0,0,210);
-  
-   ellipse(sin(frameCount*0.1)*150,150,200,200);
-  fill(0,0,210);
-  //rect(sin(frameCount*0.03)*width/2+width/100,100,200,200);
-  // fill(0,0,220);
-
-
- // GROTE RONDJE rood
- ellipse(sin(frameCount*0.06)*500,300,200,200);
-  fill(0,0,210);
-  
-   ellipse(sin(frameCount*0.04)*400,400,200,200);
-  fill(0,0,210);
-  
- //blauw rondje
- ellipse(sin(frameCount*0.1)*500,400,200,200);
-  fill(0,0,210);
-  
-   ellipse(sin(frameCount*0.06)*500,300,200,200);
-  fill(0,0,210);
-  
- //blauw rondje
- ellipse(sin(frameCount*0.1)*500,400,200,200);
-  fill(0,0,210);
-  
-////
-ellipse(sin(frameCount*0.06)*500,300,200,200);
-  fill(0,0,210);
-  
- //blauw rondje
- ellipse(sin(frameCount*0.1)*500,400,200,200);
-  fill(0,0,210);
-  
-   ellipse(sin(frameCount*0.06)*800,400,200,200);
-  fill(0,0,210);
-  
- //blauw rondje
- ellipse(sin(frameCount*0.1)*200,200,200,200);
-  fill(0,0,210);
-
- 
- 
- 
+  }
+  else if(channel3note == 214 || channel3note == 169)
+  {
+    background(0);
+  }
+  if(channel4instr != 0) {
+    rondjes(50);
+  }
 }
-  
-  fill(200);
- rect(200,height-14,feedback_formatted.length()*8,14);
-  fill(255);
-  
-  text(feedback_formatted, 2, height-2);
+
+void rondjes(int amountOfHearts)
+{  
+  for(int i = 0; i <= amountOfHearts; i++) {
+    randomXAddition = round(random(1, width -1));
+    randomYAddition = round(random(1, height -1));
+    randomR = round(random(1, 255));
+    randomG = round(random(1, 255));
+    randomB = round(random(1, 255));
+    fill(randomR, randomG, randomB);
+    stroke(randomR, randomG, randomB);
+    circle(1+randomXAddition,1+randomYAddition, 30);
+  }
 }
+
 
 void oscEvent(OscMessage message) 
 {

@@ -102,7 +102,6 @@ void draw()
   //rect(0,height-14,feedback_formatted.length()*8,14);
   fill(255);
   
-  text(feedback_formatted, 2, height-2);
 }
 
 
@@ -137,15 +136,5 @@ void oscEvent(OscMessage message)
     channel4instr = message.get(16).intValue();
     channel4effect = message.get(17).charValue();
     channel4effect_param = message.get(18).stringValue();
-
-
-    feedback_formatted = String.format("%02d:%02d | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s |" , 
-                                      patternnr, patternrow, 
-                                      channel1note, channel1instr, channel1effect, channel1effect_param, 
-                                      channel2note, channel2instr, channel2effect, channel2effect_param, 
-                                      channel3note, channel3instr, channel3effect, channel3effect_param,
-                                      channel4note, channel4instr, channel4effect, channel4effect_param
-                                      );
-    println( feedback_formatted );
   }
 }

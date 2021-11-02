@@ -1,0 +1,8 @@
+/bin/
+*.class
+*.autosave
+src/pde
+.settings/
+.project
+.classpath
+.metadata/

@@ -259,18 +259,18 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(sketches.get(7));
 		sketches.add(Arrays.asList(new SketchShit("sketch12.pde", new sketch12())));
 		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
-		sketches.add(fill); // jelte
+		sketches.add(Arrays.asList(new SketchShit("sketch_14.pde", new sketch_14()))); // jelte
 		sketches.add(Arrays.asList(new SketchShit("sketch15.pde", new sketch15())));
 		sketches.add(Arrays.asList(new SketchShit("sketch16.pde", new sketch16())));
 		sketches.add(Arrays.asList(new SketchShit("sketch17.pde", new sketch17())));
 		sketches.add(Arrays.asList(new SketchShit("sketch_211022a_pattern18_v2.pde", new sketch_211022a_pattern18_v2())));
-		sketches.add(Arrays.asList(new SketchShit("patern19.pde", new patern19())));
+		sketches.add(Arrays.asList(new SketchShit("patern19_1.pde", new patern19_1())));
 		sketches.add(Arrays.asList(new SketchShit("sketch20.pde", new sketch20())));
 		sketches.add(Arrays.asList(new SketchShit("sketch21.pde", new sketch21())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_22.pde", new sketch_22())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_22_update.pde", new sketch_22_update())));
 		sketches.add(Arrays.asList(new SketchShit("sketch_23.pde", new sketch_23())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_23_24.pde", new sketch_23_24())));
-		sketches.add(fill); // sjoerd
+		sketches.add(Arrays.asList(new SketchShit("sketch_24.pde", new sketch_24())));
+		sketches.add(Arrays.asList(new SketchShit("sketch25.pde", new sketch25())));
 		sketches.add(Arrays.asList(new SketchShit("sketch26.pde", new sketch26())));
 		sketches.add(Arrays.asList(new SketchShit("sketch27.pde", new sketch27())));
 		sketches.add(Arrays.asList(new SketchShit("sketch28.pde", new sketch28())));
@@ -278,7 +278,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(sketches.get(7));
 		sketches.add(Arrays.asList(new SketchShit("sketch_31sander.pde", new sketch_31sander())));
 		sketches.add(Arrays.asList(new SketchShit("sketch32.pde", new sketch32())));
-		sketches.add(fill);  //niet nodig
+		sketches.add(Arrays.asList(new SketchShit("sketch33.pde", new sketch33())));
 		sketches.add(Arrays.asList(new SketchShit("sketch34.pde", new sketch34())));
 	}
 	

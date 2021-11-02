@@ -27,14 +27,17 @@ String channel4effect_param = "00";
 String feedback_formatted = "";
 PFont mono;
 
-int i = 0; //Ik weet niet zeker of deze op de goede plek staat
+int i = 0;
 float t = 0;
 float m = 0;
 int q = 20;
+int xPos = 0;
+int yPos = 0;
 
 void setup()
 {
-  size(720, 480);
+  //fullScreen();
+  //size(720, 480);
   oscP5 = new OscP5(this,6200);
   mono = createFont("Andale Mono", 12);
   //println(PFont.list());
@@ -43,9 +46,38 @@ void setup()
 
 void draw() 
 {
-  if (channel2instr != 0 ) //volgens mij zit de beat op channel 2, maar ik wil dat die elke tel af gaat. Zonder de high-hat
+  if (channel2instr != 0 ) 
   { 
     background(0);
+    fill(255, 163, 76, 50);
+    rect(random(-200, width - 30) + q, 0, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 24, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 48, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 72, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 96, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 120, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 144, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 168, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 192, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 216, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 240, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 264, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 288, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 312, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 336, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 360, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 384, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 408, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 432, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 456, width / 30, height / 20);
+    rect(random(-200, width - 30) + q, 480, width / 30, height / 20);
+    q += 30;
+    if(q > width - 30)
+    {
+      q = 0;
+    }
+    fill(255);
+    //background(0);
     pushMatrix();
     translate(width/2, height/2);
     textAlign(CENTER, CENTER);
@@ -56,6 +88,7 @@ void draw()
     text(words[i], 0 + random(-30, 30), 0 + random(-30, 30));
     textSize(12);
     popMatrix();
+    
     i++;
     
     if(i > 1)
@@ -66,7 +99,8 @@ void draw()
   else
   {
     noFill();
-    stroke(255, 0, 0);
+    colorMode(RGB);
+    stroke(210, 163, 76);
     strokeWeight(2);
   
     background(0);
@@ -105,11 +139,11 @@ void draw()
     }
   }
   
-  fill(0);
-  rect(0,height-14,feedback_formatted.length()*8,14);
-  fill(255);
+  //fill(0);
+  //rect(0,height-14,feedback_formatted.length()*8,14);
+  //fill(255);
   
-  text(feedback_formatted, 2, height-2);
+  //text(feedback_formatted, 2, height-2);
 }
 
 float r(float theta, float a, float b, float m, float n1, float n2, float n3)
