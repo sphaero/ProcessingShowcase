@@ -20,17 +20,15 @@ import java.lang.reflect.*;
 
 public class WindowMergeApp extends PApplet {
 	
-	List<List<SketchShit>> sketches = new ArrayList<>();
+	List<SketchShit> sketches = new ArrayList<>();
     int currentIndex;
     int _runningIndex;
-    int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    int loopCount = 0;
     PApplet sketch;
     Boolean presentation = false;
     
     PFont mono = null;
     OscP5 oscP5 = null;
-    //int patternnr = 0;
+    int patternnr = 0;
     int patternrow = 0;
     int colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
     int strobe = 0;
@@ -114,32 +112,17 @@ public class WindowMergeApp extends PApplet {
 			println(e.getMessage());
 		}
 		
-		g.beginDraw();
-		/*stroke(0);
+		/*g.beginDraw();
+		stroke(0);
 		for (int i = 0; i < height; i+=3)
 		{
 		    line(0, i, width, i);
-		}*/
-		//textFont(mono);
-		//text("pattern: "+ currentIndex, 10,25);
-		if (strobe != patternrow )
-		{
-			OscMessage lamp1on = new OscMessage("/lamp1");
-			lamp1on.add(255); /* add an int to the osc message */
-
-			OscMessage lamp1off = new OscMessage("/lamp1");
-			lamp1off.add(0); /* add an int to the osc message */
-
-			if (strobe == -1) { strobe =patternrow; background(colors[1]); oscP5.send(lamp1off, lichttafel); }
-			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); oscP5.send(lamp1on, lichttafel); }
-	        else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = -1; background(colors[2]); oscP5.send(lamp1on, lichttafel);}
-		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]); oscP5.send(lamp1on, lichttafel);}
-		    else if (channel4instr == 28) { strobe = -1; background(colors[4]); oscP5.send(lamp1on, lichttafel);}
-	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]); oscP5.send(lamp1on, lichttafel);}
 		}
+		textFont(mono);
+		text("pattern: "+ currentIndex, 10,25);
 		
 		g.endDraw();
-		
+		*/
 		if ( currentIndex != _runningIndex)
 		{
 			if ( currentIndex == -1 )
@@ -189,11 +172,11 @@ public class WindowMergeApp extends PApplet {
 		    channel4effect_param = message.get(18).stringValue();
 		    //System.out.println(pattern);
 		    //patternrow = message.get(2).intValue();
-		    if ( currentIndex != pattern )
+		    /*if ( currentIndex != pattern )
 			{
 				loopCount++;
 				loopIndex[pattern]++;
-			}
+			}*/
 			currentIndex = pattern;
 		}
 		
@@ -232,11 +215,11 @@ public class WindowMergeApp extends PApplet {
 	public void modPatternEvent( int pattern, int position )
 	{
 		System.out.println("pattern " + pattern + " , position " + position );
-		if ( currentIndex != pattern )
+		/*if ( currentIndex != pattern )
 		{
 			loopCount++;
 			loopIndex[pattern]++;
-		}
+		}*/
 		currentIndex = pattern;
 	}
 	
@@ -244,51 +227,73 @@ public class WindowMergeApp extends PApplet {
 	{
 		sketches.clear();
 		currentIndex = 0;
-		List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("sketch0.pde", new sketch0())));
-		sketches.add(Arrays.asList(new SketchShit("sketch1_demi.pde", new sketch1_demi())));
-		sketches.add(Arrays.asList(new SketchShit("sketch2.pde", new sketch2())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_3_ld_1.pde", new sketch_3_ld_1())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_4.pde", new sketch_4())));
-		sketches.add(Arrays.asList(new SketchShit("sketch5.pde", new sketch5())));
-		sketches.add(null); // roshan
-		sketches.add(Arrays.asList(new SketchShit("greetz.pde", new greetz())));
-		sketches.add(Arrays.asList(new SketchShit("sketch8.pde", new sketch8())));
-		sketches.add(Arrays.asList(new SketchShit("sketch9.pde", new sketch9())));
-		sketches.add(Arrays.asList(new SketchShit("sketch10.pde", new sketch10())));
-		sketches.add(sketches.get(7));
-		sketches.add(Arrays.asList(new SketchShit("sketch12.pde", new sketch12())));
-		sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_14.pde", new sketch_14()))); // jelte
-		sketches.add(Arrays.asList(new SketchShit("sketch15.pde", new sketch15())));
-		sketches.add(Arrays.asList(new SketchShit("sketch16.pde", new sketch16())));
-		sketches.add(Arrays.asList(new SketchShit("sketch17.pde", new sketch17())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_211022a_pattern18_v2.pde", new sketch_211022a_pattern18_v2())));
-		sketches.add(Arrays.asList(new SketchShit("patern19_1.pde", new patern19_1())));
-		sketches.add(Arrays.asList(new SketchShit("sketch20.pde", new sketch20())));
-		sketches.add(Arrays.asList(new SketchShit("sketch21.pde", new sketch21())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_22_update.pde", new sketch_22_update())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_23.pde", new sketch_23())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_24.pde", new sketch_24())));
-		sketches.add(Arrays.asList(new SketchShit("sketch25.pde", new sketch25())));
-		sketches.add(Arrays.asList(new SketchShit("sketch26.pde", new sketch26())));
-		sketches.add(Arrays.asList(new SketchShit("sketch27.pde", new sketch27())));
-		sketches.add(Arrays.asList(new SketchShit("sketch28.pde", new sketch28())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_29.pde", new sketch_29())));
-		sketches.add(sketches.get(7));
-		sketches.add(Arrays.asList(new SketchShit("sketch_31sander.pde", new sketch_31sander())));
-		sketches.add(Arrays.asList(new SketchShit("sketch32.pde", new sketch32())));
-		sketches.add(Arrays.asList(new SketchShit("sketch33.pde", new sketch33())));
-		sketches.add(Arrays.asList(new SketchShit("sketch34.pde", new sketch34())));
+		sketches.add(new SketchShit("demo_intro.pde", new demo_intro()));
+		sketches.add(new SketchShit("pat1.pde", new pat1()));
+		sketches.add(new SketchShit("pat2.pde", new pat2()));
+		sketches.add(new SketchShit("pat3.pde", new pat3()));
+		sketches.add(new SketchShit("pat4.pde", new pat4()));
+		sketches.add(new SketchShit("pat27_28.pde", new pat27_28())); // 5 not used
+		sketches.add(sketches.get(5)); // 6 not used
+		sketches.add(sketches.get(5)); // 7 not used
+		sketches.add(new SketchShit("pat8.pde", new pat8()));
+		sketches.add(new SketchShit("pat_9_9.pde", new pat_9_9()));
+		sketches.add(new SketchShit("pat10_11.pde", new pat10_11()));
+		sketches.add(new SketchShit("pat10_11.pde", new pat10_11()));
+		sketches.add(new SketchShit("pat12.pde", new pat12()));
+		sketches.add(new SketchShit("pat13.pde", new pat13()));
+		sketches.add(new SketchShit("pad141515.pde", new pad141515()));
+		sketches.add(new SketchShit("pad141515.pde", new pad141515()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("pad161718.pde", new pad161718()));
+		sketches.add(new SketchShit("path20.pde", new path20()));
+		sketches.add(new SketchShit("pad19.pde", new pad19()));
+		sketches.add(new SketchShit("pad21.pde", new pad21()));
+		sketches.add(new SketchShit("pad22.pde", new pad22()));
+		sketches.add(new SketchShit("pad23.pde", new pad23()));
+		sketches.add(new SketchShit("Pattern_24_House.pde", new Pattern_24_House()));
+		sketches.add(new SketchShit("Pattern_25_KONFETTI_CANON.pde", new Pattern_25_KONFETTI_CANON()));
+		sketches.add(new SketchShit("Pattern_26_ROAD.pde", new Pattern_26_ROAD()));
+		sketches.add(new SketchShit("pat27_28.pde", new pat27_28())); 
+		sketches.add(null);
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31())); 
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
+		sketches.add(new SketchShit("pat29_31.pde", new pat29_31()));
+		sketches.add(new SketchShit("Pattern_32_BOUNCING_BALLS.pde", new Pattern_32_BOUNCING_BALLS()));
+		sketches.add(new SketchShit("Pattern_33_MOUNTAIN.pde", new Pattern_33_MOUNTAIN()));
+		sketches.add(new SketchShit("path34.pde", new path34()));
+		sketches.add(new SketchShit("path35.pde", new path35()));
+		sketches.add(new SketchShit("pad36.pde", new pad36()));
+		sketches.add(sketches.get(5)); // 37 not used
+		sketches.add(new SketchShit("pat_38_39_39_40_40.pde", new pat_38_39_39_40_40()));
+		sketches.add(null);
+		sketches.add(null);
+		sketches.add(new SketchShit("pat41_42.pde", new pat41_42()));
+		sketches.add(new SketchShit("pat41_42.pde", new pat41_42()));
+		sketches.add(new SketchShit("pat43.pde", new pat43()));
+		sketches.add(new SketchShit("pat44.pde", new pat44()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("pat45_46_47_48_49.pde", new pat45_46_47_48_49()));
+		sketches.add(new SketchShit("Pattern_50_ROOTS.pde", new Pattern_50_ROOTS()));
+		sketches.add(new SketchShit("Pattern_51_SHAKY.pde", new Pattern_51_SHAKY()));
+		sketches.add(new SketchShit("pat52.pde", new pat52()));
+		sketches.add(new SketchShit("pattern53.pde", new pattern53()));
+		sketches.add(new SketchShit("pattern54.pde", new pattern54()));
+		sketches.add(new SketchShit("pat55.pde", new pat55())); // 55
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("pat56_57_58.pde", new pat56_57_58()));
+		sketches.add(new SketchShit("demo_outro.pde", new demo_outro()));		
 	}
 	
 	public SketchShit getShit()
 	{
 		if (currentIndex > sketches.size() - 1 )
 			currentIndex = currentIndex % sketches.size();
-		List<SketchShit> lsht = sketches.get(currentIndex);
-		if (lsht == null) return null;
-		return lsht.get(loopIndex[currentIndex] % lsht.size());
+		return sketches.get(currentIndex);
 	}
 	
 	public void settings() 
