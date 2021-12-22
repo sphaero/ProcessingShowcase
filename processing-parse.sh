@@ -22,7 +22,7 @@ for dir in "$@"
 do
     #if ! [ -e "$dir/music.pde" ]; then
     #echo "creating $dir/music.pde"
-    #create_music_pde $dir/music.pde
+    create_music_pde $dir/music.pde
     #fi
     PDENAME=`basename $dir`
     # replace illegal methods
