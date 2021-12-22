@@ -144,6 +144,16 @@ public class WindowMergeApp extends PApplet {
 	
 	public void oscEvent(OscMessage message) 
 	{
+		if (message.checkAddrPattern("/loop" ) )
+        {
+			//message.typetag()[0] == 'T'
+			Boolean loop = message.typetag().charAt(0) == 'T';
+			if (!loop)
+			{
+				println("Loop detected with no looping so let's exit", loop);
+				System.exit(0);
+			}
+        }
 		if (message.checkAddrPattern("/patternevent" ) )
         {
 		    /* print the address pattern and the typetag of the received OscMessage */
