@@ -30,10 +30,13 @@ run:
 
 dist: classes
 	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar ./oscP5.jar ./picocli-4.6.1.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
-	jar cvfm dist/dopeonthetoilet.jar MANIFEST.MF
-	cd src; jar uvf ../dist/dopeonthetoilet.jar *.class
-	cd src/pde;	jar uvf ../../dist/dopeonthetoilet.jar *.class 
-	jar uvf dist/dopeonthetoilet.jar data/* ${SKETCH_DIRS}
+	jar cvfm dist/thisnotvideo2.jar MANIFEST.MF
+	cd src; jar uvf ../dist/thisnotvideo2.jar *.class
+	cd src/pde;	jar uvf ../../dist/thisnotvideo2.jar *.class 
+	jar uvf dist/thisnotvideo2.jar data/* ${SKETCH_DIRS}
 	mkdir .oscp5
-	cd .oscp5; jar -xf ../oscP5.jar; rm -rf META-INF; jar uvf ../dist/dopeonthetoilet.jar *
+	cd .oscp5; jar -xf ../oscP5.jar; rm -rf META-INF; jar uvf ../dist/thisnotvideo2.jar *
 	rm -rf .oscp5
+	mkdir .picocli
+	cd .picocli; jar -xf ../picocli-4.6.1.jar; rm -rf META-INF; jar uvf ../dist/thisnotvideo2.jar *
+	rm -rf .picocli
