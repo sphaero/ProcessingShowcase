@@ -78,7 +78,7 @@ public class TextApp extends PApplet {
 		if ( presentation )
 			fullScreen(1);
 		else
-			size(630, 360);
+			size(720, 480);
 	}
 	
 	static public void main(String[] passedArgs) 
