@@ -2,7 +2,7 @@ import procmod.*;
 
 ModPlayer plr;
 
-int start = 0;
+int start = 1;
 int introSamplePlayed = 0;
 int chorusSamplePlayed = 0;
 float intromult = 0.1;

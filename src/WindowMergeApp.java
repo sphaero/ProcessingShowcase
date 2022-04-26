@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import netP5.*; 
+import oscP5.*; 
 
 import java.util.HashMap; 
 import java.util.List; 
@@ -30,11 +32,33 @@ public class WindowMergeApp extends PApplet {
     int go_draw_frame_count = 0;
     float choose = 0.0f;
     PFont mono = null;
-	
+
+    OscP5 oscP5 = null;
+    int patternnr = 0;
+    int patternrow = 0;
+    int colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
+    int strobe = 0;
+    int channel1instr = 0;
+    int channel2instr = 0;
+    int channel3instr = 0;
+    int channel4instr = 0;
+    int channel1note = 0;
+    int channel2note = 0;
+    int channel3note = 0;
+    int channel4note = 0;
+    char channel1effect;
+    char channel2effect;
+    char channel3effect;
+    char channel4effect;
+    String channel1effect_param = "00";
+    String channel2effect_param = "00";
+    String channel3effect_param = "00";
+    String channel4effect_param = "00";	
 
 	public void setup()
 	{
 		if (mono == null)  mono = createFont("FreeMono.ttf", 30);
+		if (oscP5 == null) oscP5 = new OscP5(this,6200);
 		SketchShit sht = getShit();
 		sketch = sht.sketch;
 		_runningIndex = currentIndex;
@@ -211,6 +235,65 @@ public class WindowMergeApp extends PApplet {
 		}
 		currentIndex = pattern;
 	}
+
+	public void oscEvent(OscMessage message) 
+	{
+		if (message.checkAddrPattern("/patternevent" ) )
+        {
+		    /* print the address pattern and the typetag of the received OscMessage */
+		    //print("### received an osc message.");
+		    //print(" addrpattern: "+message.addrPattern());
+		    //println(" typetag: "+message.typetag());
+		    
+		    //songposition = message.get(0).intValue();
+		    int pattern = message.get(1).intValue();
+		    patternrow = message.get(2).intValue();
+		    channel1note = message.get(3).intValue();
+		    channel1instr = message.get(4).intValue();
+		    channel1effect = message.get(5).charValue();
+		    channel1effect_param = message.get(6).stringValue();
+			//if (channel1note != 0)
+				this.modRowEvent(0,channel1instr, channel1note);
+		    channel2note = message.get(7).intValue();
+		    channel2instr = message.get(8).intValue();
+		    channel2effect = message.get(9).charValue();
+		    channel2effect_param = message.get(10).stringValue();    
+			//if (channel2note != 0)
+				this.modRowEvent(1,channel2instr, channel2note);
+		    channel3note = message.get(11).intValue();
+		    channel3instr = message.get(12).intValue();
+		    channel3effect = message.get(13).charValue();
+		    channel3effect_param = message.get(14).stringValue();
+			//if (channel3note != 0)
+				this.modRowEvent(2,channel3instr, channel3note);
+		    channel4note = message.get(15).intValue();;
+		    channel4instr = message.get(16).intValue();
+		    channel4effect = message.get(17).charValue();
+		    channel4effect_param = message.get(18).stringValue();
+			//if (channel4note != 0)
+				this.modRowEvent(3,channel4instr, channel4note);
+
+		    //System.out.println(pattern);
+		    //patternrow = message.get(2).intValue();
+		    if ( currentIndex != pattern )
+			{
+				loopCount++;
+				loopIndex[pattern]++;
+			}
+			currentIndex = pattern;			
+		}
+		
+		try
+		{
+			Method oscEvent = sketch.getClass().getMethod("oscEvent",
+	                        new Class[] { OscMessage.class });
+			oscEvent.invoke(sketch, message );
+	    } 
+		catch (Exception e) {
+	    	//System.out.println("No modRowEvent found in the sketch!");
+	    	// no such method, or an error.. which is fine, just ignore
+	    }
+	}
 	
 	public void build()
 	{
@@ -269,8 +352,8 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("lisa48.pde", new lisa48())));
 		sketches.add(Arrays.asList(new SketchShit("pat49.pde", new pat49())));
 		sketches.add(Arrays.asList(new SketchShit("pat50.pde", new pat50()))); // 50
-		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat51", new demo_sketch_pat51() )));
-		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat52", new demo_sketch_pat52() )));
+		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat51.pde", new demo_sketch_pat51() )));
+		sketches.add(Arrays.asList(new SketchShit("demo_sketch_pat52.pde", new demo_sketch_pat52() )));
 		sketches.add(Arrays.asList(new SketchShit("tune_5_Pattern_53_Mijs_versie_2.pde", new tune_5_Pattern_53_Mijs_versie_2())));
 		sketches.add(Arrays.asList(new SketchShit("tune_5_pattern_54_Mijs_versie_2.pde", new tune_5_pattern_54_Mijs_versie_2())));
 		sketches.add(Arrays.asList(new SketchShit("nr_55Laraoostveen.pde", new nr_55Laraoostveen()))); // 55
