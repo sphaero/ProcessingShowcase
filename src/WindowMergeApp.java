@@ -30,7 +30,7 @@ public class WindowMergeApp extends PApplet {
     
     PFont mono = null;
     OscP5 oscP5 = null;
-    //int patternnr = 0;
+    int patternnr = 0;
     int patternrow = 0;
     int colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
     int strobe = 0;
@@ -76,15 +76,25 @@ public class WindowMergeApp extends PApplet {
 		}
 		sketch.resetMatrix();
 		colorMode(RGB, 255, 255, 255);
+		sketch.colorMode(RGB, 255, 255, 255);
 		rectMode(CORNER);
+		sketch.rectMode(CORNER);
 		imageMode(CORNER);
+		sketch.imageMode(CORNER);
 		ellipseMode(CENTER);
+		sketch.ellipseMode(CENTER);
 		textAlign(LEFT);
+		sketch.textAlign(LEFT);
 		blendMode(BLEND);
+		sketch.blendMode(BLEND);
 		fill(255);
+		sketch.fill(255);
 		stroke(0);
+		sketch.stroke(0);
 		strokeWeight(1);
+		sketch.strokeWeight(1);
 		clear();
+		sketch.clear();
         try 
         {
             sketch.setup();
@@ -121,14 +131,14 @@ public class WindowMergeApp extends PApplet {
 		    line(0, i, width, i);
 		}*/
 		//textFont(mono);
-		//text("pattern: "+ currentIndex, 10,25);
-		if (strobe != patternrow )
+		text("pattern: "+ currentIndex, 10,25);
+		/*if (strobe != patternrow )
 		{
 			OscMessage lamp1on = new OscMessage("/lamp1");
-			lamp1on.add(255); /* add an int to the osc message */
+			lamp1on.add(255); // add an int to the osc message 
 
 			OscMessage lamp1off = new OscMessage("/lamp1");
-			lamp1off.add(0); /* add an int to the osc message */
+			lamp1off.add(0); // add an int to the osc message
 
 			if (strobe == -1) { strobe =patternrow; background(colors[1]); oscP5.send(lamp1off, lichttafel); }
 			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); oscP5.send(lamp1on, lichttafel); }
@@ -136,7 +146,7 @@ public class WindowMergeApp extends PApplet {
 		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]); oscP5.send(lamp1on, lichttafel);}
 		    else if (channel4instr == 28) { strobe = -1; background(colors[4]); oscP5.send(lamp1on, lichttafel);}
 	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]); oscP5.send(lamp1on, lichttafel);}
-		}
+		}*/
 		
 		g.endDraw();
 		
@@ -169,7 +179,7 @@ public class WindowMergeApp extends PApplet {
 		    //println(" typetag: "+message.typetag());
 		    
 		    //songposition = message.get(0).intValue();
-		    int pattern = message.get(1).intValue();
+		    patternnr = message.get(1).intValue();
 		    patternrow = message.get(2).intValue();
 		    channel1note = message.get(3).intValue();
 		    channel1instr = message.get(4).intValue();
@@ -187,14 +197,14 @@ public class WindowMergeApp extends PApplet {
 		    channel4instr = message.get(16).intValue();
 		    channel4effect = message.get(17).charValue();
 		    channel4effect_param = message.get(18).stringValue();
-		    //System.out.println(pattern);
-		    //patternrow = message.get(2).intValue();
-		    if ( currentIndex != pattern )
+		    //System.out.println(patternnr);
+		    int idxNr = patternnr % sketches.size();  // sketches array determines maximum index nr
+		    if ( currentIndex != idxNr )
 			{
 				loopCount++;
-				loopIndex[pattern]++;
+				loopIndex[idxNr]++;
 			}
-			currentIndex = pattern;
+			currentIndex = idxNr;
 		}
 		
 		try
@@ -210,42 +220,19 @@ public class WindowMergeApp extends PApplet {
 
 	}
 	
-	public void modRowEvent( int channel, int instrument, int note )
-	{
-		try
-		{
-	      Method modRowEvent = sketch.getClass().getMethod("modRowEvent",
-                            new Class[] { int.class, int.class, int.class });
-	      modRowEvent.invoke(sketch, channel, instrument, note );
-	    } catch (Exception e) {
-	    	//System.out.println("No modRowEvent found in the sketch!");
-	    	// no such method, or an error.. which is fine, just ignore
-	    }
-		//  We reageren alleen op instrument 2
-	    if (instrument == 2)
-		{
-		    println(channel +":"+ instrument +":"+ note);
-		    //  Whatever instrument is being played just set a background color from the note played.
- 		}
-	}
-	
-	public void modPatternEvent( int pattern, int position )
-	{
-		System.out.println("pattern " + pattern + " , position " + position );
-		if ( currentIndex != pattern )
-		{
-			loopCount++;
-			loopIndex[pattern]++;
-		}
-		currentIndex = pattern;
-	}
-	
 	public void build()
 	{
 		sketches.clear();
 		currentIndex = 0;
-		List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		
+		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
+		sketches.add(Arrays.asList(new SketchShit("animated.pde", new animated())));
+		sketches.add(Arrays.asList(new SketchShit("circle_glyph.pde", new circle_glyph())));
+		sketches.add(Arrays.asList(new SketchShit("circles_move.pde", new circles_move())));
+		sketches.add(Arrays.asList(new SketchShit("flower.pde", new flower())));
+		sketches.add(Arrays.asList(new SketchShit("gird_of_cubes.pde", new gird_of_cubes())));
+		sketches.add(Arrays.asList(new SketchShit("les_4_animatie_op_720_bij_480.pde", new les_4_animatie_op_720_bij_480())));
+		sketches.add(Arrays.asList(new SketchShit("lesson_3.pde", new lesson_3())));
+		sketches.add(Arrays.asList(new SketchShit("sketch_l3_motion.pde", new sketch_l3_motion())));
 	}
 	
 	public SketchShit getShit()

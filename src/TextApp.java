@@ -24,7 +24,7 @@ public class TextApp extends PApplet {
 		
 		if (changed)
 		{
-			println("updating");
+			//println("updating");
 			String[] contentb = {"Error loading " + filename};
 			synchronized (content) { 
 				try 
@@ -67,7 +67,7 @@ public class TextApp extends PApplet {
 	
 	public void set_filename(String new_filename)
 	{
-		println(System.getProperty("user.dir"));
+		//println(System.getProperty("user.dir"));
 		println("setting filename " + new_filename );
 		filename = new_filename;
 		changed = true;
