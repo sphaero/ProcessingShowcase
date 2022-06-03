@@ -10,9 +10,8 @@ public class ProcessingShowcase implements Runnable {
 	@Option(names = { "-p", "--present" }, description = "Enable present mode ") 
 	boolean present = false;
 
-    @Parameters(paramLabel = "<word>", defaultValue = "Hello, picocli", 
-               description = "Words to be translated into ASCII art.")
-    private String[] words = { "Hello,", "picocli" }; 
+	@Option(names = { "-i", "--inverse" }, description = "Inverse text screen (flip background/foreground colors)") 
+	boolean inv_color = false;
     
     int startPos = 0;   
 	int endPos = 104;     
@@ -31,6 +30,7 @@ public class ProcessingShowcase implements Runnable {
 		TextApp textApp = new TextApp();
 		WindowMergeApp windowApp = new WindowMergeApp();
 		textApp.presentation = present;
+		textApp.inv_color = inv_color;
 		windowApp.presentation = present;
 		
 		String[] ta_args = {""};
