@@ -4,9 +4,14 @@ import processing.core.PFont;
 public class TextApp extends PApplet {
 
 	Boolean presentation = false;
+	Boolean inv_color = false;
 	String filename = "";
 	Boolean changed = false;
 	String[] content = {"Hello world"};
+	
+	int bg = color(0);
+	int fg = color(130,255,150);
+	int fgb = color(0,100,20);
 	
 	public void setup()
 	{
@@ -18,6 +23,12 @@ public class TextApp extends PApplet {
 		mono = createFont("FreeMono.ttf", 30);
 		background(0);
 		textFont(mono, 20);
+		if (inv_color)
+		{
+			bg = color(255);
+			fg = color(0);
+			fgb = color(196);
+		}
 	}
 	
 	public void update() {
@@ -48,7 +59,7 @@ public class TextApp extends PApplet {
 	{
 		update();
 		clear();
-		background(0);
+		background(bg);
 		if (content != null)
 		{
 			int cursorY = 0;
@@ -56,10 +67,10 @@ public class TextApp extends PApplet {
 			{
 				cursorY += 20;
 				//fill(196);
-				fill(0,100,20);
+				fill(fgb);
 				text(i+1, 5, cursorY+1);
 				//fill(0,0,0);
-				fill(130,255,150);
+				fill(fg);
 				text(content[i], 40, cursorY);
 			}
 		}
