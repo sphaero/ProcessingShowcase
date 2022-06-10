@@ -53,10 +53,23 @@ public class WindowMergeApp extends PApplet {
     
     NetAddress lichttafel = new NetAddress("10.2.4.29",7700);
     
+    String[] lines = null;
+    float totalLength = 0;
+    int counter = 0;
+    
 	public void setup()
 	{
-		if (mono == null)  mono = createFont("ArcadeClassic.ttf", 30);
+		if (mono == null)  mono = createFont("static/RobotoMono-SemiBold.ttf", 64);
 		if (oscP5 == null) oscP5 = new OscP5(this,6200);
+		if (lines == null) 
+		{
+			lines = loadStrings("txts");
+		    textSize(64);
+			for (int i = 0 ; i < lines.length; i++) 
+			{
+			    totalLength += textWidth(lines[i]);
+            }
+		}
 		SketchShit sht = getShit();
 		sketch = sht.sketch;
 		_runningIndex = currentIndex;
@@ -111,6 +124,31 @@ public class WindowMergeApp extends PApplet {
 		if (sketch != null) sketch.postEvent(pe);
 	}
 	
+	public void draw_lines()
+	{
+	  stroke(0,0,0);
+	  for (int i=0;i<72;i+=8)
+	  {
+	    line(0,height-i, width,height-i);
+	  }
+	  textSize(64);
+	  textAlign(LEFT);
+	  fill(224);
+	  float spaceW = textWidth(" ");
+	  float xpos = width-(counter*2%PApplet.parseInt(totalLength)); 
+	  for (int i=0;i<lines.length;i++)
+	  {
+	    if (lines[i].length() == 0)
+	    {
+	      xpos += 64;
+	    }
+	    float w = textWidth(lines[i]);
+	    if (xpos + w > 0 && xpos < width)
+	      text(lines[i], xpos, height-16);
+	    xpos = xpos + w + spaceW;
+	  }
+	}
+	
 	public void draw()
 	{
 		frame.setLocation(1, 1);
@@ -125,13 +163,14 @@ public class WindowMergeApp extends PApplet {
 		}
 		
 		g.beginDraw();
+		draw_lines();
 		/*stroke(0);
 		for (int i = 0; i < height; i+=3)
 		{
 		    line(0, i, width, i);
 		}*/
 		//textFont(mono);
-		text("pattern: "+ currentIndex, 10,25);
+		//text("pattern: "+ currentIndex, 10,25);
 		/*if (strobe != patternrow )
 		{
 			OscMessage lamp1on = new OscMessage("/lamp1");
@@ -149,6 +188,7 @@ public class WindowMergeApp extends PApplet {
 		}*/
 		
 		g.endDraw();
+		counter++;
 		
 		if ( currentIndex != _runningIndex)
 		{
@@ -225,14 +265,24 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("animated.pde", new animated())));
-		sketches.add(Arrays.asList(new SketchShit("circle_glyph.pde", new circle_glyph())));
-		sketches.add(Arrays.asList(new SketchShit("circles_move.pde", new circles_move())));
-		sketches.add(Arrays.asList(new SketchShit("flower.pde", new flower())));
-		sketches.add(Arrays.asList(new SketchShit("gird_of_cubes.pde", new gird_of_cubes())));
-		sketches.add(Arrays.asList(new SketchShit("les_4_animatie_op_720_bij_480.pde", new les_4_animatie_op_720_bij_480())));
-		sketches.add(Arrays.asList(new SketchShit("lesson_3.pde", new lesson_3())));
-		sketches.add(Arrays.asList(new SketchShit("sketch_l3_motion.pde", new sketch_l3_motion())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pos1pat2.pde", new pos1pat2())));
+        sketches.add(Arrays.asList(new SketchShit("pattern3.pde", new pattern3())));
+        sketches.add(Arrays.asList(new SketchShit("pattern4.pde", new pattern4())));
+        sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5())));
+        sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+		sketches.add(Arrays.asList(new SketchShit("images_music.pde", new images_music())));
+        sketches.add(Arrays.asList(new SketchShit("pattern11.pde", new pattern11())));
+        sketches.add(Arrays.asList(new SketchShit("pattern12.pde", new pattern12())));
+        sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
+        sketches.add(Arrays.asList(new SketchShit("pattern_14_saidnaviv_animation.pde", new pattern_14_saidnaviv_animation())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("patterm17.pde", new patterm17())));
 	}
 	
 	public SketchShit getShit()
