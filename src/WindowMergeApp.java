@@ -267,20 +267,20 @@ public class WindowMergeApp extends PApplet {
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
         sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
         sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
-        sketches.add(Arrays.asList(new SketchShit("pos1pat2.pde", new pos1pat2())));
+        sketches.add(Arrays.asList(new SketchShit("pattern2.pde", new pattern2())));
         sketches.add(Arrays.asList(new SketchShit("pattern3.pde", new pattern3())));
         sketches.add(Arrays.asList(new SketchShit("pattern4.pde", new pattern4())));
         sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5())));
         sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6())));
-        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
-        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
-        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern7.pde", new pattern7())));
+        sketches.add(Arrays.asList(new SketchShit("pattern8.pde", new pattern8())));
+        sketches.add(Arrays.asList(new SketchShit("pattern_9.pde", new pattern_9())));
 		sketches.add(Arrays.asList(new SketchShit("images_music.pde", new images_music())));
         sketches.add(Arrays.asList(new SketchShit("pattern11.pde", new pattern11())));
         sketches.add(Arrays.asList(new SketchShit("pattern12.pde", new pattern12())));
         sketches.add(Arrays.asList(new SketchShit("pattern13.pde", new pattern13())));
         sketches.add(Arrays.asList(new SketchShit("pattern_14_saidnaviv_animation.pde", new pattern_14_saidnaviv_animation())));
-        sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
+        sketches.add(Arrays.asList(new SketchShit("pattern15.pde", new pattern15())));
         sketches.add(Arrays.asList(new SketchShit("pattern0.pde", new pattern0())));
         sketches.add(Arrays.asList(new SketchShit("patterm17.pde", new patterm17())));
 	}

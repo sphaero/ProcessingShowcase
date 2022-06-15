@@ -1,5 +1,5 @@
 int count = 0;
-
+int delta = 1;
 void setup()
 {
   size(720, 480);
@@ -20,13 +20,13 @@ void draw() {
   
   fill(0);
   noStroke();
-  circle(mouseX,mouseY, 100);
-if (count > 255)
- {
-   count = 10;
+  circle(count,height/2, 100);
+  if (count > width){
+    delta = -1;
   }
-  else
- {
-   count = count + 1;
- }
+  if (count < 0)
+  {
+    delta = 1;
+  }
+  count = count + delta;
 }

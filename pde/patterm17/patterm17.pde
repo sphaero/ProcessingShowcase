@@ -1,18 +1,34 @@
-void setup(){
-size(720, 480);
-noStroke();
+void setup()
+{
+  size(720,480);
 }
 
-void draw(){
+void draw()
+{
+  background(0);
+  fill(255);
+  float speed = 0.20;
+  // use this to determine speed
+  //speed = 100./(mouseX+1);
+  //println(speed);
+  float delta = sin(frameCount*speed)*100;
+  translate(width/2, height/2);
+  square(0,0,100+delta);
+  
+  fill(255);
+  circle (0,0,100+delta);
+  fill(255,0,0);
+  square(200,200,-100+delta);
+  fill(255);
+  square(0,0,100+delta);
+  fill(255,0,0);
+  square(-200,-200,100+delta);
+  fill(255);
+  square(0,0,-100+delta);
+  
+  fill(255);
+   circle (200,200,100+delta);
+    circle(-200,-200,100+delta);
 
-textSize(50);
-text("C R I S T I N A", width/3, height/3); 
-
-rectMode(CENTER);  // Set rectMode to RADIUS
-fill(255);  // Set fill to white
-fill (255,20,788);
-
-ellipse (10, 20, 10, 10);
-
-
+  
 }
