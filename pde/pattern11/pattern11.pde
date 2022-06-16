@@ -24,7 +24,7 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 color cs[] = { color(29,29,27), color(0,225,102) };
-//color cs[] = { color(29,29,27), color(224,224,224), color(0,225,102), color(255,255,255) };
+color cs2[] = { color(29,29,27), color(224,224,224), color(0,225,102), color(255,255,255) };
 PFont font;
 
 void setup()
@@ -46,19 +46,19 @@ void draw()
   //println(mouseX);
   draw_grid(444);
   
-  //if (patternrow > 16)
-  //{
-    float alpha = map(patternrow, 16, 48, 0, 255);
-    fill(255,alpha);
-    noStroke();
-    rect(0,0,width,height);
-  //}
-  fill(255);
-  rect(width/2-100, height/2-10, 200,20);
-  textAlign(CENTER);
-  fill(0);
-  textSize(16);
-  text("PAT:" + patternnr, width/2, height/2+6);
+  float alpha = map(patternrow, 16, 48, 0, 255);
+  fill(255,alpha);
+  noStroke();
+  rect(0,0,width,height);
+  
+  if (patternrow > 48)
+  {
+    fill(cs2[patternrow%3]);
+    textSize(map(patternrow, 48, 64, 16, 128));
+    textAlign(CENTER, CENTER);
+    text("CREEPERS", width/2, height/2);//map(patternrow%8, 0, 7, -32, height+16));
+  }
+
 }
 
 
