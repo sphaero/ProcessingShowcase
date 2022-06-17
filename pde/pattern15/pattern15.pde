@@ -1,4 +1,4 @@
-// example circle animation manually speed matched to the music
+
 float nextHeight = 480;
 int xpoos =0;
 
@@ -9,23 +9,21 @@ void setup()
 
 void draw()
 {
-  noStroke();
+  strokeWeight(0.5);
   background(224,224,224);
   fill(29,29,27);
   rectMode(CENTER);
   rect(width/2,height/2,random(720),random(480));
   float speed = 1;
-  // use this to determine speed
-  //speed = 100./(mouseX+1);
-  //println(speed);
   float delta = sin(frameCount*speed)*100;
   float bigWidth = 100+delta;
   littleCircles(30, nextHeight);
   circle(width/2, height/2, random(30,50));
   fill(255);
   circle(width/2, height/2, bigWidth);
-
-  if (nextHeight < 35)
+  
+//saveFrame("line-####.png");
+  if (nextHeight < 30)
   {
     nextHeight = 480;
   } else

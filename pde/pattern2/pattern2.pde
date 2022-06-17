@@ -35,6 +35,7 @@ int yPosLinks = 0;
 int xPosRechts = 720;
 int yPosRechts = 0;
 
+int siz = 72;
 
 void setup() {
   size(720, 480);
@@ -43,90 +44,110 @@ void setup() {
 }
 
 void vierkant() {
-  square(width/2, height/2, 150);
+  noStroke();
+  square(siz/2+2, siz/2+2, siz);
 }
 
 void cirkel() {
-  circle(width/2, height/2, 150);
+  noStroke();
+  circle(siz/2+2, siz/2+2, siz);
 }
 
 void driehoek() {
-  triangle(width/2-75, height/2+75, width/2+75, height/2+75, width/2, height/2-75);
+  noStroke();
+  triangle(2, 72+2, 72+2, 72+2, 36+2, 2);
 }
 
 void kruis() {
-  line(width/2-75, height/2+75, width/2+75, height/2-75);
-  line(width/2-75, height/2-75, width/2+75, height/2+75);
+  stroke(0, 225, 102);
+  strokeWeight(8);
+  line(2, 2, 72+2, 72+2);
+  line(72+2, 2, 2, 72+2);
 }
 
 void draw() {
   rectMode(CENTER);
-  noFill();
-  strokeWeight(1);
-  stroke(0, 225, 102);
+  fill(0, 225, 102);
 
+  translate(0, 20);
   println(channel1instr, channel1note, channel3instr, patternnr);
 
   if (patternnr == 2) {
     if (patternrow != patternrowOld) {
       if (channel1instr == 11) {
         if (channel1note == 180 || channel1note == 202) {
-          background(0);
           pushMatrix();
-          translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
+          translate(xPosBoven, 0);
           vierkant();
           popMatrix();
+          if (xPosBoven <= width+20) {
+            xPosBoven += 20+siz;
+          }
         }
         if (channel1note == 214 || channel1note == 240) {
-          background(0);
-
           pushMatrix();
-          translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
+          translate(xPosBoven, siz+20);
           cirkel();
           popMatrix();
+          if (xPosBoven <= width+20) {
+            xPosBoven += 20+siz;
+          }
         }
         if (channel1note == 404) {
-          background(0);
-
           pushMatrix();
-          translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
+          translate(xPosBoven, (siz+20)*2);
           driehoek();
           popMatrix();
+          if (xPosBoven <= width+20) {
+            xPosBoven += 20+siz;
+          }
         }
         if (channel1note == 428) {
-          background(0);
-
           pushMatrix();
-          translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
+          translate(xPosBoven, (siz+20)*3);
           kruis();
           popMatrix();
+          if (xPosBoven <= width+20) {
+            xPosBoven += 20+siz;
+          }
         }
-        if (channel2instr > 0){
+        if (channel4instr > 0) {
           pushMatrix();
-                    translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
-
-          stroke(224,224,224);
-          circle(width/2,height/2,90);
+          translate(xPosBoven, (siz+20)*4);
+          noStroke();
+          fill(224, 224, 224);
+          circle(siz/2, siz/2, siz);
           popMatrix();
-          
+          if (xPosBoven <= width+20) {
+            xPosBoven += 20+siz;
+          }
         }
-        if (channel3instr == 12) {
-          pushMatrix();
-          translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
-          stroke(255);
-          square(width/2, height/2, 60);
-          popMatrix();
+        //if (channel3instr == 12) {
+        //  pushMatrix();
+        //  strokeWeight(random(1, 20));
+        //  translate(random(-width/2+50, width/2-50), random(-height/2+50, height/2-50));
+        //  stroke(255);
+        //  square(width/2, height/2, 60+random(-50, 50));
+        //  popMatrix();
+        //  if (xPosBoven <= width+20) {
+        //    xPosBoven += 20+siz;
+        //  }
+        //}
+        if (xPosBoven >= width+19) {
+          background(0);
+          xPosBoven = 0;
+          xPosOnder = 0;
+          yPosLinks = 0;
+          yPosRechts = 0;
         }
       }
     }
   }
-
-  patternrowOld = patternrow;
-
   //println(channel3note);
 
   //textAlign(CENTER);
   //text("PAT:" + patternnr, width/2, height/2);
+  patternrowOld = patternrow;
 }
 
 void oscEvent(OscMessage message)
