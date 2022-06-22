@@ -1,14 +1,10 @@
 float t;
-PImage img;
-PImage img2;
 
 static final int thisthing = 10;
 
 void setup() {
   background(0,205,102);
   size(720,480);
-  img = loadImage("vogel.png");
-    img = loadImage("vogel2.png");
 }
 
 void draw(){

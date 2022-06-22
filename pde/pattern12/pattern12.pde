@@ -4,10 +4,14 @@ float g2;
 void setup(){
   background(0);
   size(720,480);
+  g=0.;
+  g2=0.;
   
 }
 
 void draw() {
+  
+   delay(40);
   
 stroke(0,255,102);
  noFill();
