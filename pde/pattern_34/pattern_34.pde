@@ -1,3 +1,6 @@
+//(c) David Mrugala (thedotisblack)
+
+//gemaakt door Ilse Brandwacht IMT1A
 import netP5.*;
 import oscP5.*;
 
@@ -24,23 +27,45 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-void setup()
-{
-  size(720, 480);
-  oscP5 = new OscP5(this,6200);
+float angle;
+
+void setup() {
+  size (720,480);
+  surface.setLocation(957,0);
+  noStroke();
+  fill(0,15,30);
 }
 
-void draw() 
-{
-   background(255,255,255);
-   rect(sin(frameCount*0.1)*200+310, height/2,50,50);
-   fill(255,00,00);
-   rect(sin(frameCount*0.1)*200+310, height/2,20,20);
-   fill(0);
-   rect(sin(frameCount*0.1)*10,40, height/2,10,10);
-   fill(255,255,255);
+void draw() {
+  background(255,0,0);
+  
+  float x = width;
+  float dia = 110;
+  int num = 100;
+  
+  translate(width/2, height/2);
+  for (float a=0; a<360; a+=22.5) {
+    rotate(radians(a));
+    pushMatrix();
+    for (int i=0; i<num; i++) {
+      scale(0.95);
+      rotate(radians(angle));
+      ellipse(x, 0, dia, dia);
+    }
+    popMatrix();
+    
+     pushMatrix();
+    for (int i=0; i<num; i++) {
+      scale(0.95);
+      rotate(radians(angle));
+      ellipse(x, 0, dia, dia);
+    }
+    popMatrix();
+  }
+  angle+=0.01;
 }
- 
+
+
 
 
 void oscEvent(OscMessage message) 

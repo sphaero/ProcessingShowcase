@@ -29,12 +29,15 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
+int count = 0;
+
 void setup()
 {
   size(720, 480);
   nicktxt = rnd_nicktxt(40);
   strokeWeight(0);
   oscP5 = new OscP5(this,6200);
+  count = int(random(0,1000));
 }
 
 String rnd_nicktxt(int lines)
@@ -75,6 +78,7 @@ void vbars()
 
 color c1 = color(255,0,0);
 color c2 = color(0);
+color c3 = color(255);
 
 void draw()
 {
@@ -87,23 +91,25 @@ void draw()
   {
     c1 = color(255,0,0);
     c2 = color(0);
+    c3 = color(255);
   }
   else
   {
     c2 = color(255,0,0);
-    c1 = color(0);    
+    c1 = color(0);
+    c3 = color(0);
   }
   background(c2);
   pushMatrix();
   translate(width/2, height/2);
-  translate(sin(frameCount*0.03)*300, cos(frameCount*0.13)*63);
-  rotate(sin(frameCount*0.015)*0.5);
-  scale(sin(frameCount*0.01)*2+4);
+  translate(sin(count*0.03)*300, cos(count*0.13)*63);
+  rotate(sin(count*0.015)*0.5);
+  scale(sin(count*0.01)*1.3+2.6);
   textAlign(CENTER, CENTER);
-  fill(255);
+  fill(c3);
   text(nicktxt, 10,10);
   popMatrix();
-  if (frameCount % 200 < 100)
+  if (count % 200 < 100)
   {
     vbars();
   }
@@ -111,6 +117,7 @@ void draw()
   {
     hbars();
   }
+  count++;
 }
 
 void oscEvent(OscMessage message) 

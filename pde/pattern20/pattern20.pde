@@ -1,13 +1,8 @@
-// Code by Kees
-// this was meant to be an audiowave... but I couldnt figure it out.
-// btw you need to play music in Gazebosc to see what happens.
-
 import netP5.*;
 import oscP5.*;
 
 OscP5 oscP5;
 
-int count = 0;
 int songposition = 0;
 int patternnr = 0;
 int patternrow = 0;
@@ -32,63 +27,104 @@ String feedback_formatted = "";
 void setup()
 {
   size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
+  noStroke();
 }
 
-int x = 360;
-int y = 240;
+int x;
+int y;
+int num = 100;
+float angle;
+int count = 0;
+int speed = 1;
 
-void draw() 
+void hops(int xpos, int ypos)
 {
-  
- background(0);
- noStroke();
- 
- if (channel1instr != 0)
- {
-
-   
-fill(85,0,0);
-  circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 1000);
-   
- }
- 
-  if (channel2instr != 0)
- {
-     
- fill(130,0,0);
- circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 550);
- 
- }
-
-if (channel3instr != 0)
- 
- {
-   
-   
-  fill(200,0,0);
-  circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 300);
-
- }
- 
-
- 
- if (channel4instr != 0)
- 
- {
-
- fill(255,0,0);
- circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 100);
- 
- }
-
-   
-   
- 
+  fill(255,0,0);
+  if (patternrow % 8 == 0)
+  {
+    fill (255,0,0);
+  }
+  quad(xpos+sin(HALF_PI+frameCount*-0.15)*10, ypos+sin(HALF_PI+frameCount*-0.15)*10, xpos+100+sin(PI+frameCount*-0.15)*10, ypos+sin(PI+frameCount*-0.15)*10, xpos+100+sin(HALF_PI+PI+frameCount*-0.15)*10, ypos+100+sin(HALF_PI+PI+frameCount*-0.15)*10, xpos +sin(TWO_PI+frameCount*-0.15)*10, ypos+100+sin(TWO_PI+frameCount*-0.15)*10);
 }
+
+void glops(int xpos, int ypos)
+{
+  fill (0);
+  quad(5+xpos+sin(HALF_PI+frameCount*-0.15)*10, ypos+5+sin(HALF_PI+frameCount*-0.15)*10, xpos+95+sin(PI+frameCount*-0.15)*10, ypos+5+sin(PI+frameCount*-0.15)*10, xpos+95+sin(HALF_PI+PI+frameCount*-0.15)*10, ypos+95+sin(HALF_PI+PI+frameCount*-0.15)*10, xpos+5+sin(TWO_PI+frameCount*-0.15)*10, ypos+95+sin(TWO_PI+frameCount*-0.15)*10);
+}
+
+  
+void draw()
+{
+  background(0);
  
+  
+  pushMatrix();
+  
+  x = 0;
+  fill(255,0,0);
+  for(int i = 0; i < num-1; i++) 
+  {
+    rect(x, 0, 1, 480);
+    x+= 10;
+  }
  
- 
+  popMatrix();
+  
+  x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, height/2-50);
+    glops (x+20, height/2-50);
+    x+= 190;
+  }
+  
+   x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, 50);
+    glops (x+20, 50);
+    x+= 190;
+  }
+  
+   x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, height-150);
+    glops (x+20, height-150);
+    x+= 190;
+  }
+  
+  count = count+speed;
+  if(count>320)
+  {
+    speed = -1;
+  }
+  if(count<0)
+  {
+    speed=1;
+  }
+  println(count);
+  
+  pushMatrix();
+  translate(0,count);
+  y = 0;
+  fill(255,0,0);
+  for(int i = 0; i < num-1; i++) 
+  {
+    rect(0, -480+y, 720, 1);
+    y+= 10;
+  }
+  popMatrix();
+  
+  
+  
+}
+
+
+
 
 
 void oscEvent(OscMessage message) 

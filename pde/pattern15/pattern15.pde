@@ -24,49 +24,61 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-
+color bg = #000000;
+color fg = #ff0000;
 
 void setup()
 {
   size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
 }
 
 void draw() 
 {
-  background(0);
-  fill (0,255,0);
+  background(bg);
+  fill (fg);
+  noStroke();
   
-  if (patternrow % 10 == 0) 
-  {
-    background (255,255,255);
-    fill (255,255,255);
-    circle (360,240,100);
-    circle (260,140,100);
-    circle (460,340,100);
-  }
+ float tilesX = 4;
+ float tilesY = tilesX;
+ 
+ float tileW = width / tilesX;
+ float tileH = height / tilesY;
+ 
+ for (int x = 0; x < tilesX; x++){
+  for (int y = 0; y < tilesY; y++){
+    float posX = tileW * x;
+    float posY = tileH * y;
+    
+    float wave = sin (radians(frameCount + x * 1200 + y * 330));
+    float mappedWave = map (wave, -1,1,0,5);
+    
+    int selector = int(random(4));
+    //int selector = int(mappedWave);
+    
+    pushMatrix ();
+    translate (posX, posY);
+    if (selector == 0) {
+      arc (0,0, tileW*2, tileH*2, radians(0), radians (90));
+    } else if (selector == 1){
+      arc (tileW,0, tileW*2, tileH*2, radians(90), radians (180));
+    } else if (selector == 2){
+      arc (tileW,tileH, tileW*2, tileH*2, radians(180), radians (270));
+    } else if (selector == 3){
+      arc (0,tileH, tileW*2, tileH*2, radians(270), radians (360));
+    } else {
+      rect (0,0, tileW, tileH);
+    }
   
-   if (patternrow % 2 == 0) 
-  {
-    background (0,0,0);
-    fill (255,0,0);
-    circle (360,240,80); 
-    fill (255,255,255);
-    circle (260,240,80); 
-    circle (460,240,80); 
-  }
+    
+    popMatrix ();
+}
+}
+
+
   
-   if (patternrow % 30 == 0) 
-  {
-    background (255,255,255);
-    fill (255,0,0);
-    circle (360,240,60);
-    circle (360,140,60);
-    circle (360,340,60);
-   
-  }
-  
-  //textAlign(CENTER);
+  textAlign(CENTER);
   //text("PAT:" + patternnr, width/2, height/2);
 }
 

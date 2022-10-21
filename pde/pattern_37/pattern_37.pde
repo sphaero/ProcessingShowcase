@@ -24,50 +24,46 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-
-
 void setup()
 {
   size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
 }
 
 void draw() 
 {
   background(0);
-  fill (0,255,0);
+  noStroke();
+  int widthkwart = width/4;
+  if (channel1instr != 0 )
+  { 
   
-  if (patternrow % 10 == 0) 
-  {
-    background (255,255,255);
-    fill (255,255,255);
-    circle (360,240,100);
-    circle (260,140,100);
-    circle (460,340,100);
   }
-  
-   if (patternrow % 2 == 0) 
-  {
-    background (0,0,0);
-    fill (255,0,0);
-    circle (360,240,80); 
-    fill (255,255,255);
-    circle (260,240,80); 
-    circle (460,240,80); 
+  if (channel2instr != 0 )
+  { 
+    fill(255,255, 255);
+    circle(240,240,100);
+    circle(360,240,80);
+    circle(480,240,160);
+
   }
-  
-   if (patternrow % 30 == 0) 
-  {
-    background (255,255,255);
-    fill (255,0,0);
-    circle (360,240,60);
-    circle (360,140,60);
-    circle (360,340,60);
-   
+  if (channel3instr != 0 )
+  { 
+    fill(255, 0, 0);
+    circle(360,240,100);
+    circle(480,240,80);    
+   circle(240,240,160);
+    
   }
-  
-  //textAlign(CENTER);
-  //text("PAT:" + patternnr, width/2, height/2);
+  if (channel4instr != 0 )
+  { 
+     fill(255,255, 255);
+    circle(480,240,100);
+    circle(240,240,80);
+   circle(360,240,160);
+  }
+
 }
 
 void oscEvent(OscMessage message) 

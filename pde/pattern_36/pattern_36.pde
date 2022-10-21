@@ -39,57 +39,150 @@ void draw()
   
   if (patternrow % 10 == 0) 
   {
-    background (255,255,255);
-    fill (0,0,0);
-    circle (200,100,100);
-    rect (500,30,30,30);
-     rect (300,300,30,30); 
+  background (255,255,255);
+    fill (255,0,0);
+   
+     circle (60, 40,40);
+     circle (160,40,40);
+     circle (260,40,40);
+     circle (360,40,40);
+     circle (460,40,40); 
+     circle (560,40,40);
+      circle (660,40,40);
+      
+     circle (60, 140,40);
+     circle (160,140,40);
+     circle (260,140,40);
+     circle (360,140,40);
+     circle (460,140,40); 
+     circle (560,140,40);
+     circle (660,140,40);
+     
+     circle (60, 240,40);
+     circle (160,240,40);
+     circle (260,240,40);
+     circle (360,240,40);
+     circle (460,240,40); 
+     circle (560,240,40);
+     circle (660,240,40);
+
+     circle (60, 340,40);
+     circle (160,340,40);
+     circle (260,340,40);
+     circle (360,340,40);
+     circle (460,340,40); 
+     circle (560,340,40);
+     circle (660,340,40);
+
+     circle (60, 440,40);
+     circle (160,440,40);
+     circle (260,440,40);
+     circle (360,440,40);
+     circle (460,440,40); 
+     circle (560,440,40);
+     circle (660,440,40);
+   
   }
   
    if (patternrow % 2 == 0) 
   {
     background (255,0,0);
     fill (0,0,0);
-    circle (300,100,100); 
+     circle (60, 40,60);
+     circle (160,40,60);
+     circle (260,40,60);
+     circle (360,40,60);
+     circle (460,40,60); 
+     circle (560,40,60);
+      circle (660,40,60);
+      
+     circle (60, 140,60);
+     circle (160,140,60);
+     circle (260,140,60);
+     circle (360,140,60);
+     circle (460,140,60); 
+     circle (560,140,60);
+     circle (660,140,60);
+    
+     circle (60, 240,60);
+     circle (160,240,60);
+     circle (260,240,60);
+     circle (360,240,60);
+     circle (460,240,60); 
+     circle (560,240,60);
+     circle (660,240,60);
+
+     circle (60, 340,60);
+     circle (160,340,60);
+     circle (260,340,60);
+     circle (360,340,60);
+     circle (460,340,60); 
+     circle (560,340,60);
+     circle (660,340,60);
+
+     circle (60, 440,60);
+     circle (160,440,60);
+     circle (260,440,60);
+     circle (360,440,60);
+     circle (460,440,60); 
+     circle (560,440,60);
+     circle (660,440,60);
   }
   
    if (patternrow % 30 == 0) 
   {
     background (255,0,0);
     fill (255,255,255);
-    circle (300,240,400);
-    rect (500,60,30,30);
-     rect (300,300,90,30);
+    circle (360,240,60);
+    circle (360,140,60);
+    circle (360,340,60);
    
   }
-  
-
-
-
+    if (patternrow % 30 == 0) 
+  {
+    background (255,0,0);
+    fill (255,255,255);
    
+     circle (60, 40,20);
+     circle (160,40,20);
+     circle (260,40,20);
+     circle (360,40,20);
+     circle (460,40,20); 
+     circle (560,40,20);
+      circle (660,40,20);
+      
+     circle (60, 140,20);
+     circle (160,140,20);
+     circle (260,140,20);
+     circle (360,140,20);
+     circle (460,140,20); 
+     circle (560,140,20);
+     circle (660,140,20);
+     
+     circle (60, 240,20);
+     circle (160,240,20);
+     circle (260,240,20);
+     circle (360,240,20);
+     circle (460,240,20); 
+     circle (560,240,20);
+     circle (660,240,20);
 
-  
-  noStroke();
-  int widthkwart = width/4;
-  if (channel1instr != 0 )
-  { 
-    fill(70, 35, 122);
-      
-  }
-  if (channel2instr != 0 )
-  { 
-    fill(61, 220, 151);
-      
-  }
-  if (channel3instr != 0 )
-  { 
-    fill(243, 167, 18);
-      
-  }
-  if (channel4instr != 0 )
-  { 
-    fill(1, 186, 239);
-      
+     circle (60, 340,20);
+     circle (160,340,20);
+     circle (260,340,20);
+     circle (360,340,20);
+     circle (460,340,20); 
+     circle (560,340,20);
+     circle (660,340,20);
+
+     circle (60, 440,20);
+     circle (160,440,20);
+     circle (260,440,20);
+     circle (360,440,20);
+     circle (460,440,20); 
+     circle (560,440,20);
+     circle (660,440,20);
+   
   }
   
   //textAlign(CENTER);

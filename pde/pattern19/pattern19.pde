@@ -27,69 +27,94 @@ String feedback_formatted = "";
 void setup()
 {
   size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
+  noStroke();
 }
+
+int x;
+int y;
+int num = 100;
+float angle;
+int count = 0;
+int speed = 1;
 
 void hops(int xpos, int ypos)
 {
-  fill(33,1,36);
+  fill(255,0,0);
+  quad(xpos+sin(HALF_PI+frameCount*-0.15)*10, ypos+sin(HALF_PI+frameCount*-0.15)*10, xpos+100+sin(PI+frameCount*-0.15)*10, ypos+sin(PI+frameCount*-0.15)*10, xpos+100+sin(HALF_PI+PI+frameCount*-0.15)*10, ypos+100+sin(HALF_PI+PI+frameCount*-0.15)*10, xpos +sin(TWO_PI+frameCount*-0.15)*10, ypos+100+sin(TWO_PI+frameCount*-0.15)*10);
+}
+
+void glops(int xpos, int ypos)
+{
+  fill (0);
+  quad(5+xpos+sin(HALF_PI+frameCount*-0.15)*10, ypos+5+sin(HALF_PI+frameCount*-0.15)*10, xpos+95+sin(PI+frameCount*-0.15)*10, ypos+5+sin(PI+frameCount*-0.15)*10, xpos+95+sin(HALF_PI+PI+frameCount*-0.15)*10, ypos+95+sin(HALF_PI+PI+frameCount*-0.15)*10, xpos+5+sin(TWO_PI+frameCount*-0.15)*10, ypos+95+sin(TWO_PI+frameCount*-0.15)*10);
+}
+
+void rondje(int xpos, int ypos)
+{
+  fill(0);
   if (patternrow % 8 == 0)
   {
-    fill (252, 59, 0);
+    fill (255);
   }
-  quad(xpos+sin(HALF_PI+frameCount*-0.15)*10, ypos+sin(HALF_PI+frameCount*-0.15)*10, xpos+150+sin(PI+frameCount*-0.15)*10, ypos+sin(PI+frameCount*-0.15)*10, xpos+150+sin(HALF_PI+PI+frameCount*-0.15)*10, ypos+150+sin(HALF_PI+PI+frameCount*-0.15)*10, xpos +sin(TWO_PI+frameCount*-0.15)*10, ypos+150+sin(TWO_PI+frameCount*-0.15)*10);
+  circle(xpos,ypos,50);
 }
-
-void flops (int xpos, int ypos)
-{
-  fill(252, 59, 0);
-  triangle(xpos+50,ypos+sin(HALF_PI+frameCount*-0.15)*10,xpos+100+sin(frameCount*0.1*(patternrow % 40))*10,ypos+100,xpos+0-sin(frameCount*0.1*(patternrow % 40))*10,ypos+100);
-}
-
-void draw() 
-{
- 
-  //if (patternrow % 4 == 0) //<4
-  {
-    background (0);
-    hops(width/2-75, height/2-75);
-    flops(width/2-50, height/2-50);
-    hops(width/4-75, height/4-75);
-    flops(width/4-50, height/4-50);
-    hops(3*width/4-75, height/4-75);
-    flops(3*width/4-50, height/4-50);
-    hops(3*width/4-75, 3*height/4-75);
-    flops(3*width/4-50, 3*height/4-50);
-    hops(width/4-75, 3*height/4-75);
-    flops(width/4-50, 3*height/4-50);
-  }
- 
-  //noStroke();
-  //int widthkwart = width/4;
-  //if (channel1instr != 0 )
-  //{ 
-  //  fill(70, 35, 122);
-  //  rect(0, 0,  widthkwart, height);    
- // }
- // if (channel2instr != 0 )
-  //{ 
- //   fill(61, 220, 151);
- //   rect(width - widthkwart*3, 0,  widthkwart, height);    
-//  }
-//  if (channel3instr != 0 )
-//  { 
-//    fill(243, 167, 18);
-//    rect(width - widthkwart*2, 0,  widthkwart, height);    
-//  }
-//  if (channel4instr != 0 )
-//  { 
- //   fill(1, 186, 239);
- //   rect(width - widthkwart, 0, widthkwart, height);    
-//  }
   
-  textAlign(CENTER);
-  text("PAT:" + patternnr, width/2, height/2);
+
+void draw()
+{
+  background(0);
+  
+  
+  pushMatrix();
+  
+  x = 0;
+  fill(255,0,0);
+  for(int i = 0; i < num-1; i++) 
+  {
+    rect(x, 0, 1, 480);
+    x+= 10;
+  }
+ 
+  popMatrix();
+  
+  x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, height/2-50);
+    glops (x+20, height/2-50);
+    x+= 190;
+  }
+  
+   x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, 50);
+    glops (x+20, 50);
+    x+= 190;
+  }
+  
+   x=0;
+  for (int i = 0; i <num-1; i++)
+  {
+    hops (x+20, height-150);
+    glops (x+20, height-150);
+    x+= 190;
+  }
+  
+  rondje (70,100);
+  rondje (450,100);
+  rondje (260,240);
+  rondje (70,380);
+  rondje (450,380);
+  rondje (640,240);
+  
 }
+
+
+
+
 
 void oscEvent(OscMessage message) 
 {

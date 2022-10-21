@@ -1,3 +1,5 @@
+//Kaspar van den Hoogen. Toch erg ingewikkeld met het animeren, en moeite met connecten van muziek.
+
 import netP5.*;
 import oscP5.*;
 
@@ -24,45 +26,93 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-
-
 void setup()
 {
   size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
 }
 
 void draw() 
 {
   background(0);
-  fill (0,255,0);
   
-  if (patternrow % 10 == 0) 
-  {
-    background (255,255,255);
-    fill (255,255,255);
-    circle (360,240,100);
-    circle (260,140,100);
-    circle (460,340,100);
+  
+  noStroke();
+  fill(128,128,128);
+  rect(20, 0, 200, 400) ;
+  
+  
+  fill(128,128,128);
+  rect(495, 0, 200, 400) ;
+  
+  fill (72,72,72);
+    circle (120, 100, 100);
+    
+    fill (72,72,72);
+    circle (120, 200, 50);
+    
+    fill (72,72,72);
+    circle (120, 300, 100);
+    
+    fill (72,72,72);
+    circle (600, 100, 100);
+    
+    fill (72,72,72);
+    circle (600, 200, 50);
+    
+    fill (72,72,72);
+    circle (600, 300, 100);
+  
+  int widthkwart = width/4;
+  if (channel1instr != 0 )
+  { 
+
+
   }
+  if (channel2instr != 0 )
+  { 
+    
+ 
   
-   if (patternrow % 2 == 0) 
-  {
-    background (0,0,0);
-    fill (255,0,0);
-    circle (360,240,80); 
-    fill (255,255,255);
-    circle (260,240,80); 
-    circle (460,240,80); 
   }
-  
-   if (patternrow % 30 == 0) 
-  {
-    background (255,255,255);
-    fill (255,0,0);
-    circle (360,240,60);
-    circle (360,140,60);
-    circle (360,340,60);
+  if (channel3instr != 0 )
+  { 
+    
+   
+    fill (255,255,255);
+    circle (120, 100, 100);
+    
+    fill (255,255,255);
+    circle (120, 200, 50);
+    
+    fill (255,255,255);
+    circle (120, 300, 100);
+    
+    fill (255,255,255);
+    circle (600, 100, 100);
+    
+    fill (255,255,255);
+    circle (600, 200, 50);
+    
+    fill (255,255,255);
+    circle (600, 300, 100);
+    
+   
+  }
+  if (channel4instr != 0 )
+  { 
+           textSize(72);
+     fill(255,255,255);
+text("TURN", 265, 120); 
+
+         textSize(60);
+     fill(255,255,255);
+text("SPEAKERS", 225, 250); 
+
+     textSize(72);
+     fill(255,0,0);
+text("ON THE", 235, 185); 
    
   }
   

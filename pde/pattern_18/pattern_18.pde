@@ -35,44 +35,53 @@ void setup()
   oscP5 = new OscP5(this,6200);
 }
 
+int x = 360;
+int y = 240;
+
 void draw() 
 {
- background(0,0,255);
+  
+ background(0);
  noStroke();
  
  if (channel1instr != 0)
  {
-   fill(0);
-   rect(0, 300, width, height);
+
+   
+fill(255,0,0);
+  circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 1000);
+   
  }
  
-  if (channel1instr != 0)
+  if (channel2instr != 0)
  {
-   if (count > 255)
-   {
-     count = 0;
-   }
-   else
-   {
-     count = count + 1;
-   }
+     
+ fill(200,0,0);
+ circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 550);
+ 
  }
+
+if (channel3instr != 0)
  
-   fill(255,255,0);
-   circle(count*5, 5, 500);
- 
- if (channel1instr != 0)
  {
-   if (count > 255)
-   {
-     count = 1;
-   }
-   else
-   {
-     count = count + 50;
-   }
+   
+   
+  fill(130,0,0);
+  circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 300);
+
  }
-   fill(0,0,0);
+ 
+
+ 
+ if (channel4instr != 0)
+ 
+ {
+
+ fill(85,0,0);
+ circle(x+sin(PI+frameCount*1)*10, y+sin(HALF_PI+frameCount*1)*10, 100);
+ 
+ }
+
    
    
  
