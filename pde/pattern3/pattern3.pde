@@ -28,10 +28,10 @@ String feedback_formatted = "";
 
 
 
-int n = 200;
-float size = 100;
-float speed = 0.2 * PI;
-float maxDistance = 10;
+int n = 80;
+float size = 60;
+float speed = 0.08 * PI;
+float maxDistance = 8;
 
 PVector[] chain = new PVector[n];
 
@@ -52,11 +52,11 @@ void draw() {
   noStroke();
   
   chain[0].set(0.5 * width 
-             //+ 0.25 * width * cos(frameCount * speed * 0.5)
-             + 0.75 * width * sin(frameCount * speed * 0.25), 
+             + 0.25 * width * cos(frameCount * speed * 0.5)
+             + 0.15 * width * sin(frameCount * speed * 0.25), 
                0.5 * height
-             //+ 0.25 * height * sin(frameCount * speed * 0.5)
-             + 0.75 * height * cos(frameCount * speed * 0.25));
+             + 0.25 * height * sin(frameCount * speed * 0.5)
+             + 0.15 * height * cos(frameCount * speed * 0.25));
 
   drawSpiral();
 }

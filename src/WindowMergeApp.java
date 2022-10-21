@@ -232,14 +232,14 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("alen_seduction.pde", new alen_seduction())));
-		sketches.add(Arrays.asList(new SketchShit("audiowave_kees.pde", new audiowave_kees())));
+		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
+		sketches.add(Arrays.asList(new SketchShit("pattern_1_ks.pde", new pattern_1_ks())));
 		sketches.add(Arrays.asList(new SketchShit("pattern2.pde", new pattern2())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_4_kaspar_van_den_hoogen.pde", new pattern_4_kaspar_van_den_hoogen())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_5_sjoerd.pde", new pattern_5_sjoerd()))); //5
-		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pattern3.pde", new pattern3())));
+		sketches.add(Arrays.asList(new SketchShit("pattern_4_ks.pde", new pattern_4_ks())));
+		sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5()))); //5
+		sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6()))); //5
+		sketches.add(Arrays.asList(new SketchShit("pattern7.pde", new pattern7()))); //5
 		sketches.add(Arrays.asList(new SketchShit("pattern_8_ks.pde", new pattern_8_ks())));
 		sketches.add(Arrays.asList(new SketchShit("pattern9.pde", new pattern9()))); 
 		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));//10
@@ -252,14 +252,14 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pattern_17.pde", new pattern_17())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_18.pde", new pattern_18())));
 		sketches.add(Arrays.asList(new SketchShit("pattern19.pde", new pattern19())));
-		sketches.add(null); //20
+		sketches.add(Arrays.asList(new SketchShit("pattern20.pde", new pattern20())));
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null);
 		sketches.add(null); //25
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("hoi.pde", new hoi())));
+		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
 		sketches.add(Arrays.asList(new SketchShit("pattern28.pde", new pattern28())));
 		sketches.add(Arrays.asList(new SketchShit("pattern29.pde", new pattern29()))); //sketches.add(Arrays.asList(new SketchShit("pattern292.pde", new pattern292())));
 		sketches.add(Arrays.asList(new SketchShit("pattern30.pde", new pattern30()))); //30
@@ -271,7 +271,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pattern_35.pde", new pattern_35())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_36.pde", new pattern_36())));
 		sketches.add(Arrays.asList(new SketchShit("pattern_37.pde", new pattern_37())));
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("frankseductiondemo.pde", new frankseductiondemo())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler()))); //40
 		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
