@@ -35,7 +35,7 @@ void setup()
 int x;
 int num = 100;
 int count = 0;
-int speed = 4;
+int speed = 5;
 
 void flops (int xpos, int ypos)
 {
@@ -53,16 +53,16 @@ void ruit (int xpos, int ypos)
 {
   fill(255,0,0);
   count = count+speed;
-  if(count>740)
+  if(count>800)
   {
-    speed = -4; 
+    speed = -5; 
   }
-  if(count<-20)
+  if(count<-80)
   {
-    speed=4;
+    speed=5;
   }
   println(count);
-  quad(count, 200, count+10, 240, count, 280, count-10, 240);
+  quad(count, 180, count+15, 240, count, 300, count-15, 240);
 }
 
 void draw ()
