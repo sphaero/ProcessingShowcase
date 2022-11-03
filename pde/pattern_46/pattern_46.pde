@@ -1,17 +1,18 @@
 float x, y;
-float xStep = 20;
-float yStep = 100;
+float xStep = 10;
+float yStep = 70;
 float a, a_;
 int num = 320;
 
 
 void setup(){
-  size(720,400);
+  size(720,480);
 
 }
 
 void draw() {
   background(255, 255, 255);
+  strokeCap(CORNER);
   strokeWeight(xStep);
   
   int n=0;

@@ -37,7 +37,7 @@ void setup()
   nicktxt = rnd_nicktxt(40);
   strokeWeight(0);
   oscP5 = new OscP5(this,6200);
-  count = int(random(0,1000));
+  count = int(random(0,PI*10));
 }
 
 String rnd_nicktxt(int lines)

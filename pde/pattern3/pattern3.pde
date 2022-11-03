@@ -31,14 +31,13 @@ String feedback_formatted = "";
 int n = 80;
 float size = 60;
 float speed = 0.08 * PI;
-float maxDistance = 8;
+float maxDistance = 4;
 
 PVector[] chain = new PVector[n];
 
 void setup()
 {
   size(720, 480);
-  frameRate(60);
   
   oscP5 = new OscP5(this,6200);
   
@@ -48,7 +47,8 @@ void setup()
 }
 
 void draw() {
-  background(0);  
+  fill(0, 0, 0, 30);
+  rect(0, 0, width, height);
   noStroke();
   
   chain[0].set(0.5 * width 
@@ -71,7 +71,7 @@ void drawSpiral() {
       chain[i].set(PVector.add(chain[i-1], difference.setMag(maxDistance)));
     }
     
-    fill(lerpColor(color(255, 0, 0), color(100, 0, 0), (float)i/n));
+    fill(lerpColor(color(255, 0, 0), color(255, 255, 255, 0), (float)i/n));
     circle(chain[i].x, chain[i].y, 1 + (float)(n - i)/n * size);
   }
 }

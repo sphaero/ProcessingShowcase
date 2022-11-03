@@ -35,17 +35,17 @@ void setup()
 }
 
 void draw() {
-  translate(width/2, height/2);
+  translate(width*2, CENTER/2);
   float mag = 400;
-  float s = 35;
-  noStroke();
+  float s = 335;
+  //noStroke();
   for (int i = 0; i < 50; i++) {
-    float w = map(sin(radians(patternrow*1.13975)), -1, 1, -100, 100);
+    float w = map(cos(sin(patternrow*mag)), 187, -31, -50, 88);
     float wave1 = map(tan(radians(patternnr + i + w)), -1, 1, -100, 100);
-    float wave2 = map(tan(radians(frameCount * 10 + i)), -1, 1, -100, 100);
-    float c = map(sin(radians(frameCount*10 + i)), -1, 1, 50, 255);
+    float wave2 = map(tan(radians(frameCount * 51 + i)), -1, 1, -43, 100);
+    float c = map(cos(radians(frameCount*281 + i)), -1, 1, 104, 255);
     fill(c);
-    ellipse(wave1, wave2, s, s);
+    triangle(wave1, wave2, wave2, s, wave1, c);
   }
 }
 

@@ -27,28 +27,41 @@ String channel4effect_param = "00";
 String feedback_formatted = "";
 
 
-
-int n = 200;
-float size = 100;
+//spiral
+int n = 100;
+float size = 60;
 float speed = 0.2 * PI;
-float maxDistance = 10;
-
+float maxDistance = 20;
 PVector[] chain = new PVector[n];
+
+//stars
+int m = 30;
+float starSpeed = 0.1;
+float[] angles = new float[m];
+PVector[] stars = new PVector[m];
+
 
 void setup()
 {
   size(720, 480);
-  frameRate(60);
+  background(0);
   
   oscP5 = new OscP5(this,6200);
   
   for(int i = 0; i < n; i++) {
-    chain[i] = new PVector(mouseX, mouseY);
-    }
+    chain[i] = new PVector(width/2, height/2);
+  }
+  
+  for(int i = 0; i < m; i++) {
+    angles[i] = random(TAU); 
+    float radius = random(0.5 * sqrt(width * width + height * height));
+    stars[i] = new PVector(width/2 + (radius/width) * (radius/width) * radius * cos(angles[i]), height/2 + radius * radius * sin(angles[i]));
+  }
 }
 
 void draw() {
-  background(0);  
+  fill(0, 0, 0, 30);
+  rect(-5, -5, width + 10, height + 10); 
   noStroke();
   
   chain[0].set(0.5 * width 
@@ -59,6 +72,8 @@ void draw() {
              + 0.75 * height * cos(frameCount * speed * 0.25));
 
   drawSpiral();
+  
+  drawStars();
 }
 
 void drawSpiral() {
@@ -66,13 +81,33 @@ void drawSpiral() {
   circle(chain[0].x, chain[0].y, size);
   
   for(int i = 1; i < n; i++) {
+    float radius = 1 + (float)(n - i)/n * size;
     PVector difference = PVector.sub(chain[i], chain[i-1]);
     if(difference.mag() > maxDistance) {
       chain[i].set(PVector.add(chain[i-1], difference.setMag(maxDistance)));
     }
     
     fill(lerpColor(color(255, 0, 0), color(100, 0, 0), (float)i/n));
-    circle(chain[i].x, chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(chain[i].x, chain[i].y, radius);
+  }
+}
+
+
+void drawStars() {
+  for(int i = 0; i < m; i++) {
+    float oldX = stars[i].x;
+    float oldY = stars[i].y;
+    float distance = PVector.sub(stars[i], new PVector(width/2, height/2)).mag() + 1;
+    stars[i].add(starSpeed * distance * cos(angles[i]), starSpeed * distance * sin(angles[i]));
+    
+    stroke(255, 255, 255);
+    strokeWeight(1);
+    line(oldX, oldY, stars[i].x, stars[i].y);
+    
+    if(distance > 0.5 * sqrt(width * width + height * height)) {
+      stars[i].set(width/2, height/2);
+      angles[i] = random(TAU);
+    }
   }
 }
 

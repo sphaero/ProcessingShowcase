@@ -31,7 +31,6 @@ void setup()
   size(720, 480);
   frameRate(60);
   oscP5 = new OscP5(this,6200);
-  
 }
 
 void draw() 
@@ -73,9 +72,8 @@ void draw()
   }
   if (channel2instr != 0 )
   { 
-    
  
-  
+ 
   }
   if (channel3instr != 0 )
   { 
@@ -111,9 +109,11 @@ text("TURN", 245, 120);
      fill(255,255,255);
 text("SPEAKERS", 205, 250); 
 
-     textSize(72);
-     fill(255,0,0);
-text("ON THE", 215, 185); 
+
+   textSize(72);
+textAlign(CENTER);
+fill(255,0,0);
+text("DANCE", 355, 200);
    
   }
   

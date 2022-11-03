@@ -102,17 +102,12 @@ void draw()
   }
   if (channel4instr != 0 )
   { 
-           textSize(72);
-     fill(255,255,255);
-text("TURN", 265, 120); 
+textSize(72);
+textAlign(CENTER);
+fill(255,0,0);
+text("DANCE", 355, 200);
 
-         textSize(60);
-     fill(255,255,255);
-text("SPEAKERS", 225, 250); 
 
-     textSize(72);
-     fill(255,0,0);
-text("ON THE", 235, 185); 
    
   }
   
