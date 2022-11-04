@@ -1,13 +1,16 @@
+// Code by Kees
+// this was meant to be an audiowave... but I couldnt figure it out.
+// btw you need to play music in Gazebosc to see what happens.
+
 import netP5.*;
 import oscP5.*;
-import java.io.*; 
-import java.util.*;
-String[] nicknames = {"sphaero", "Miss Carriage", "GlitchyCroissant", "Blue Lightning", "peter-pan", "Wall-e", "pigeonzz", "bookworm", "porcini", "Effigy", "Sini" };
-ArrayList<String> nn = new ArrayList<String>(Arrays.asList(nicknames));
-String nicktxt = "";
 
 OscP5 oscP5;
 
+int[] xvals;
+int[] yvals;
+int[] bvals;
+int count = 0;
 int songposition = 0;
 int patternnr = 0;
 int patternrow = 0;
@@ -29,99 +32,66 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-int count = 0;
-
 void setup()
 {
+  noSmooth();
+  xvals = new int[width];
+  yvals = new int[width];
+  bvals = new int[width];
   size(720, 480);
-  textSize(12.0);
-  textLeading(12.0);
-  nicktxt = rnd_nicktxt(40);
-  strokeWeight(0);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
-  count = int(random(0,PI*100));
-  println(count, g.textSize);
-  textAlign(LEFT);
 }
 
-String rnd_nicktxt(int lines)
+void draw() 
 {
-  String line = "";
-  for (int l=0;l<lines;l++)
-  {
-    Collections.shuffle(nn); 
-    for (int i=0;i<nn.size();i++)
-    {
-      line += nn.get(i);
-      line += " - ";
-    }
-    line += "\n";
-  }
-  return line;
-}
 
-int barswidth = 1;
-int barspadding = 4;
-void hbars()
-{
-  fill(c1);
-  for (int i=0;i<height;i+=barspadding)
-  {
-    rect(0,i,width,barswidth);
+ background(0);
+ noStroke();
+  for (int i = 1; i < width; i++) { 
+    xvals[i-1] = xvals[i]; 
+    yvals[i-1] = yvals[i];
+    bvals[i-1] = bvals[i];
+  } 
+  // Add the new values to the end of the array 
+  xvals[width-1] = channel1note; 
+  yvals[width-1] = channel2note;
+  
+  if (mousePressed == true) {
+    bvals[width-1] = 0;
+  } else {
+    bvals[width-1] = height/3;
   }
-}
+  
+  fill(255);
+  noStroke();
+  rect(0, height/3, width, height/3+1);
 
-void vbars()
-{
-  fill(c1);
-  for (int i=0;i<width;i+=barspadding)
-  {
-    rect(i,0,barswidth,height);
-  }
-}
+  for(int i = 1; i < width; i++) {
+    // Draw the x-values
+    stroke(255);
+    point(i, map(xvals[i], 0, width, 0, height/3-1));
+    
+    // Draw the y-values
+    stroke(0);
+    point(i, height/3+yvals[i]/3);
+    
+    // Draw the mouse presses
+    stroke(255);
+    
+    // Points thickness
+    strokeWeight(8);
+    line(i, (2*height/3) + bvals[i], i, (2*height/3) + bvals[i-1]);}
+    
+    //morse text
+    fill(channel1note,channel2note);
+    textSize(40);
+    text("M O R S E",280,255);
+    
+    //flashes
+    fill(channel3note,channel4note);
+    rect(0,0,width,height);
 
-color c1 = color(255,0,0);
-color c2 = color(0);
-color c3 = color(255);
-
-void draw()
-{
-  if (songposition == 0)
-  {
-    background(patternrow*(255/8));
-    return;
-  }
-  if (songposition % 2 == 0)
-  {
-    c1 = color(255,0,0);
-    c2 = color(0);
-    c3 = color(255);
-  }
-  else
-  {
-    c2 = color(255,0,0);
-    c1 = color(0);
-    c3 = color(0);
-  }
-  background(c2);
-  pushMatrix();
-  translate(width/2, height/2);
-  translate(sin(count*0.03)*300, cos(count*0.13)*63);
-  rotate(sin(count*0.015)*0.5);
-  scale(sin(count*0.01)*1.3+3.2);
-  textAlign(CENTER, CENTER);
-  fill(c3);
-  text(nicktxt, 10,10);
-  popMatrix();
-  if (count % 200 < 100)
-  {
-    vbars();
-  }
-  else
-  {
-    hbars();
-  }
-  count++;
 }
 
 void oscEvent(OscMessage message) 
@@ -162,6 +132,6 @@ void oscEvent(OscMessage message)
                                       channel3note, channel3instr, channel3effect, channel3effect_param,
                                       channel4note, channel4instr, channel4effect, channel4effect_param
                                       );
-    //println( feedback_formatted );
+    println( feedback_formatted );
   }
 }
