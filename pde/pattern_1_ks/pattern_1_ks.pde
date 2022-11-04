@@ -72,8 +72,9 @@ void draw()
   }
   if (channel2instr != 0 )
   { 
+    
  
- 
+  
   }
   if (channel3instr != 0 )
   { 
@@ -101,19 +102,12 @@ void draw()
   }
   if (channel4instr != 0 )
   { 
-         
-     fill(255,255,255);
-text("TURN", 245, 120); 
-
-         textSize(60);
-     fill(255,255,255);
-text("SPEAKERS", 205, 250); 
-
-
-   textSize(72);
+textSize(72);
 textAlign(CENTER);
 fill(255,0,0);
 text("DANCE", 355, 200);
+
+
    
   }
   

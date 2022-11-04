@@ -30,33 +30,35 @@ String feedback_formatted = "";
 
 int n = 80;
 float size = 60;
-float speed = 0.08 * PI;
-float maxDistance = 4;
+float speed = 0.1;
+float maxDistance = 6;
+int offset = (int)random(500);
 
 PVector[] chain = new PVector[n];
 
 void setup()
 {
   size(720, 480);
+  background(0);
   
   oscP5 = new OscP5(this,6200);
   
   for(int i = 0; i < n; i++) {
-    chain[i] = new PVector(mouseX, mouseY);
+    chain[i] = new PVector(width/2, height/2);
     }
 }
 
 void draw() {
-  fill(0, 0, 0, 30);
+  fill(lerpColor(color(0, 0, 0), color(255, 0, 0), 1 - (float)(patternrow % 16)/16));
   rect(0, 0, width, height);
   noStroke();
   
   chain[0].set(0.5 * width 
-             + 0.25 * width * cos(frameCount * speed * 0.5)
-             + 0.15 * width * sin(frameCount * speed * 0.25), 
+             + 0.65 * width * cos((frameCount + offset) * speed * 0.6)
+             + 0.65 * width * sin((frameCount + offset) * speed * 0.25), 
                0.5 * height
-             + 0.25 * height * sin(frameCount * speed * 0.5)
-             + 0.15 * height * cos(frameCount * speed * 0.25));
+             + 0.65 * height * sin((frameCount + offset) * speed * 0.6)
+             + 0.65 * height * cos((frameCount + offset) * speed * 0.25));
 
   drawSpiral();
 }
@@ -71,8 +73,19 @@ void drawSpiral() {
       chain[i].set(PVector.add(chain[i-1], difference.setMag(maxDistance)));
     }
     
-    fill(lerpColor(color(255, 0, 0), color(255, 255, 255, 0), (float)i/n));
+    fill(lerpColor(color(255, 0, 0), color(255, 255, 255), 1 - (float)(patternrow % 16)/16));
     circle(chain[i].x, chain[i].y, 1 + (float)(n - i)/n * size);
+    
+    circle(chain[i].x, 2 * height - chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(chain[i].x, -chain[i].y, 1 + (float)(n - i)/n * size);
+    
+    circle(2 * width - chain[i].x, chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(- chain[i].x, chain[i].y, 1 + (float)(n - i)/n * size);
+    
+    circle(-chain[i].x, -chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(-chain[i].x, 2 * height - chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(2 * width - chain[i].x, -chain[i].y, 1 + (float)(n - i)/n * size);
+    circle(2 * width - chain[i].x, 2 * height - chain[i].y, 1 + (float)(n - i)/n * size);
   }
 }
 

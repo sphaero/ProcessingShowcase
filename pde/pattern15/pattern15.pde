@@ -34,12 +34,26 @@ void setup()
   oscP5 = new OscP5(this,6200);
 }
 
+
+
 void draw() 
 {
   background(bg);
   fill (fg);
   noStroke();
   
+   ellipse (360,240, 250, 210);
+   ellipse (40,240, 250, 210);
+   ellipse (680,240, 250, 210);
+   
+
+   
+   
+   
+   fill (255,255,255);
+ 
+   
+   
  float tilesX = 4;
  float tilesY = tilesX;
  
@@ -71,7 +85,9 @@ void draw()
       rect (0,0, tileW, tileH);
     }
   
-    
+ 
+ 
+   
     popMatrix ();
 }
 }

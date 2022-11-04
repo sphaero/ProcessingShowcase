@@ -106,6 +106,8 @@ textSize(72);
 textAlign(CENTER);
 fill(255,0,0);
 text("DANCE", 355, 200);
+
+
    
   }
   

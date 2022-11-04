@@ -29,9 +29,9 @@ String feedback_formatted = "";
 
 //spiral
 int n = 100;
-float size = 60;
+float size = 80;
 float speed = 0.2 * PI;
-float maxDistance = 20;
+float maxDistance = 30;
 PVector[] chain = new PVector[n];
 
 //stars
@@ -54,13 +54,19 @@ void setup()
   
   for(int i = 0; i < m; i++) {
     angles[i] = random(TAU); 
-    float radius = random(0.5 * sqrt(width * width + height * height));
-    stars[i] = new PVector(width/2 + (radius/width) * (radius/width) * radius * cos(angles[i]), height/2 + radius * radius * sin(angles[i]));
+    float radius = random(1);
+    float exponent = 3.4;
+    stars[i] = new PVector(width * (0.5 + pow(radius, exponent) * cos(angles[i])), height * (0.5 + pow(radius, exponent) * sin(angles[i])));
   }
 }
 
 void draw() {
-  fill(0, 0, 0, 30);
+  if(patternrow % 16 == 0) {
+    fill(255, 255, 255, 30);
+  }
+  else {
+    fill(0, 0, 0, 30);
+  }
   rect(-5, -5, width + 10, height + 10); 
   noStroke();
   
@@ -97,8 +103,9 @@ void drawStars() {
   for(int i = 0; i < m; i++) {
     float oldX = stars[i].x;
     float oldY = stars[i].y;
-    float distance = PVector.sub(stars[i], new PVector(width/2, height/2)).mag() + 1;
-    stars[i].add(starSpeed * distance * cos(angles[i]), starSpeed * distance * sin(angles[i]));
+    
+    float distance = PVector.sub(stars[i], new PVector(width/2, height/2)).mag();
+    stars[i].add(starSpeed * (distance + 1) * cos(angles[i]), starSpeed * (distance + 1) * sin(angles[i]));
     
     stroke(255, 255, 255);
     strokeWeight(1);

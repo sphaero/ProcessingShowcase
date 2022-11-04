@@ -3,6 +3,14 @@ import oscP5.*;
 
 OscP5 oscP5;
 
+int kleur = 0;
+int countY = 0;
+int countX = 0;
+int speedY = 4;
+int speedX = 4;
+
+int fillkleur = 0;
+
 int songposition = 0;
 int patternnr = 0;
 int patternrow = 0;
@@ -28,27 +36,40 @@ void setup()
 {
   size(720, 480);
   frameRate(60);
-  oscP5 = new OscP5(this,6200);
+  noStroke();
+
+  oscP5 = new OscP5(this, 6200);
 }
 void animatie()
 {
-pushMatrix();
-triangle(300, 240, 360, patternrow*7, 420, 240);
 
-shapeMode(CENTER);
-popMatrix();
+  if (frameCount %16 == 0) {
+    background(255, 255, 255);
+    kleur = 255;
+  } else {
+   kleur = 0;
+  }
 
+  fill(kleur, kleur, kleur);
+  ellipse(200, 200, 200, 100);
+  ellipse(550, 200, 200, 100);
+  pushMatrix();
+  translate(patternrow*2-53, 0);
+  fill(kleur, 0, 0);
+
+  ellipse(200, 200, 50, 50);
+  ellipse(550, 200, 50, 50);
+  popMatrix();
 }
-void draw() 
+void draw()
 {
-  background(0);
-if (patternnr == 40){
- animatie();
+  background(255, 0, 0);
+  if (patternnr == 40) {
+    animatie();
+  }
 }
 
-}
-
-void oscEvent(OscMessage message) 
+void oscEvent(OscMessage message)
 {
   if (message.checkAddrPattern("/patternevent" ) )
   {
@@ -56,11 +77,11 @@ void oscEvent(OscMessage message)
     //print("### received an osc message.");
     //print(" addrpattern: "+message.addrPattern());
     //println(" typetag: "+message.typetag());
-    
+
     songposition = message.get(0).intValue();
     patternnr = message.get(1).intValue();
     patternrow = message.get(2).intValue();
-    
+
     channel1note = message.get(3).intValue();
     channel1instr = message.get(4).intValue();
     channel1effect = message.get(5).charValue();
@@ -68,24 +89,25 @@ void oscEvent(OscMessage message)
     channel2note = message.get(7).intValue();
     channel2instr = message.get(8).intValue();
     channel2effect = message.get(9).charValue();
-    channel2effect_param = message.get(10).stringValue();    
+    channel2effect_param = message.get(10).stringValue();
     channel3note = message.get(11).intValue();
     channel3instr = message.get(12).intValue();
     channel3effect = message.get(13).charValue();
     channel3effect_param = message.get(14).stringValue();
-    channel4note = message.get(15).intValue();;
+    channel4note = message.get(15).intValue();
+    ;
     channel4instr = message.get(16).intValue();
     channel4effect = message.get(17).charValue();
     channel4effect_param = message.get(18).stringValue();
 
 
-    feedback_formatted = String.format("%02d:%02d | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s |" , 
-                                      patternnr, patternrow, 
-                                      channel1note, channel1instr, channel1effect, channel1effect_param, 
-                                      channel2note, channel2instr, channel2effect, channel2effect_param, 
-                                      channel3note, channel3instr, channel3effect, channel3effect_param,
-                                      channel4note, channel4instr, channel4effect, channel4effect_param
-                                      );
+    feedback_formatted = String.format("%02d:%02d | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s | %03d:%02d:%c%s |",
+      patternnr, patternrow,
+      channel1note, channel1instr, channel1effect, channel1effect_param,
+      channel2note, channel2instr, channel2effect, channel2effect_param,
+      channel3note, channel3instr, channel3effect, channel3effect_param,
+      channel4note, channel4instr, channel4effect, channel4effect_param
+      );
     println( feedback_formatted );
   }
 }
