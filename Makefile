@@ -1,4 +1,4 @@
-NAME="half_of_control"
+NAME="massa_sprit"
 PRC=/opt/processing-3.5.4
 JFLAGS = -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar:picocli-4.6.3.jar"
 JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:oscP5.jar:picocli-4.6.3.jar"

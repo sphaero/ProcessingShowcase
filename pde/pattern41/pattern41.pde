@@ -40,13 +40,13 @@ int speed = 5;
 void flops (int xpos, int ypos)
 {
   fill(255);
-  triangle(xpos+50,ypos-100+sin(HALF_PI+frameCount*-0.15)*150,xpos+100,ypos+100,xpos+0,ypos+100);
+  triangle(xpos+25,ypos-50+sin(HALF_PI+frameCount*-0.15)*200,xpos+50,ypos+50,xpos+0,ypos+50);
 }
 
 void flopz (int xpos, int ypos)
 {
   fill(255);
-  triangle(xpos+50,200+ypos-sin(HALF_PI+frameCount*-0.15)*150,xpos+100,ypos,xpos+0,ypos);
+  triangle(xpos+25,100+ypos-sin(HALF_PI+frameCount*-0.15)*200,xpos+50,ypos,xpos+0,ypos);
 }
 
 void ruit (int xpos, int ypos)
@@ -72,15 +72,15 @@ void draw ()
   x=0;
   for (int i = 0; i <num-1; i++)
   {
-    flops (x, 380);
-    x+= 100;
+    flops (x, 430);
+    x+= 50;
   }
   
   x=0;
   for (int i = 0; i <num-1; i++)
   {
     flopz (x, 0);
-    x+= 100;
+    x+= 50;
   }
   
   ruit(0,0);
