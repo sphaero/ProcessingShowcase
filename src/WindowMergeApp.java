@@ -26,14 +26,13 @@ public class WindowMergeApp extends PApplet {
     int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int loopCount = 0;
     PApplet sketch;
+    achtergrond bgsketch = null;
     Boolean presentation = false;
     
     PFont mono = null;
     OscP5 oscP5 = null;
     int patternnr = 0;
     int patternrow = 0;
-    int colors[] = { color(70, 35, 122), color(61, 220, 151), color(243, 167, 18), color(1, 186, 239), color(255, 0, 127) };
-    int strobe = 0;
     int channel1instr = 0;
     int channel2instr = 0;
     int channel3instr = 0;
@@ -50,18 +49,20 @@ public class WindowMergeApp extends PApplet {
     String channel2effect_param = "00";
     String channel3effect_param = "00";
     String channel4effect_param = "00";
-    
-    NetAddress lichttafel = new NetAddress("10.2.4.29",7700);
-    Boolean fuckyouplayed = false;
-    
+        
     float totalLength = 0;
-    int counter = 0;
     
 	public void setup()
 	{
-		fuckyouplayed = false;
 		if (mono == null)  mono = createFont("static/RobotoMono-SemiBold.ttf", 64);
 		if (oscP5 == null) oscP5 = new OscP5(this,6200);
+		if (bgsketch == null )
+		{
+			bgsketch = new achtergrond();
+			bgsketch.g = this.g;
+			bgsketch.setSize(this.width, this.height);
+			bgsketch.sketchPath(this.sketchPath());
+		}
 
 		SketchShit sht = getShit();
 		sketch = sht.sketch;
@@ -120,10 +121,14 @@ public class WindowMergeApp extends PApplet {
 	public void draw()
 	{
 		frame.setLocation(1, 1);
+		bgsketch.push();
+		bgsketch.draw();
+		bgsketch.pop();
+		
 		try {
-			pushMatrix();
+			sketch.push();
 			sketch.handleDraw();
-			popMatrix();
+			sketch.pop();
 		}
 		catch (Exception e)
 		{
@@ -136,49 +141,10 @@ public class WindowMergeApp extends PApplet {
 		{
 		    line(0, i, width, i);
 		}*/
-		/*textFont(mono);
+		textFont(mono);
 		textAlign(LEFT);
 		text("pattern: "+ currentIndex, 10,height - 50);
-		*/
-		//println(channel4instr);
-		if (channel4instr == 18)
-		{
-			fuckyouplayed = true;
-		}
-		if (fuckyouplayed)
-		{
-		  fill(0);
-		  for (int i=0;i<width;i+=3)
-		  {
-		    rect(i,0,2,height);
-		  }
-		  fill(222,5,5);
-		  textFont(mono);
-		  textSize(257);
-		  textAlign(CENTER,CENTER);
-		  text("MASS", width/2,130); 
-		  fill(255,0,0);
-		  textSize(206);
-		  text("SPRIT", width/2,284);  
-		}
-		/*if (strobe != patternrow )
-		{
-			OscMessage lamp1on = new OscMessage("/lamp1");
-			lamp1on.add(255); // add an int to the osc message 
-
-			OscMessage lamp1off = new OscMessage("/lamp1");
-			lamp1off.add(0); // add an int to the osc message
-
-			if (strobe == -1) { strobe =patternrow; background(colors[1]); oscP5.send(lamp1off, lichttafel); }
-			else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28 && channel3instr == 28) { strobe =-1; background(colors[1]); oscP5.send(lamp1on, lichttafel); }
-	        else if (channel4instr == 28 && channel1instr == 28 && channel2instr == 28) { strobe = -1; background(colors[2]); oscP5.send(lamp1on, lichttafel);}
-		    else if (channel4instr == 28 && channel1instr == 28) { strobe = -1; background(colors[3]); oscP5.send(lamp1on, lichttafel);}
-		    else if (channel4instr == 28) { strobe = -1; background(colors[4]); oscP5.send(lamp1on, lichttafel);}
-	        else if (channel4instr == 28 || channel1instr == 28 || channel2instr == 28 || channel3instr == 28) { strobe = -1; background(colors[0]); oscP5.send(lamp1on, lichttafel);}
-		}*/
-		
 		g.endDraw();
-		counter++;
 		
 		if ( currentIndex != _runningIndex)
 		{
@@ -239,12 +205,16 @@ public class WindowMergeApp extends PApplet {
 		
 		try
 		{
-	      Method oscEvent = sketch.getClass().getMethod("oscEvent",
+	      Method oscEvent = bgsketch.getClass().getMethod("oscEvent",
 	                        new Class[] { OscMessage.class });
+	      oscEvent.invoke(bgsketch, message );
+	      oscEvent = sketch.getClass().getMethod("oscEvent",
+                  new Class[] { OscMessage.class });
 	      oscEvent.invoke(sketch, message );
+
 	    } 
 		catch (Exception e) {
-	    	//System.out.println("No modRowEvent found in the sketch!");
+	    	//System.out.println(e);
 	    	// no such method, or an error.. which is fine, just ignore
 	    }
 
@@ -255,62 +225,23 @@ public class WindowMergeApp extends PApplet {
 		sketches.clear();
 		currentIndex = 0;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		List<SketchShit> intro = Arrays.asList(new SketchShit("intro.pde", new intro()));
-		sketches.add(intro);
-		sketches.add(Arrays.asList(new SketchShit("pattern_1_ks.pde", new pattern_1_ks())));
-		sketches.add(Arrays.asList(new SketchShit("pattern2.pde", new pattern2())));
-		sketches.add(Arrays.asList(new SketchShit("pattern3.pde", new pattern3())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_4_ks.pde", new pattern_4_ks())));
-		sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5()))); //5
-		sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6()))); //5
-		sketches.add(Arrays.asList(new SketchShit("pattern7.pde", new pattern7()))); //5
-		sketches.add(Arrays.asList(new SketchShit("pattern_8_ks.pde", new pattern_8_ks())));
-		sketches.add(Arrays.asList(new SketchShit("pattern9.pde", new pattern9()))); 
-		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));//10
-		sketches.add(Arrays.asList(new SketchShit("pattern11.pde", new pattern11())));
+		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
+		sketches.add(Arrays.asList(new SketchShit("pat_0_1.pde", new pat_0_1())));
+		sketches.add(Arrays.asList(new SketchShit("pat1.pde", new pat1())));
+		sketches.add(Arrays.asList(new SketchShit("pat2.pde", new pat2())));
+		sketches.add(Arrays.asList(new SketchShit("pat3.pde", new pat3())));
+		sketches.add(Arrays.asList(new SketchShit("pat4.pde", new pat4())));
+		sketches.add(Arrays.asList(new SketchShit("backgrouind_v3.pde", new backgrouind_v3())));
+		sketches.add(filler);
+		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7())));
+		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
+		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
+		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10())));
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("sini_pattern_14.pde", new sini_pattern_14())));
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_17.pde", new pattern_17())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_18.pde", new pattern_18())));
-		sketches.add(Arrays.asList(new SketchShit("pattern19.pde", new pattern19())));
-		sketches.add(Arrays.asList(new SketchShit("pattern20.pde", new pattern20())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_22.pde", new pattern_22())));
-		sketches.add(null);
-		sketches.add(null);
-		sketches.add(null); //25
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
-		sketches.add(Arrays.asList(new SketchShit("pattern28.pde", new pattern28())));
-		sketches.add(Arrays.asList(new SketchShit("pattern29.pde", new pattern29()))); //sketches.add(Arrays.asList(new SketchShit("pattern292.pde", new pattern292())));
-		sketches.add(Arrays.asList(new SketchShit("pattern30.pde", new pattern30()))); //30
-		sketches.add(Arrays.asList(new SketchShit("pattern31.pde", new pattern31())));
-		sketches.add(Arrays.asList(new SketchShit("pattern32.pde", new pattern32())));
-		//sketches.add(Arrays.asList(new SketchShit("sketch_lucas_5.pde", new sketch_lucas_5())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_33.pde", new pattern_33())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_34.pde", new pattern_34())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_35.pde", new pattern_35())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_36.pde", new pattern_36())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_37.pde", new pattern_37())));
-		sketches.add(Arrays.asList(new SketchShit("frankseductiondemo.pde", new frankseductiondemo())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern40.pde", new pattern40()))); //40
-		sketches.add(Arrays.asList(new SketchShit("pattern41.pde", new pattern41())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_42.pde", new pattern_42())));
-		sketches.add(intro);
-		sketches.add(Arrays.asList(new SketchShit("pattern_44.pde", new pattern_44())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_45.pde", new pattern_45())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_46.pde", new pattern_46())));
-		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
-		sketches.add(Arrays.asList(new SketchShit("filler.pde", new filler())));
-		sketches.add(intro);
-		sketches.add(intro); //50
-		sketches.add(intro);
-		sketches.add(intro);
-		sketches.add(Arrays.asList(new SketchShit("pattern_53.pde", new pattern_53())));
+		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
+		sketches.add(Arrays.asList(new SketchShit("pad_13.pde", new pad_13())));
+		sketches.add(Arrays.asList(new SketchShit("pat14_lieke.pde", new pat14_lieke())));
+		sketches.add(filler);
 	}	
 
 	public SketchShit getShit()

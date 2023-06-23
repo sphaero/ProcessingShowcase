@@ -79,6 +79,7 @@ void background_strobe()
 int channel4instr_cache = 0;
 
 void draw() {
+  background(bgcolor);
   if (channel3effect == 'C' )
   {
     if ( channel3effect_param.equals("00") )
