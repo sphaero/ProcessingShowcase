@@ -110,11 +110,23 @@ void draw() {
     bgmargins = 0;
     bgcolor3 = oranje;
   }
-  
-  if (patternnr >= 1 && patternnr <= 3 )
+  else if (patternnr >= 1 && patternnr <= 3 )
   {
     bgcolor3 = yellow;
     background_pulse();
+  }
+  else if (patternnr >= 10 && patternnr <= 12)
+  {
+    bgcolor2 = oranje;
+    bgcolor3 = groen;
+    if (patternrow % 4 == 0)
+    {
+      drawLines(bgcolor2, bgcolor3);
+    }
+    else
+    {
+      background(bgcolor);
+    }
   }
   else
   {
@@ -181,6 +193,28 @@ void drawBackground(color color1, color color4) {
     rect(0, i, width, 32-bgmargins);
   }
   pop();
+}
+
+void drawLines(color color3, color color2) {
+  // Set the stroke weight
+  strokeWeight(4);
+
+  // Loop through the width of the canvas
+  for (float x = 0; x < width; x += 10) {
+    // Calculate the y-coordinate based on the sine function and the frameCount
+    float y = height / 2 + sin(x * 0.01 + frameCount/10.) * 100;
+
+    // Set the stroke color based on the y-coordinate
+    float colorValue = map(y, height / 2 - 100, height / 2 + 100, 0, 1);
+    color c = lerpColor(color3, color2, colorValue);
+    stroke(c);
+
+    // Draw a line from the top to the y-coordinate
+    line(x, 0, x, y);
+    y = height / 3 + cos(x * -0.014 + frameCount/10.) * 100;
+    line(x+5, height, x+5, height-y);
+
+  }
 }
 
 void oscEvent(OscMessage message) 
