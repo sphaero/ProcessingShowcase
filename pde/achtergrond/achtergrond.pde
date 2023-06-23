@@ -67,6 +67,16 @@ void background_pulse()
   drawBackground(c1, c2);
 }
 
+void background_pulse_fast()
+{
+  float sinv = sin(patternrow % 4 * (PI/8))-0.2;
+  color c1  = lerpColor(bgcolor, bgcolor2, sinv);
+  sinv = sin(patternrow % 4 * (PI/8))-0.2;
+  color c2  = lerpColor(bgcolor, bgcolor3, sinv);
+  drawBackground(c1, c2);
+}
+
+
 void background_strobe()
 {
   color c1  = lerpColor(bgcolor, bgcolor2, patternrow % 8 / 8.);
@@ -105,32 +115,65 @@ void draw() {
       bgmargins = 8;
     }
   }
-  if (patternnr == 0)
+  
+  switch (patternnr)
   {
-    bgmargins = 0;
-    bgcolor3 = oranje;
-  }
-  else if (patternnr >= 1 && patternnr <= 3 )
-  {
-    bgcolor3 = yellow;
-    background_pulse();
-  }
-  else if (patternnr >= 10 && patternnr <= 12)
-  {
-    bgcolor2 = oranje;
-    bgcolor3 = groen;
-    if (patternrow % 4 == 0)
-    {
-      drawLines(bgcolor2, bgcolor3);
-    }
-    else
-    {
-      background(bgcolor);
-    }
-  }
-  else
-  {
-    background_strobe();
+    case 0:
+      bgmargins = 1;
+      bgcolor2 = groen;
+      bgcolor3 = oranje;
+      background_pulse();
+      break;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      bgmargins=1;
+      bgcolor2 = groen;
+      bgcolor3 = yellow;
+      background_pulse();
+      break;
+    case 5:
+    case 6:
+    case 7:
+      bgcolor2 = beige;
+      bgcolor3 = yellow;      
+      bgmargins = 1;
+      background_strobe();
+      break;
+    case 8:
+    case 9:
+      bgmargins = 1;
+      break;
+    case 10:
+    case 11:
+    case 12:
+      bgcolor2 = oranje;
+      bgcolor3 = groen;
+      if (patternrow % 4 == 0)
+      {
+        drawLines(bgcolor2, bgcolor3);
+      }
+      else
+      {
+        background(bgcolor);
+      }
+      break;
+    case 13:
+    case 14:
+      bgcolor2 = oranje;
+      bgcolor3 = yellow;
+      background_pulse_fast();
+      bgmargins = 16;
+      break;
+    case 15:
+      bgcolor2 = groen;
+      bgcolor3 = yellow;
+      bgmargins = 1;
+      background_strobe();
+      break;
+    default:
+      background_strobe();
   }
   
   //println(channel4instr_cache, channel4effect, channel4effect_param);
