@@ -203,6 +203,12 @@ public class WindowMergeApp extends PApplet {
 				loopCount++;
 				loopIndex[idxNr]++;
 			}
+		    else if ( currentIndex == idxNr && patternrow == 0 )
+		    {
+		    	// hey we're repeating the same patternnr
+		    	loopIndex[idxNr]++;
+		    	frameCount = -1;
+		    }
 			currentIndex = idxNr;
 		}
 		
@@ -229,7 +235,12 @@ public class WindowMergeApp extends PApplet {
 		currentIndex = 0;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("pat_0_1.pde", new pat_0_1())));
+		sketches.add(Arrays.asList( new SketchShit("pat_0_1.pde", new pat_0_1()), 
+									new SketchShit("pat1.pde", new pat1()), 
+									new SketchShit("pat3.pde", new pat3()), 
+									new SketchShit("pat4.pde", new pat4()), 
+									new SketchShit("pat_5_3.pde", new pat_5_3())
+									));
 		sketches.add(Arrays.asList(new SketchShit("pat1.pde", new pat1())));
 		sketches.add(Arrays.asList(new SketchShit("pat2.pde", new pat2())));
 		sketches.add(null);//Arrays.asList(new SketchShit("pat3.pde", new pat3())));
@@ -253,6 +264,7 @@ public class WindowMergeApp extends PApplet {
 			currentIndex = currentIndex % sketches.size();
 		List<SketchShit> lsht = sketches.get(currentIndex);
 		if (lsht == null) return null;
+		//println(loopIndex[currentIndex], lsht.size());
 		return lsht.get(loopIndex[currentIndex] % lsht.size());
 	}
 	
