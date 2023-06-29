@@ -26,7 +26,7 @@ public class WindowMergeApp extends PApplet {
     int loopIndex[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int loopCount = 0;
     PApplet sketch;
-    achtergrond bgsketch = null;
+    achtergrondMerge bgsketch = null;
     Boolean presentation = false;
     
     PFont mono = null;
@@ -58,7 +58,7 @@ public class WindowMergeApp extends PApplet {
 		if (oscP5 == null) oscP5 = new OscP5(this,6200);
 		if (bgsketch == null )
 		{
-			bgsketch = new achtergrond();
+			bgsketch = new achtergrondMerge();
 			bgsketch.g = this.g;
 			bgsketch.setSize(this.width, this.height);
 			bgsketch.sketchPath(this.sketchPath());
@@ -121,10 +121,13 @@ public class WindowMergeApp extends PApplet {
 	public void draw()
 	{
 		frame.setLocation(1, 1);
-		bgsketch.push();
-		bgsketch.draw();
-		bgsketch.pop();
-		
+		if ( patternnr != 5 )
+		{
+			bgsketch.push();
+			bgsketch.background(0);
+			bgsketch.draw();
+			bgsketch.pop();
+		}
 		try {
 			sketch.push();
 			sketch.handleDraw();
@@ -229,19 +232,19 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pat_0_1.pde", new pat_0_1())));
 		sketches.add(Arrays.asList(new SketchShit("pat1.pde", new pat1())));
 		sketches.add(Arrays.asList(new SketchShit("pat2.pde", new pat2())));
-		sketches.add(Arrays.asList(new SketchShit("pat3.pde", new pat3())));
-		sketches.add(Arrays.asList(new SketchShit("pat4.pde", new pat4())));
-		sketches.add(Arrays.asList(new SketchShit("backgrouind_v3.pde", new backgrouind_v3())));
-		sketches.add(filler);
+		sketches.add(null);//Arrays.asList(new SketchShit("pat3.pde", new pat3())));
+		sketches.add(null);//Arrays.asList(new SketchShit("pat4.pde", new pat4())));
+		sketches.add(Arrays.asList(new SketchShit("pat_5_3.pde", new pat_5_3())));
+		sketches.add(Arrays.asList(new SketchShit("cubes.pde", new cubes())));
 		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7())));
 		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
 		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
 		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pat12.pde", new pat12())));
-		sketches.add(Arrays.asList(new SketchShit("pad_13.pde", new pad_13())));
+		sketches.add(Arrays.asList(new SketchShit("jonasmovingshapespat11.pde", new jonasmovingshapespat11())));
+		sketches.add(Arrays.asList(new SketchShit("pat12_2.pde", new pat12_2())));
 		sketches.add(Arrays.asList(new SketchShit("pat14_lieke.pde", new pat14_lieke())));
-		sketches.add(filler);
+		sketches.add(Arrays.asList(new SketchShit("pad_13.pde", new pad_13())));
+		sketches.add(Arrays.asList(new SketchShit("pat15.pde", new pat15())));
 	}	
 
 	public SketchShit getShit()
