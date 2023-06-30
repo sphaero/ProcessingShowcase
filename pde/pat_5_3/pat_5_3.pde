@@ -3,7 +3,7 @@
 //FIX COLOURS
 
 //NO BACKGROUNDS PLEASE 
-PImage previousFrame;
+
 
 float circle1X = 580;
 float circle1Y = 410;
@@ -50,19 +50,12 @@ float yspeed5 = 2.2;  // Speed of the shape
 void setup() 
 {
   size(720,480);
-  previousFrame = createImage(width, height, RGB); // Create an empty image for storing the previous frame
-
  // background(0,0,0);
 }
 
   void draw() 
 {
-  // Redraw the previous frame using tint()
-  tint(255, 128); // Apply transparency to the previous frame
-  
-  // Draw the previous frame
-  image(previousFrame, 0, 0);
-  
+ //  background(0,0,0);
   // start drawing tile
   AnnasTile();
   
@@ -143,8 +136,6 @@ void setup()
 
   angle += PI*50+(sin(angle)+20);
   
-// Store the current frame as the previous frame
-  previousFrame.copy(0, 0, width, height, 0, 0, width, height);
 
 }
 

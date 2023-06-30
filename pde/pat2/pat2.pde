@@ -25,6 +25,7 @@ void setup() {
 
 
 void draw() {
+  background(13);
   cir();
   vier();
   dvd();
@@ -58,7 +59,7 @@ void vier() {
   int y = 240;
 
   noFill();
-  strokeWeight(1);
+  strokeWeight(5);
   stroke(128, 128, 0); //groen
 
   translate(x, y);
@@ -86,7 +87,7 @@ void cir() {
   float rad = 0;
   rotate(0);
   noFill();
-  strokeWeight(1);
+  strokeWeight(3);
   stroke (255, 219, 88); //geel
 
   circle(x, y, sizecir);

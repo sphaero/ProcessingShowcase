@@ -23,6 +23,7 @@ void setup() {
 
 
 void draw() {
+  background(13);
   cir();
   cir();
   cir();
@@ -74,7 +75,7 @@ void vier() {
   int y = 240;
 
   noFill();
-  strokeWeight(1);
+  strokeWeight(3);
   stroke(235, 215, 168); //beige
 
   translate(x, y);

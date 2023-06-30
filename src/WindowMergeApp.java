@@ -121,13 +121,13 @@ public class WindowMergeApp extends PApplet {
 	public void draw()
 	{
 		frame.setLocation(1, 1);
-		if ( patternnr != 5 )
-		{
+		//if ( patternnr != 5 )
+		//{
 			bgsketch.push();
 			bgsketch.background(0);
 			bgsketch.draw();
 			bgsketch.pop();
-		}
+		//}
 		try {
 			sketch.push();
 			sketch.handleDraw();
@@ -138,16 +138,16 @@ public class WindowMergeApp extends PApplet {
 			println(e.getMessage());
 		}
 		
-		g.beginDraw();
+		//g.beginDraw();
 		/*stroke(0);
 		for (int i = 0; i < height; i+=3)
 		{
 		    line(0, i, width, i);
 		}*/
-		textFont(mono);
-		textAlign(LEFT);
-		text("pattern: "+ currentIndex, 10,height - 50);
-		g.endDraw();
+		//textFont(mono);
+		//textAlign(LEFT);
+		//text("pattern: "+ currentIndex, 10,height - 50);
+		//g.endDraw();
 		
 		if ( currentIndex != _runningIndex)
 		{
@@ -235,9 +235,10 @@ public class WindowMergeApp extends PApplet {
 		currentIndex = -1;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList( new SketchShit("pat_0_1.pde", new pat_0_1()), 
-									new SketchShit("pat1.pde", new pat1()), 
-									new SketchShit("pat3.pde", new pat3()), 
+		sketches.add(Arrays.asList( new SketchShit("pat3a.pde", new pat3a()),
+									new SketchShit("pat3a.pde", new pat3a()),
+									new SketchShit("pat1.pde", new pat1()),  
+									new SketchShit("pat_0_1.pde", new pat_0_1()), 
 									new SketchShit("pat4.pde", new pat4()), 
 									new SketchShit("pat_5_3.pde", new pat_5_3())
 									));
@@ -247,15 +248,15 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);//Arrays.asList(new SketchShit("pat4.pde", new pat4())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
-		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7())));
-		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
+		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7()), new SketchShit("pat7_mees.pde", new pat7_mees())));
+		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8()), new SketchShit("pat8.pde", new pat8())));
 		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
 		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat12_2.pde", new pat12_2())));
 		sketches.add(Arrays.asList(new SketchShit("pat14_lieke.pde", new pat14_lieke()), new SketchShit("jonasmovingshapespat11.pde", new jonasmovingshapespat11())));
 		sketches.add(Arrays.asList(new SketchShit("pad_13.pde", new pad_13())));
-		sketches.add(Arrays.asList(new SketchShit("pat15a.pde", new pat15a()), new SketchShit("pat15b.pde", new pat15b()) ));
+		sketches.add(Arrays.asList(new SketchShit("pat15a.pde", new pat15a()), new SketchShit("pat15b.pde", new pat15b()), new SketchShit("pat15c.pde", new pat15c()) ));
 	}	
 
 	public SketchShit getShit()

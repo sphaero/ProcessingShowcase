@@ -11,20 +11,20 @@ void draw() {
   int randomValue = (int (random(4)));
 
   if (randomValue <= 1) {
-    background(255, 113, 52);
+    background(235, 215, 168);
   } else 
   {
     noFill();
-    background(155, 0);
+    background(220, 210, 150);
     stroke(100);
   }
-/*
+
   //square green
   pushMatrix();
   float squareSize = (100 + sin(angle) * (int (random(50)))) / 1; // Vary the size of the square
   drawSquare(1, 0, squareSize, color(128, 128, 0), 1); 
   popMatrix();
-*/
+
 /*
   //circle upper   
   pushMatrix();
@@ -41,7 +41,7 @@ void draw() {
   drawCircle(circleX2, circleY2, 100, color(255, 113, 52), 1); 
   popMatrix();
 */
-
+/*
   //triangle left
   float triangleY = height/2 + sin(angle) * 50; 
   // Vary the y-coordinate of the triangle
@@ -51,8 +51,9 @@ void draw() {
   float triangleY1 = height/2 + sin(angle) * -50; 
   // Vary the y-coordinate of the triangle
   drawTriangle(width*1/4 - 50, triangleY1 + 50, width*1/4 + 50, triangleY1 + 50, width*1/4, triangleY1 -50, color(255, 219, 88), (int (random(50)))); // Blue triangle
-
+*/
   angle += 0.11;
+
 }
 
 
