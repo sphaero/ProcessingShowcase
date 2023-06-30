@@ -1,5 +1,10 @@
 // made by Anna 
 
+//FIX COLOURS
+
+//NO BACKGROUNDS PLEASE 
+PImage previousFrame;
+
 float circle1X = 580;
 float circle1Y = 410;
 float circle2X = 320;
@@ -42,16 +47,22 @@ float yspeed5 = 2.2;  // Speed of the shape
 
 
 
-
 void setup() 
 {
   size(720,480);
-//  background(0,0,0);
+  previousFrame = createImage(width, height, RGB); // Create an empty image for storing the previous frame
+
+ // background(0,0,0);
 }
 
   void draw() 
 {
-//  background(0,0,0);
+  // Redraw the previous frame using tint()
+  tint(255, 128); // Apply transparency to the previous frame
+  
+  // Draw the previous frame
+  image(previousFrame, 0, 0);
+  
   // start drawing tile
   AnnasTile();
   
@@ -132,6 +143,8 @@ void setup()
 
   angle += PI*50+(sin(angle)+20);
   
+// Store the current frame as the previous frame
+  previousFrame.copy(0, 0, width, height, 0, 0, width, height);
 
 }
 
@@ -140,34 +153,34 @@ void setup()
 void AnnasTile() {
 
   //circle 1 (bottom)
-  strokeWeight(2);
+  strokeWeight(1);
   stroke(50,150,200);
-  fill(228, 128, 80); //(0,125,255);
+  fill(128, 128, 0); // (228, 128, 80); //(0,125,255); (128, 128, 0);
   circle(circle1X, circle1Y, 120);
 
   //circle 2
-  strokeWeight(2);
+  strokeWeight(1);
   stroke(50,150,200);
-  fill(255, 219, 88); //(255,155,30);
+  fill(255, 113, 52); // (255, 219, 88); //(255,155,30); (255, 113, 52);
   circle(circle2X, circle2Y, 90);
   
   //circle 3
-    strokeWeight(2);
+    strokeWeight(1);
   stroke(50,200,200);
-  fill(255, 113, 52); //(255,255,0);
+  fill(255, 219, 88); //(255, 113, 52); //(255,255,0); (255, 219, 88);
   circle(circle3X, circle3Y, 50);
   
   //circle 4
-    strokeWeight(2);
+    strokeWeight(1);
   stroke(50,200,200);
-  fill(255, 203, 52); //(255,255,0);
+  fill(235, 215, 168); //(255, 203, 52); //(255,255,0); (235, 215, 168)
   circle(circle4X, circle4Y, 50);
   
 
-  //circle 4
-    strokeWeight(2);
+  //circle 5
+    strokeWeight(1);
   stroke(50,200,200);
-  fill(255, 153, 152); //(255,255,0);
+  fill(235, 215, 230); // (255, 153, 152); //(255,255,0); (235, 215, 230)
   circle(circle5X, circle5Y, 50);
   
 }

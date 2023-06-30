@@ -5,7 +5,7 @@
 
 float angleLines = 0;
 float bezier = 2;
-float speedLines = 0.07; //OG 0.07
+float speedLines = 0.03; //OG 0.07
 
 void setup() {
   size(720, 480);
@@ -22,8 +22,8 @@ color color4 = color(255, 219, 88); //colour 4 from spreadsheet YELLOW
 
 void draw() {
   //background(128, 128, 20);
-  translate(width/2, height/2); //OG 2 and 2
-  rotate(angleLines);
+  translate(width/2, height/1); //OG 2 and 2
+  //rotate(angleLines);
   //bezier(15,10,150,60,80,90,110,230);
   
   // Draw moving lines with randomized colors

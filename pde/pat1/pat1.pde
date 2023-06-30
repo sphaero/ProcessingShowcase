@@ -12,7 +12,7 @@ void draw() {
   translate(width/2, height/2);
   rotate(angleLines);
   
-  // Draw moving lines with randomized colors
+  // Draw moving curves with randomized colors
   for (float y = -height/2; y < height/2; y += 30) {
     float x1 = sin(angleLines) * y;
     float x2 = cos(angleLines) * y;
@@ -29,10 +29,14 @@ void draw() {
       stroke(255, 219, 88); // Light yellow color
     }
     
-    line(x1, y, x2, y);
+    // Generate a random thickness value between 1 and 5
+    float thickness = random(1, 10);
+    strokeWeight(thickness);
+    
+    curve(x1, y, 0, x1, y, x2, 0, y);
   }
   
-  // Draw second set of rotating lines with randomized colors
+  // Draw second set of rotating curves with randomized colors
   rotate(HALF_PI);
   for (float y = -height/2; y < height/2; y += 30) {
     float x1 = sin(angleLines) * y;
@@ -50,7 +54,7 @@ void draw() {
       stroke(255, 219, 88); // Light yellow color
     }
     
-    line(x1, y, x2, y);
+    curve(x1, y, 0, x1, y, x2, 0, y);
   }
   
   angleLines += speedLines;

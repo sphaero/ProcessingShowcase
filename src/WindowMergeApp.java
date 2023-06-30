@@ -232,7 +232,7 @@ public class WindowMergeApp extends PApplet {
 	public void build()
 	{
 		sketches.clear();
-		currentIndex = 0;
+		currentIndex = -1;
 		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		sketches.add(Arrays.asList( new SketchShit("pat_0_1.pde", new pat_0_1()), 
@@ -245,21 +245,22 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pat2.pde", new pat2())));
 		sketches.add(null);//Arrays.asList(new SketchShit("pat3.pde", new pat3())));
 		sketches.add(null);//Arrays.asList(new SketchShit("pat4.pde", new pat4())));
-		sketches.add(Arrays.asList(new SketchShit("pat_5_3.pde", new pat_5_3())));
-		sketches.add(Arrays.asList(new SketchShit("cubes.pde", new cubes())));
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
 		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7())));
 		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8())));
 		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
 		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10())));
-		sketches.add(Arrays.asList(new SketchShit("jonasmovingshapespat11.pde", new jonasmovingshapespat11())));
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat12_2.pde", new pat12_2())));
-		sketches.add(Arrays.asList(new SketchShit("pat14_lieke.pde", new pat14_lieke())));
+		sketches.add(Arrays.asList(new SketchShit("pat14_lieke.pde", new pat14_lieke()), new SketchShit("jonasmovingshapespat11.pde", new jonasmovingshapespat11())));
 		sketches.add(Arrays.asList(new SketchShit("pad_13.pde", new pad_13())));
-		sketches.add(Arrays.asList(new SketchShit("pat15.pde", new pat15())));
+		sketches.add(Arrays.asList(new SketchShit("pat15a.pde", new pat15a()), new SketchShit("pat15b.pde", new pat15b()) ));
 	}	
 
 	public SketchShit getShit()
 	{
+		if (currentIndex == -1 ) return new SketchShit("filler.pde", new filler());
 		if (currentIndex > sketches.size() - 1 )
 			currentIndex = currentIndex % sketches.size();
 		List<SketchShit> lsht = sketches.get(currentIndex);

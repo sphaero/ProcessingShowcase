@@ -36,7 +36,7 @@ void setup() {
   size(720, 480);
   noStroke();
   
-//////  oscP5 = new OscP5(this,6200);
+////////  oscP5 = new OscP5(this,6200);
   
   // Initialize rectangles
   for (int i = 0; i < numRects; i++) {
@@ -81,15 +81,24 @@ void background_strobe()
 {
   color c1  = lerpColor(bgcolor, bgcolor2, patternrow % 8 / 8.);
   color c2  = lerpColor(bgcolor, bgcolor3, patternrow % 8 / 8.);
-  fill(c2);
-  rect(width/2, height/2, 20,20); 
+  //fill(c2);
+  //rect(width/2, height/2, 20,20); 
+  drawBackground(c1, c2);
+}
+
+void background_strobe_fast()
+{
+  color c1  = lerpColor(bgcolor, bgcolor2, patternrow % 4 / 4.);
+  color c2  = lerpColor(bgcolor, bgcolor3, patternrow % 4 / 4.);
+  //fill(c2);
+  //rect(width/2, height/2, 20,20); 
   drawBackground(c1, c2);
 }
 
 int channel4instr_cache = 0;
 
 void draw() {
-  //background(bgcolor);
+  ////background(bgcolor);
   if (channel3effect == 'C' )
   {
     if ( channel3effect_param.equals("00") )
@@ -133,8 +142,13 @@ void draw() {
       bgcolor3 = yellow;
       background_pulse();
       break;
-    case 5:
     case 6:
+      bgcolor2 = beige;
+      bgcolor3 = oranje;      
+      bgmargins = 1;
+      background_strobe_fast();
+      break;
+    case 5:
     case 7:
       bgcolor2 = beige;
       bgcolor3 = yellow;      
@@ -142,7 +156,7 @@ void draw() {
       background_strobe();
       break;
     case 8:
-      bgmargins = patternrow/2;
+      bgmargins = 4;
       bgcolor2 = oranje;
       bgcolor3 = oranje;
       background_pulse_fast();
@@ -150,7 +164,8 @@ void draw() {
     case 9:
       bgcolor2 = oranje;
       bgcolor3 = oranje;
-      bgmargins = 16 + patternrow/8;
+      bgmargins = 4 + patternrow/2;
+      background_pulse_fast();
       break;
     case 10:
     case 11:
@@ -163,7 +178,7 @@ void draw() {
       }
       else
       {
-        //////background(bgcolor);
+        ////////background(bgcolor);
       }
       break;
     case 13:
@@ -211,7 +226,7 @@ void draw() {
   }
   /*else
   {
-    ////////background(0);
+    //////////background(0);
   }*/
   /*// Update and display rectangles
   for (int i = 0; i < numRects; i++) {
@@ -231,7 +246,7 @@ void draw() {
 void drawBackground(color color1, color color4) {
   // Draw the gradient background
   push();
-  //////background(0);
+  ////////background(0);
   noStroke();
   for (int i = 0; i < height; i+=32) {
     // Calculate the color for each row

@@ -39,7 +39,7 @@ void draw() {
     }
     endShape();
   }
-  if (frameCount>150) {
+  if (frameCount>175) {
 
     push();
     translate(width/2, height/2);
