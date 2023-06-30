@@ -5,7 +5,7 @@
 
 float angleLines = 0;
 float bezier = 2;
-float speedLines = 0.03; //OG 0.07
+float speedLines = 0.07; //OG 0.07
 
 void setup() {
   size(720, 480);
