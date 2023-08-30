@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList; 
 import java.util.Arrays; 
 import java.io.File; 
-import java.io.BufferedReader; 
+//import java.io.BufferedReader; 
 import java.io.PrintWriter; 
 import java.io.InputStream; 
 import java.io.OutputStream; 
@@ -100,8 +100,6 @@ public class WindowMergeApp extends PApplet {
 		sketch.stroke(0);
 		strokeWeight(1);
 		sketch.strokeWeight(1);
-		clear();
-		sketch.clear();
         try 
         {
             sketch.setup();
@@ -120,7 +118,7 @@ public class WindowMergeApp extends PApplet {
 	
 	public void draw()
 	{
-		frame.setLocation(1, 1);
+		surface.setLocation(1, 1);
 		//if ( patternnr != 5 )
 		//{
 			bgsketch.push();
@@ -249,7 +247,7 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pat6.pde", new pat6())));
 		sketches.add(Arrays.asList(new SketchShit("pat7.pde", new pat7()), new SketchShit("pat7_mees.pde", new pat7_mees())));
-		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8()), new SketchShit("pat8.pde", new pat8())));
+		sketches.add(Arrays.asList(new SketchShit("pat8.pde", new pat8()), new SketchShit("pat8b.pde", new pat8b())));
 		sketches.add(Arrays.asList(new SketchShit("pat9.pde", new pat9())));
 		sketches.add(Arrays.asList(new SketchShit("pat10.pde", new pat10())));
 		sketches.add(null);

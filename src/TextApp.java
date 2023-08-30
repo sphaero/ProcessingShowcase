@@ -16,7 +16,6 @@ public class TextApp extends PApplet {
 	public void setup()
 	{
 		surface.setResizable(true);
-		clear();
 		PFont mono;
 		// The font "andalemo.ttf" must be located in the 
 		// current sketch's "data" directory to load successfully
@@ -58,7 +57,6 @@ public class TextApp extends PApplet {
 	public void draw()
 	{
 		update();
-		clear();
 		background(bg);
 		if (content != null)
 		{
