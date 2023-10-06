@@ -23,7 +23,7 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 procparse:
-	./processing-parse.sh pde/*
+	./scripts/processing-parse.sh pde/*
 
 clean:
 	$(RM) src/*.class src/pde/*.class
