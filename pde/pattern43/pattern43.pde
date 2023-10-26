@@ -13,7 +13,7 @@ void draw() {
   }
   
 textSize(10);
-text("dipsy | 36",640,460);
+text("dipsy | 43",640,460);
   
   a = a + 25;
 
