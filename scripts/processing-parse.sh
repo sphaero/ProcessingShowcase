@@ -18,8 +18,16 @@ void playSounds() {}
 EOF
 }
 
+# remove errd parses
+#find $@ -name "*-parsed" -type d -exec rm -rf "{}" \;
+#echo $@
+
 for dir in "$@"
 do
+    if [[ $dir == "*-parsed" ]]
+    then
+        continue
+    fi
     #if ! [ -e "$dir/music.pde" ]; then
     #echo "creating $dir/music.pde"
     #create_music_pde $dir/music.pde
@@ -30,7 +38,7 @@ do
     sed -i 's/frameRate\ (/\/\/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/surface./\/\/surface./g' $dir/$PDENAME.pde
     sed -e '/new OscP5/s/^/\/\//g' -i $dir/$PDENAME.pde
-    sed -i 's/background(/\/\/background(/g' $dir/$PDENAME.pde
+    #sed -i 's/background(/\/\/background(/g' $dir/$PDENAME.pde
     OPT="--sketch=$dir --force --output=$dir-parsed  --build"
     echo $PRC $OPT
     $PRC $OPT
@@ -44,7 +52,7 @@ do
     rm -rf $dir-parsed
     # undo replace illegal methods
     sed -i 's/\/\/frameRate(/frameRate(/g' $dir/$PDENAME.pde
-    sed -i 's/\/\/background(/background(/g' $dir/$PDENAME.pde
+    #sed -i 's/\/\/background(/background(/g' $dir/$PDENAME.pde
     sed -i 's/\/\/frameRate\ (/frameRate\ (/g' $dir/$PDENAME.pde
     sed -i 's/\/\/surface./surface./g' $dir/$PDENAME.pde
     sed -e '/new OscP5/s/^\/\///g' -i $dir/$PDENAME.pde
