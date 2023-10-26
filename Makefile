@@ -9,8 +9,8 @@ JAR = $(PRC4)/java/bin/jar
 SKETCH_DIRS = pde/*
 
 PDE_FILES = $(shell find pde/ -type f -name '*.pde')
-PDE_JAVA_FILES = $(patsubst pde/%.pde, src/pde/%.java, $(PDE_FILES))
-
+PDE_JAVA_FILES = $(patsubst pde/%.pde, tmp/pde/%.java, $(PDE_FILES))
+#PDE_JAVA_FILES = $(shell find pde/ -type f -name *.pde | awk -F '/' '{ print "src/"$1"/"$2".java" }')
 
 .SUFFIXES: .java .class
 
@@ -25,7 +25,7 @@ default: classes
 
 classes: $(CLASSES:.java=.class)
 
-src/pde/%.java : pde/%.pde 
+tmp/pde/%.java : pde/%.pde 
 #	@echo $< $@
 	./scripts/proc-parse.sh $< $@
 

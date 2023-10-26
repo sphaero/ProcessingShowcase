@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 PRC="/opt/processing-3.5.4/processing-java"
-SRC_DIR="./src/pde"
+SRC_DIR="./tmp/pde"
 
 SRCCODE=""
 
@@ -44,7 +44,11 @@ OPT="--sketch=$TMPPDENAME --force --output=$DIRNAME-parsed  --build"
 $PRC $OPT
 #echo "copying `basename $dir` sources to $SRC_DIR"
 mkdir -p `dirname $2`
+# make make happy
 cp $DIRNAME-parsed/source/$PDENAME.java $2
+# make java happy, they both need a different dir :(
+cp $DIRNAME-parsed/source/$PDENAME.java src/pde/
+
 if [[ -d $DIRNAME/data ]]; then
      cp -r $DIRNAME/data/* data/ &> /dev/null | true
 fi
