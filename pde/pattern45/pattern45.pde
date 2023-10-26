@@ -1,48 +1,41 @@
+PImage img;
+
 void setup() {
   size(720, 480);
+  img = loadImage("mushroom.png");
+  img.resize(420, 480);
+  frameRate(24);
 }
 
 void draw() {
-  if (frameCount % 240 < 0) {
-    background(254, 0, 0);
-  } else {
-    background(254);
-  }
+  background(245,0,0);
+  textSize(20);
+text("BOB_THE-BUILDER", 220, 400);
+
+
+  float tiles = 300;
+  float tileSize = width / tiles;
+  float time = millis() * 0.001;
+  float radiusMultiplier = map(sin(time), -1, 0.01, 0.01, 2);
+
   
-  float xOffset1 = sin(frameCount * 0.30) * 10;
-  float xOffset2 = sin(frameCount * 0.120) * 10;
-  
-  float yOffset1 = cos(frameCount * 0.10) * 10;
-  float yOffset2 = cos(frameCount * 0.40) * 10;
+  float xOffset = (width - img.width) / -2;
+  float yOffset = (height - img.height) / -2;
 
-  tile(int(width / 1) + int(xOffset1), int(height / 3) + int(yOffset1));
-  tile(int(width / 4) + int(xOffset2), int(height / 4) + int(yOffset2));
-   tile(int(width / 8) + int(xOffset1), int(height / 5) + int(yOffset1));
-  tile(int(width / 16) + int(xOffset2), int(height / 5) + int(yOffset2));
-   tile(int(width / 30) + int(xOffset1), int(height / 6) + int(yOffset1));
-  tile(int(width / 60) + int(xOffset2), int(height / 8) + int(yOffset2));
-  tile(int(width / 90) + int(xOffset1), int(height / 2) + int(yOffset1));
-  tile(int(width / 10) + int(xOffset2), int(height / 10) + int(yOffset2));
-   tile(int(width / 10) + int(xOffset1), int(height / 2) + int(yOffset1));
- 
-}
+  for (int x = 0; x < tiles; x++) {
+    for (int y = 0; y < tiles; y++) {
+      
+      int pixelX = int(x * tileSize + xOffset);
+      int pixelY = int(y * tileSize + yOffset);
 
-void tile(int xpos, int ypos) {
-  noFill();
-  stroke(0, 0, 254);
-  int step = 400;
-  beginShape();
-  for (float angle = 0; angle < TWO_PI; angle += radians(40)) {
-    float x = xpos + cos(angle) * step;
-    float y = ypos + sin(angle) * step;
-    vertex(x, y);
-    
-    while (step<500)
-  {
+      color c = img.get(pixelX, pixelY);
+      float b = map(brightness(c), 10, 255, 1, 0);
 
-    circle(xpos, ypos, step);
-    step=step + 5;
+      float radius = tileSize * b * radiusMultiplier;
+      push();
+      translate(x * tileSize, y * tileSize);
+      ellipse(0, 0, radius, radius);
+      pop();
+    }
   }
-  }
-  endShape(CLOSE);
 }
