@@ -8,6 +8,9 @@ JVM = $(PRC)/java/bin/java
 JAR = $(PRC4)/java/bin/jar
 SKETCH_DIRS = pde/*
 
+PDE_FILES = $(shell find pde/ -type f -name '*.pde')
+PDE_JAVA_FILES = $(patsubst pde/%.pde, src/pde/%.java, $(PDE_FILES))
+
 
 .SUFFIXES: .java .class
 
@@ -21,6 +24,12 @@ MAIN = ProcessingShowcase
 default: classes
 
 classes: $(CLASSES:.java=.class)
+
+src/pde/%.java : pde/%.pde 
+#	@echo $< $@
+	./scripts/proc-parse.sh $< $@
+
+parse: $(PDE_JAVA_FILES)
 
 procparse:
 	./scripts/processing-parse.sh pde/*
