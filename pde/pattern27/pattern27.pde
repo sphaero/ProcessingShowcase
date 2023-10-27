@@ -1,13 +1,14 @@
 PFont font;
-int backgroundColor;
+color backgroundColor;
 boolean channel1instr = false;
 boolean channel3instr = false;
 float square1X, square2X;
 float squareSpeed = 2.0;
+int fadeDuration = 60; // Verander de achtergrondkleur elke seconde (60 frames)
 
 void setup() {
   size(800, 600);
-  background(155, 93, 229); // Achtergrondkleur #9B5DE5
+  backgroundColor = color(155, 93, 229); // Start achtergrondkleur #9B5DE5
   
   font = createFont("Arial", 96);
   textFont(font);
@@ -17,13 +18,16 @@ void setup() {
 }
 
 void draw() {
-  // Achtergrondkleur fade tussen #9B5DE5 en #FFFFFF
-  background(lerpColor(color(155, 93, 229), color(255), map(mouseX, 0, width, 0, 1)));
+  // Automatische achtergrondkleurvervaging
+  if (frameCount % fadeDuration == 0) {
+    backgroundColor = lerpColor(color(155, 93, 229), color(255), random(1));
+  }
+  background(backgroundColor);
   
   // Tekst "WARNING" in het wit weergeven als channel3instr is gedetecteerd
   if (channel3instr) {
     fill(255);
-    textSize(96);
+    textSize(120);
     textAlign(CENTER, CENTER);
     text("WARNING", width / 2, height / 2);
   }

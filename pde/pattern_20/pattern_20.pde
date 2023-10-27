@@ -3,11 +3,11 @@ float b = 101;
 float d = 3;
 
 void setup() {
-  size(800, 800);
+  size(720,480);
 }
 
 void draw() {
-  background(255);
+  background(#FCFC17);
   translate(width/2, height/2);
   noFill();
   beginShape();
