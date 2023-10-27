@@ -1,5 +1,9 @@
 import netP5.*;
 import oscP5.*;
+color c1 = #FFFFFF;
+color c2 = #000000;
+color c3 = #9B5DE5;
+color c4 = #8FF75C;
 
 OscP5 oscP5;
 
@@ -38,22 +42,22 @@ void draw()
   int widthkwart = width/4;
   if (channel1instr != 0 )
   { 
-    fill(70, 35, 122);
+    fill(c1);
     rect(0, 0,  widthkwart, height);    
   }
   if (channel2instr != 0 )
   { 
-    fill(61, 220, 151);
+    fill(c2);
     rect(width - widthkwart*3, 0,  widthkwart, height);    
   }
   if (channel3instr != 0 )
   { 
-    fill(243, 167, 18);
+    fill(c3);
     rect(width - widthkwart*2, 0,  widthkwart, height);    
   }
   if (channel4instr != 0 )
   { 
-    fill(1, 186, 239);
+    fill(c4);
     rect(width - widthkwart, 0, widthkwart, height);    
   }
   
