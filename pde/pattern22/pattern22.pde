@@ -30,6 +30,7 @@ tile(int(sin(frameCount*(1/1.0))*width/2+width/2), height/2);
 
 void tile(int xpos, int ypos)
 {
+  strokeWeight(4);
   stroke(155, 93, 229);
   line(xpos, ypos, 20,80);
   line(xpos, ypos, 90,90);
@@ -46,6 +47,7 @@ void tile(int xpos, int ypos)
   
   translate(width/2, height/2);
   noFill();
+  strokeWeight(2);
   stroke(255,255,255);
   ellipse(sin(t/50)*50, cos(t/50)*50, 50, 50);
 }

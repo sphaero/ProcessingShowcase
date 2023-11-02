@@ -43,31 +43,6 @@ void setup()
 void draw() 
 {
   background(255);
-
-//animatie
-  //background(0);
-  noStroke();
-  int widthkwart = width/4;
-  if (channel1instr != 0 )
-  { 
-    fill(70, 35, 122);
-    rect(0, 0,  widthkwart, height);    
-  }
-  if (channel2instr != 0 )
-  { 
-    fill(61, 220, 151);
-    rect(width - widthkwart*3, 0,  widthkwart, height);    
-  }
-  if (channel3instr != 0 )
-  { 
-    fill(243, 167, 18);
-    rect(width - widthkwart*2, 0,  widthkwart, height);    
-  }
-  if (channel4instr != 0 )
-  { 
-    fill(1, 186, 239);
-    rect(width - widthkwart, 0, widthkwart, height);    
-  }
  
    //textSize(32);
    //textAlign(CENTER);
@@ -75,20 +50,20 @@ void draw()
   
   // Green square
   fill(143, 247, 92, 150);
-  rect(greenX, height / 2, 100, 100);
+  rect(greenX, 70, 200, 200);
   greenX += random (-movementSpeed-10, movementSpeed+10);
   greenX = constrain(greenX, 0, width - 100);
   
   // purple square
   fill(155, 93, 229, 100);
-  rect(orangeX, height / 2 - 175, 100, 100);
+  rect(orangeX, 210, 200, 200);
   orangeX += random(-movementSpeed-10, movementSpeed+10);
   orangeX = constrain(orangeX, 0, width - 100);
   
   // black square
-  fill(0,0,0,150);
-  rect(whiteX, height / 2 + 150, 200, 200);
-  whiteX += random(-movementSpeed, movementSpeed);
+  fill(0,0,0,100);
+  rect(whiteX, 90, 300, 300);
+  whiteX += random(-movementSpeed-15, movementSpeed+15);
   whiteX = constrain(whiteX, 0, width - 100);
   
   //textAlign(CENTER);

@@ -3,46 +3,53 @@ void setup() {
 }
 
 void draw() {
-  if (frameCount % 240 < 0) {
-    background(254, 0, 0);
+  if (frameCount % 25 < 10) {
+    background(254, 254, 254);
   } else {
-    background(254);
+    background(0);
+    textSize(20);
+text("BOB_THE-BUILDER", 220, 400);
+fill(143,247,92);
   }
   
-  float xOffset1 = sin(frameCount * 0.30) * 10;
-  float xOffset2 = sin(frameCount * 0.120) * 10;
+  float xOffset1 = sin(frameCount * 0.1) * 100;
+  float xOffset2 = sin(frameCount * 0.15) * 100;
   
-  float yOffset1 = cos(frameCount * 0.10) * 10;
-  float yOffset2 = cos(frameCount * 0.40) * 10;
+  float yOffset1 = cos(frameCount * 0.1) * 50;
+  float yOffset2 = cos(frameCount * 0.15) * 50;
 
-  tile(int(width / 1) + int(xOffset1), int(height / 3) + int(yOffset1));
-  tile(int(width / 4) + int(xOffset2), int(height / 4) + int(yOffset2));
-   tile(int(width / 8) + int(xOffset1), int(height / 5) + int(yOffset1));
-  tile(int(width / 16) + int(xOffset2), int(height / 5) + int(yOffset2));
-   tile(int(width / 30) + int(xOffset1), int(height / 6) + int(yOffset1));
-  tile(int(width / 60) + int(xOffset2), int(height / 8) + int(yOffset2));
-  tile(int(width / 90) + int(xOffset1), int(height / 2) + int(yOffset1));
-  tile(int(width / 10) + int(xOffset2), int(height / 10) + int(yOffset2));
-   tile(int(width / 10) + int(xOffset1), int(height / 2) + int(yOffset1));
- 
+  translate(width / 2, height / 2); 
+  rotate(radians(frameCount * 0.08));  // Use 'rotate' instead of 'rotateY'
+
+  // Draw multiple tiles aligned to the center
+  for (int i = 0; i < 8; i++) {
+    float xPos = cos(TWO_PI / 8 * i) * 100;
+    float yPos = sin(TWO_PI / 8 * i) * 100;
+    drawTile(xPos + xOffset1, yPos + yOffset1);
+  }
+  
+  for (int i = 0; i < 8; i++) {
+    float xPos = cos(TWO_PI / 8 * i) * 100;
+    float yPos = sin(TWO_PI / 8 * i) * 100;
+    drawTile(xPos + xOffset2, yPos + yOffset2);
+  }
 }
 
-void tile(int xpos, int ypos) {
+void drawTile(float xOffset, float yOffset) {
   noFill();
-  stroke(0, 0, 254);
-  int step = 400;
-  beginShape();
-  for (float angle = 0; angle < TWO_PI; angle += radians(40)) {
-    float x = xpos + cos(angle) * step;
-    float y = ypos + sin(angle) * step;
-    vertex(x, y);
+  stroke(155, 93, 229);
+  int step = 10;
+  beginShape(QUAD_STRIP); 
+  
+  for (float angle = 0; angle < TWO_PI; angle += radians(5)) {
+    float x1 = cos(angle) * (step + xOffset);
+    float y1 = sin(angle) * (step + yOffset);
+    float x2 = cos(angle) * (step + xOffset);
+    float y2 = sin(angle) * (step + yOffset + 20); 
     
-    while (step<500)
-  {
-
-    circle(xpos, ypos, step);
-    step=step + 5;
+    vertex(x1, y1); 
+    vertex(x2, y2); 
   }
-  }
-  endShape(CLOSE);
+  
+  endShape();
 }

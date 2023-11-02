@@ -13,9 +13,9 @@ void draw()
   {
     background(0);
   }
-  stroke(0,0,0);
+   stroke(159,205,82);
   tile(int(sin(frameCount*(1/10.0))*width/2+width/2), height/2);
-  stroke(200,0,50);
+  stroke(132,98,170);
   tile(int(sin(frameCount*(1/15.0))*width/2+width/5), height/2);
   
   fill(255);
@@ -26,7 +26,7 @@ void draw()
 void tile(int xpos, int ypos)
 {
   noFill();
-  strokeWeight(4);
+  strokeWeight(3);
   int step = 10;
   while(step < 1500)
   {
