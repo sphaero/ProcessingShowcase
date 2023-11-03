@@ -270,8 +270,8 @@ public class WindowMergeApp extends PApplet {
 		//10
 		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));
 		sketches.add(Arrays.asList(new SketchShit("pattern11.pde", new pattern11())));
-		sketches.add(null);
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("patern12_13_willemijn.pde", new patern12_13_willemijn())));
+		sketches.add(Arrays.asList(new SketchShit("patern12_13_willemijn.pde", new patern12_13_willemijn())));
 		sketches.add(Arrays.asList(new SketchShit("patern14.pde", new patern14())));
 		// 15
 		sketches.add(Arrays.asList(new SketchShit("patern15.pde", new patern15())));

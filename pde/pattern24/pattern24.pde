@@ -29,17 +29,17 @@ String channel4effect_param = "00";
 String feedback_formatted = "";
 
 float x1(float t) {
-  return cos(t/3)* 30 + cos(1/9) * 20; 
+  return cos(t/3)* 59 + cos(1/6) * 59; 
 }
 float y1(float t) {
-  return sin(t/8)* 200 + sin(t/5)*142; 
+  return sin(t/8)* 4 + sin(t/5)*138; 
 }
 float x2(float t) {
-  return cos(t/9)* 84 + sin(1/7) + 12; 
+  return cos(t/7)* 81 + sin(1/7) + -47; 
 }
 
 float y2(float t) {
-  return sin(t/8)* 170 + sin(t/7)*42 +12; 
+  return sin(t/8)* 205 + sin(t/7)*42 +-10; 
 }
 
 
@@ -58,20 +58,7 @@ void draw()
   
 
   
-  if(sin((frameCount%52)/12)*5>4){
-    if((aberation = sin((frameCount%48)/5)*8.3)<0) {
-      aberation = -sin((frameCount%48)/5)*8.3;
-    }
-    else{
-      aberation = sin((frameCount%48)/5)*8.3;
-    }  
-    opacity = 170;
-  }
-  else{
-  aberation = 1.5;
-  opacity = 209;
-}
-  
+
   
 
   for (int i = 0; i < NumLines; i++) {
@@ -84,28 +71,34 @@ void draw()
   int widthkwart = width/4;
   if (channel1instr != 0 )
   { 
-    fill(70, 35, 122);
-    rect(0, 0,  widthkwart, height);    
+   
+    aberation = 82;
+   
+  
   }
   if (channel2instr != 0 )
   { 
-    fill(61, 220, 151);
-    rect(width - widthkwart*3, 0,  widthkwart, height);    
+        
   }
   if (channel3instr != 0 )
   { 
-    fill(243, 167, 18);
-    rect(width - widthkwart*2, 0,  widthkwart, height);    
+   
+    t+= 0.7;
   }
   if (channel4instr != 0 )
   { 
-    fill(1, 186, 239);
-    rect(width - widthkwart, 0, widthkwart, height);    
+ 
+    aberation = -sin((frameCount%91)/8)*9.1;
+    opacity = 171;
+    
+  }
+  else {
+    t+= 0.2;
+    aberation = 1.5;
+    opacity = 100;
   }
   
-  textAlign(CENTER);
-  textSize(32);
-  text("PAT:" + patternnr, width/2, height/2);
+  
 }
 
 void oscEvent(OscMessage message) 
