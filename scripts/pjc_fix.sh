@@ -25,9 +25,17 @@ for i in `ls *.pde`;
 do
     FILENAME=`echo $i | cut -d "_" -f3-`
     PDENAME=`echo $FILENAME | cut -d "." -f1`
-    if [[ $i != $FILENAME ]]; then mv $i $FILENAME; fi
+    IDX=`echo $i | cut -d "_" -f1`
+    if [ -d $PDENAME ] # seems this one exists already
+    then               # append index nr
+        PDENAME=${PDENAME}_IDX${IDX}; echo $PDENAME bbla
+    fi
+    if [[ $i != $FILENAME ]]
+    then
+        mv $i $PDENAME.pde
+    fi
     mkdir -p $PDENAME/data
-    mv $FILENAME $PDENAME/
+    mv $PDENAME.pde $PDENAME/
     echo $FILENAME $PDENAME
 done
 

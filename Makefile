@@ -35,7 +35,7 @@ procparse:
 	./scripts/processing-parse.sh pde/*
 
 clean:
-	$(RM) src/*.class src/pde/*.class
+	$(RM) src/*.class src/pde/*.class tmp/pde/*/*.class
 
 run:
 	$(JVM) -XX:+AlwaysPreTouch -Xss256k -Xms1g -Xmx1g $(JVMFLAGS) $(MAIN)

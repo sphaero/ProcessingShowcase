@@ -8,7 +8,7 @@ void setup() {
 }
 
 void draw() {
-  background(245,0,0);
+  background(143,247,92);
   textSize(20);
 text("BOB_THE-BUILDER", 220, 400);
 
