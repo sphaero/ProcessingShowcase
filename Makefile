@@ -1,4 +1,4 @@
-NAME="kp-3m"
+NAME="warning"
 PRC=/opt/processing-3.5.4
 PRC4=/opt/processing-4.3
 JFLAGS = -target 1.8 -source 1.8 -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar:picocli-4.6.3.jar"
