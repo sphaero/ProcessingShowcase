@@ -23,7 +23,11 @@ print("----sample-names-----")
 for x in range(31):
     start_offset = 20+x*(22+2+1+1+2+2)
     samplename = b[start_offset:start_offset+22]
-    print(samplename.decode())
+    try:
+        print(samplename.decode())
+    except Exception as e:
+        print("ERR?: {}".format(samplename.decode('cp437')))
+
 print("---------------------")
 
 ### Print song:pattern table
