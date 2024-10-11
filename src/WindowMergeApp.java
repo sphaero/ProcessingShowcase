@@ -136,7 +136,6 @@ public class WindowMergeApp extends PApplet {
 	
 	public void draw()
 	{
-		//surface.setLocation(1, 1);
 		try {
 			sketch.push();
 			sketch.handleDraw();
@@ -231,6 +230,7 @@ public class WindowMergeApp extends PApplet {
 		    {
 		    	// hey we're repeating the same patternnr
 		    	loopIndex[idxNr]++;
+		    	currentIndex = idxNr;
 		    	frameCount = -1;
 		    }
 			currentIndex = idxNr;
@@ -254,67 +254,32 @@ public class WindowMergeApp extends PApplet {
 	{
 		sketches.clear();
 		currentIndex = -1;
-		//List fill = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
-		sketches.add(Arrays.asList(new SketchShit("pattern0_pde.pde", new pattern0_pde())));
-		sketches.add(Arrays.asList(new SketchShit("pattern1.pde", new pattern1())));
-		sketches.add(Arrays.asList(new SketchShit("pattern2.pde", new pattern2())));
-		sketches.add(Arrays.asList(new SketchShit("warningtria.pde", new warningtria())));
-		sketches.add(null);
-		// 5
+		
+		sketches.add(filler);
+		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
+		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pettern_7_.pde", new pettern_7_())));		
-		sketches.add(Arrays.asList(new SketchShit("pattern8.pde", new pattern8())));
-		sketches.add(Arrays.asList(new SketchShit("pattern9.pde", new pattern9())));
-		//10
-		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));
-		sketches.add(Arrays.asList(new SketchShit("pattern11.pde", new pattern11())));
-		sketches.add(Arrays.asList(new SketchShit("patern12_13_willemijn.pde", new patern12_13_willemijn())));
-		sketches.add(Arrays.asList(new SketchShit("patern12_13_willemijn.pde", new patern12_13_willemijn())));
-		sketches.add(Arrays.asList(new SketchShit("patern14.pde", new patern14())));
-		// 15
-		sketches.add(Arrays.asList(new SketchShit("patern15.pde", new patern15())));
+		sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5()))); // 5
+		sketches.add(Arrays.asList(new SketchShit("demo_test_hidde.pde", new demo_test_hidde())));
+		sketches.add(Arrays.asList(new SketchShit("flags.pde", new flags())));
+		sketches.add(Arrays.asList(new SketchShit("makeskeleton.pde", new makeskeleton())));		
+		sketches.add(Arrays.asList(new SketchShit("medlab_les4_mimicmusic_thomas_wind.pde", new medlab_les4_mimicmusic_thomas_wind())));
+		sketches.add(Arrays.asList(new SketchShit("shadertest.pde", new shadertest()))); // 10
+		sketches.add(Arrays.asList(new SketchShit("sillyskeleton.pde", new sillyskeleton())));
+		sketches.add(Arrays.asList(new SketchShit("voetbal2.pde", new voetbal2())));
+		sketches.add(Arrays.asList(new SketchShit("voorbereiding_4_okt_.pde", new voorbereiding_4_okt_())));
+		sketches.add(Arrays.asList(new SketchShit("pattern14.pde", new pattern14())));
+		sketches.add(Arrays.asList(new SketchShit("pattern15.pde", new pattern15()))); //15
 		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
-		sketches.add(Arrays.asList(new SketchShit("pattern17.pde", new pattern17())));
-		sketches.add(Arrays.asList(new SketchShit("pattern18.pde", new pattern18())));
+		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pat19.pde", new pat19())));
 		sketches.add(Arrays.asList(new SketchShit("pattern19.pde", new pattern19())));
-		// 20
-		sketches.add(Arrays.asList(new SketchShit("pattern_20.pde", new pattern_20())));
+		sketches.add(null); // 20
+		sketches.add(Arrays.asList(new SketchShit("pattern21.pde", new pattern21())));
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern22.pde", new pattern22())));
-		sketches.add(Arrays.asList(new SketchShit("pattern23n.pde", new pattern23n())));
-		sketches.add(Arrays.asList(new SketchShit("pattern24.pde", new pattern24())));
-		//25
-		sketches.add(Arrays.asList(new SketchShit("patern_25.pde", new patern_25())));
-		sketches.add(Arrays.asList(new SketchShit("pattern26.pde", new pattern26())));
-		sketches.add(Arrays.asList(new SketchShit("pattern27.pde", new pattern27())));
-		sketches.add(Arrays.asList(new SketchShit("pattern_28.pde", new pattern_28())));
-		sketches.add(Arrays.asList(new SketchShit("pattern29.pde", new pattern29())));
-		//30
-		sketches.add(Arrays.asList(new SketchShit("pattern30.pde", new pattern30())));
-		sketches.add(Arrays.asList(new SketchShit("pattern31.pde", new pattern31())));
-		sketches.add(Arrays.asList(new SketchShit("pattern32.pde", new pattern32())));
-		sketches.add(Arrays.asList(new SketchShit("pattern33.pde", new pattern33())));
-		sketches.add(Arrays.asList(new SketchShit("pattern34.pde", new pattern34())));
-		//35
-		sketches.add(Arrays.asList(new SketchShit("pattern35.pde", new pattern35())));
-		sketches.add(Arrays.asList(new SketchShit("pattern36.pde", new pattern36())));
-		sketches.add(Arrays.asList(new SketchShit("pattern37.pde", new pattern37())));
-		sketches.add(Arrays.asList(new SketchShit("pattern38.pde", new pattern38())));
-		sketches.add(Arrays.asList(new SketchShit("pattern39.pde", new pattern39())));
-		//40
-		sketches.add(Arrays.asList(new SketchShit("pattern40.pde", new pattern40())));
-		sketches.add(Arrays.asList(new SketchShit("patern41.pde", new patern41())));
-		sketches.add(Arrays.asList(new SketchShit("pattern42.pde", new pattern42())));
-		sketches.add(Arrays.asList(new SketchShit("pattern43.pde", new pattern43())));
-		sketches.add(Arrays.asList(new SketchShit("patern_44.pde", new patern_44())));
-		//45
-		sketches.add(Arrays.asList(new SketchShit("pattern45.pde", new pattern45())));
-		sketches.add(Arrays.asList(new SketchShit("pattern46.pde", new pattern46())));
-		sketches.add(Arrays.asList(new SketchShit("warningtria.pde", new warningtria())));
-		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern_49_2_0.pde", new pattern_49_2_0())));
+		sketches.add(Arrays.asList(new SketchShit("pattern23.pde", new pattern23())));
 	}	
 
 	public SketchShit getShit()
