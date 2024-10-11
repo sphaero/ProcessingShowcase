@@ -1,10 +1,10 @@
 NAME="warning"
 PRC=/opt/processing-3.5.4
 PRC4=/opt/processing-4.3
-JFLAGS = -target 1.8 -source 1.8 -g -cp "./src:./src/pde:$(PRC)/core/library/core.jar:minim.jar:$(PRC)/core/library/jogl-all.jar:oscP5.jar:picocli-4.6.3.jar"
-JVMFLAGS = -cp "./src:./src/pde:$(PRC)/core/library/core.jar:$(PRC)/core/library/jogl-all.jar:$(PRC)/core/library/gluegen-rt.jar:oscP5.jar:picocli-4.6.3.jar"
+JFLAGS = -target 1.8 -source 1.8 -g -cp "./src:./src/pde:$(PRC4)/core/library/core.jar:minim.jar:$(PRC4)/core/library/jogl-all.jar:oscP5.jar:picocli-4.6.3.jar"
+JVMFLAGS = -cp "./src:./src/pde:$(PRC4)/core/library/core.jar:$(PRC4)/core/library/jogl-all.jar:$(PRC4)/core/library/gluegen-rt.jar:oscP5.jar:picocli-4.6.3.jar"
 JC = $(PRC4)/java/bin/javac
-JVM = $(PRC)/java/bin/java
+JVM = $(PRC4)/java/bin/java
 JAR = $(PRC4)/java/bin/jar
 SKETCH_DIRS = pde/*
 
@@ -41,7 +41,7 @@ run:
 	$(JVM) -XX:+AlwaysPreTouch -Xss256k -Xms1g -Xmx1g $(JVMFLAGS) $(MAIN)
 
 dist: classes
-	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC)/core/library/core.jar $(PRC)/core/library/jogl-all.jar $(PRC)/core/library/gluegen-rt.jar ./oscP5.jar ./picocli-4.6.3.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
+	echo "Manifest-Version: 1.0\nCreated-By: 1.6.0 (Sun Microsystems Inc.)\nClass-Path: $(PRC4)/core/library/core.jar $(PRC4)/core/library/jogl-all.jar $(PRC4)/core/library/gluegen-rt.jar ./oscP5.jar ./picocli-4.6.3.jar\nMain-Class: ProcessingShowcase\n" > MANIFEST.MF
 	$(JAR) cvfm dist/$(NAME).jar MANIFEST.MF
 	cd src; $(JAR) uvf ../dist/$(NAME).jar *.class
 	cd src/pde;	$(JAR) uvf ../../dist/$(NAME).jar *.class 
