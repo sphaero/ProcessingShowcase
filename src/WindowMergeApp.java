@@ -51,38 +51,31 @@ public class WindowMergeApp extends PApplet {
     
     int played15 = -1;
     int nickidx = 0;
-    String[] nicknames = {"sphaero","Congolais"
-    		,"kurketrekker\n"
-    		, "dipsy\n"
-    		, "Codeclown\n"
-    		, "Sojasaus\n"
-    		, "Khetieq\n"
-    		, "Waaaaaa!\n"
-    		, "schmetterling\n"
-    		, "toiletb0y\n"
-    		, "Oswald\n"
-    		, "yebbit\n"
-    		, "debie.l\n"
-    		, "JamPot\n"
-    		, "Maassisimo\n"
-    		, "Melman\n"
-    		, "Sambal\n"
-    		, "Bob_the_Builder\n"
-    		, "green\n"
-    		, "geek\n"
-    		, "Lors\n"
-    		, "sjeuf7\n"
-    		, "kopjecode"};
-
+    String[] nicknames = {
+    		"sphaero",
+    		"bibs",
+    		"IK",
+    		"Naadkat",
+    		"Kaakje katkit",
+    		"Stokvis",
+    		"Meerlol",
+    		"Copper",
+    		"AC",
+    		"Venno",
+    		"Bolt",
+    		"ThipixZ",
+    		"Fleydz"
+    	};
         
     float totalLength = 0;
     
 	public void setup()
 	{
-		if (mono == null)  mono = createFont("static/RobotoMono-SemiBold.ttf", 64);
+		if (mono == null)  mono = createFont("Amiga-Regular.ttf", 64);
 		if (oscP5 == null) oscP5 = new OscP5(this,6200);
 
 		SketchShit sht = getShit();
+		if (sht == null) return;
 		sketch = sht.sketch;
 		_runningIndex = currentIndex;
 		if (sketch.g== null )
@@ -99,6 +92,7 @@ public class WindowMergeApp extends PApplet {
 		{
 			sketch.setSize(this.width, this.height);
 		}
+		sketch.resetShader();
 		sketch.resetMatrix();
 		colorMode(RGB, 255, 255, 255);
 		sketch.colorMode(RGB, 255, 255, 255);
@@ -261,15 +255,15 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pattern5.pde", new pattern5()))); // 5
-		sketches.add(Arrays.asList(new SketchShit("demo_test_hidde.pde", new demo_test_hidde())));
-		sketches.add(Arrays.asList(new SketchShit("flags.pde", new flags())));
-		sketches.add(Arrays.asList(new SketchShit("makeskeleton.pde", new makeskeleton())));		
-		sketches.add(Arrays.asList(new SketchShit("medlab_les4_mimicmusic_thomas_wind.pde", new medlab_les4_mimicmusic_thomas_wind())));
-		sketches.add(Arrays.asList(new SketchShit("shadertest.pde", new shadertest()))); // 10
-		sketches.add(Arrays.asList(new SketchShit("sillyskeleton.pde", new sillyskeleton())));
+		sketches.add(null); // 5
+		sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6())));
+		sketches.add(Arrays.asList(new SketchShit("pattern7.pde", new pattern7())));
+		sketches.add(null);		
+		sketches.add(Arrays.asList(new SketchShit("pattern9.pde", new pattern9())));
+		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("voetbal2.pde", new voetbal2())));
-		sketches.add(Arrays.asList(new SketchShit("voorbereiding_4_okt_.pde", new voorbereiding_4_okt_())));
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern14.pde", new pattern14())));
 		sketches.add(Arrays.asList(new SketchShit("pattern15.pde", new pattern15()))); //15
 		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
@@ -278,8 +272,9 @@ public class WindowMergeApp extends PApplet {
 		sketches.add(Arrays.asList(new SketchShit("pattern19.pde", new pattern19())));
 		sketches.add(null); // 20
 		sketches.add(Arrays.asList(new SketchShit("pattern21.pde", new pattern21())));
-		sketches.add(null);
+		sketches.add(Arrays.asList(new SketchShit("pattern22.pde", new pattern22())));
 		sketches.add(Arrays.asList(new SketchShit("pattern23.pde", new pattern23())));
+		sketches.add(Arrays.asList(new SketchShit("pattern24.pde", new pattern24())));
 	}	
 
 	public SketchShit getShit()
@@ -298,7 +293,7 @@ public class WindowMergeApp extends PApplet {
 		if ( presentation )
 			fullScreen(2);
 		else
-			size(720, 480);
+			size(720, 480, P2D);
 		build();
 	}
 	
