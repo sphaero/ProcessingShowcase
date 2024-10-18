@@ -164,6 +164,10 @@ public class WindowMergeApp extends PApplet {
 		{
 			played15 = -1;
 		}
+		textFont(mono);
+		textAlign(LEFT);
+		text(patternnr, width, height - 50);
+
 		g.endDraw();
 		
 		if ( currentIndex != _runningIndex)
@@ -250,25 +254,25 @@ public class WindowMergeApp extends PApplet {
 		currentIndex = -1;
 		List<SketchShit> filler = Arrays.asList(new SketchShit("filler.pde", new filler()));
 		
-		sketches.add(filler);
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(null);
-		sketches.add(null); // 5
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern6.pde", new pattern6())));
+		sketches.add(Arrays.asList(new SketchShit("pattern6_IDX10.pde", new pattern6_IDX10())));
 		sketches.add(Arrays.asList(new SketchShit("pattern7.pde", new pattern7())));
 		sketches.add(null);		
 		sketches.add(Arrays.asList(new SketchShit("pattern9.pde", new pattern9())));
 		sketches.add(Arrays.asList(new SketchShit("pattern10.pde", new pattern10())));
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("voetbal2.pde", new voetbal2())));
+		sketches.add(Arrays.asList(new SketchShit("intro.pde", new intro())));
 		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern14.pde", new pattern14())));
 		sketches.add(Arrays.asList(new SketchShit("pattern15.pde", new pattern15()))); //15
 		sketches.add(Arrays.asList(new SketchShit("pattern16.pde", new pattern16())));
 		sketches.add(null);
-		sketches.add(Arrays.asList(new SketchShit("pat19.pde", new pat19())));
+		sketches.add(null);
 		sketches.add(Arrays.asList(new SketchShit("pattern19.pde", new pattern19())));
 		sketches.add(null); // 20
 		sketches.add(Arrays.asList(new SketchShit("pattern21.pde", new pattern21())));

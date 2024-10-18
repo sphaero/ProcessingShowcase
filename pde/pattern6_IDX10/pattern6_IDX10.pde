@@ -1,11 +1,19 @@
-PFont f;
-String[] lines;
-int startLines = 0;
 import netP5.*;
 import oscP5.*;
 
 OscP5 oscP5;
 
+float H= 0.02;
+ float xoff;
+ float b;
+ int x = 300 ; 
+ int dx = 10;  // beweging snelheid X AS
+ int y = 300; 
+ int dy = 15; // beweging snelheid Y AS
+ int e = 18;
+ int u = 18;
+ int G = 720;
+ int count = 0;
 int songposition = 0;
 int patternnr = 0;
 int patternrow = 0;
@@ -27,49 +35,66 @@ String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
 
-void setup() 
+void setup()
 {
-  size(720,480);
-  startLines = 0;
-  f = createFont("Amiga-Regular.ttf", 48);
-  lines = loadStrings("intro.txt");
+  size(720, 480);
+  frameRate(60);
   oscP5 = new OscP5(this,6200);
-  //textAlign(CENTER);
+   xoff= 0;
+  b=0.004;
 }
 
-void draw() {
-  float r = (-cos(frameCount*0.01)*127+127)*0.7;
-  float rb = r*0.7;
-  float g = (-cos(frameCount*0.005)*127+127)*0.7;
-  float gb = g*0.7;
-  background(rb, gb,0);
-  if (channel2instr == 7 && startLines == 0)
-    startLines = frameCount;
-  textFont(f);
+void draw() 
+{
+  background(0);
+  noStroke();
+  int widthkwart = width/4;
+  if (channel1instr != 0 )
+  { 
+    fill(70, 35, 122);
+    rect(0, 0,  widthkwart, height);    
+  }
+  if (channel2instr != 0 )
+  { 
+     background(0);
+  stroke(255);
+  noFill();
+  strokeWeight(4) ;
+  beginShape();
+  for (int x = 0; x < width; x++){
+    stroke(255);
+    float y = noise(xoff)*height;
+    vertex(x,y);
+    xoff += b;
+    xoff = xoff % 1000;
+  
+  }
+  endShape();
+  }
+  if (channel3instr != 0 )
+  { 
+    background(random(255),random(255),random(255)); 
+  }
+  if (channel4instr != 0 )
+  { 
     
-  if (startLines > 0)
-  {
-    fill(200,r,g);
-    translate(0, -(frameCount-startLines));
-    for (int i = 0 ; i < lines.length; i++) 
-    {
-      text(lines[i], 32, height+(i+1)*64);
-    }
+  stroke(255);
+  noFill();
+  strokeWeight(4) ;
+  beginShape();
+  for (int x = 0; x < width; x++){
+    stroke(random(255),random(255),random(255));
+    float y = noise(xoff)*height;
+    vertex(x,y);
+    xoff += H;
+    xoff = xoff % 1000;
   }
-  else
-  {
-    for (int i=0;i<30;i++)
-    {
-      rectMode(CENTER);
-      noFill();
-      strokeWeight(5);
-      stroke((i+frameCount*0.2)*19%255, 127);
-      rect(width/2, height/2, i*25, i*25);
-    }
-    fill(200,r,g, frameCount);
-    textSize(200);
-    text("TITLE", 100, 300);
+  
+ 
+  endShape();  
   }
+  
+  
 }
 
 void oscEvent(OscMessage message) 
@@ -107,6 +132,6 @@ void oscEvent(OscMessage message)
                                       channel3note, channel3instr, channel3effect, channel3effect_param,
                                       channel4note, channel4instr, channel4effect, channel4effect_param
                                       );
-    //println( feedback_formatted );
+    println( feedback_formatted );
   }
 }

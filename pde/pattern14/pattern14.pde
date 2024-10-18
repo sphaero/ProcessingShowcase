@@ -3,13 +3,16 @@ import oscP5.*;
 
 OscP5 oscP5;
 
+int direction = 0; // 0 is right, 1 is left
+float rotation = 0;
+
 float startTime, elapsedTime, endOfSustain;
 boolean sustainOn;
 
-float attack = 100; // in ms
+float attack = 50; // in ms
 float decay = 100; // in ms
-float sustain = 0.6; // in percentage (0.5 = 50%)
-float release = 500; // in ms
+float sustain = 0.8; // in percentage (0.5 = 50%)
+float release = 300; // in ms
 
 int lastPos;
 
@@ -47,35 +50,63 @@ void setup()
 
 void draw()
 {
-  if (lastPos != ((patternrow + 1) / 64) * 4) {
+  if (patternrow % 4 == 0) {
     startTime = millis();
-    lastPos = ((patternrow + 1) / 64 * 4);
   }
   
-  println(lastPos);
-  println(patternrow);
+  // println(lastPos);
+  // println(patternrow);
 
   background(0);
   noStroke();
+  
+  elapsedTime = millis() - startTime; 
+  
+  fill(0);
+  stroke(255, 67, 101);
+  rect(360 - getEnvelopeValue(elapsedTime) * 50, 240 - getEnvelopeValue(elapsedTime) * 50, 100 + getEnvelopeValue(elapsedTime) * 100, 100 + getEnvelopeValue(elapsedTime) * 100);
+  
+  // Spotlights
+  
+  if (patternrow % 8 == 0) {
+    if (direction == 1) {
+      direction = 0;
+      rotation = -0.6;
+    } else {
+      direction = 1;
+      rotation = 0.6;
+    }
+  }
+  
+  if (direction == 0) {
+    if (rotation < 0.6) {
+      rotation += 0.03;
+    } 
+  } else {
+    if (rotation > -0.6) {
+      rotation -= 0.03;
+    } else {
+      rotation = -0.65;
+    }
+  }
+  
+
+  pushMatrix();
+  noStroke();
+  translate(240, -25);
+  rotate(PI*sin(rotation)); // range -0.6 tot 0.6
+  generateSpotlight();
+  popMatrix();
+  
+  pushMatrix();
+  translate(480, -25);
+  rotate(PI*sin(rotation)); // range -0.6 tot 0.6
+  generateSpotlight();
+  popMatrix();
+  
+  // println(getEnvelopeValue(millis()));
 
   // rect(width/4 * 2, height/4 * 2, 100, 100);
-
-  if (channel1instr != 0 )
-  {
-    rect((width/3) * 2, height/3, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel2instr != 0 )
-  {
-    rect(width/3, height/3 * 2, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel3instr != 0 )
-  {
-    rect(width/3 * 2, height/3 * 2, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel4instr != 0 )
-  {
-    rect(width/3 * 2, height/3, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
 }
 
 float getEnvelopeValue(float t) {
@@ -92,9 +123,7 @@ float getEnvelopeValue(float t) {
     // Release
     return map(t, attack + decay, attack + decay + release, sustain, 0);
   } else {
-    // Reset cycle
-    startTime = millis();
-    return 0;
+    return 0.0;
   }
 }
 
@@ -136,4 +165,14 @@ void oscEvent(OscMessage message)
       );
     println( feedback_formatted );
   }
+}
+
+
+void generateSpotlight() {
+  beginShape();
+  fill(255, 255, 255, 128);
+  vertex(0, 0); // top
+  vertex(300, 1500); // bottom left 
+  vertex(-300, 1500); // bottom right
+  endShape(CLOSE);
 }

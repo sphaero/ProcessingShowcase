@@ -8,7 +8,7 @@ boolean sustainOn;
 
 float attack = 100; // in ms
 float decay = 100; // in ms
-float sustain = 0.6; // in percentage (0.5 = 50%)
+float sustain =  0.6; // in percentage (0.5 = 50%)
 float release = 500; // in ms
 
 int lastPos;
@@ -43,38 +43,43 @@ void setup()
   startTime = millis();
   sustainOn = false;
   lastPos = 0;
+  
+  background(0);
 }
 
 void draw()
 {
-  if (lastPos != ((patternrow + 1) / 64) * 4) {
-    startTime = millis();
-    lastPos = ((patternrow + 1) / 64 * 4);
+  if (patternrow > 48) {
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
+    lineBlob();
   }
   
-  println(lastPos);
-  println(patternrow);
+}
 
-  background(0);
-  noStroke();
-
-  // rect(width/4 * 2, height/4 * 2, 100, 100);
-
-  if (channel1instr != 0 )
-  {
-    rect((width/3) * 2, height/3, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel2instr != 0 )
-  {
-    rect(width/3, height/3 * 2, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel3instr != 0 )
-  {
-    rect(width/3 * 2, height/3 * 2, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
-  }
-  if (channel4instr != 0 )
-  {
-    rect(width/3 * 2, height/3, 100 + getEnvelopeValue(millis()) * 10, 100 + getEnvelopeValue(millis()) * 10);
+void lineBlob() {
+  float x = floor(random(width));
+  float y = floor(random(height));
+  for (float i = 0; i < 10; i++) {
+    stroke(255);
+    line(
+      x + random(-10, 10),
+      y + random(-10, 10),
+      x + random(-10, 10),
+      y + random(-10, 10)
+    );
   }
 }
 
