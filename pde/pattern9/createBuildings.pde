@@ -36,6 +36,7 @@ void createBuidlings()
   building1Form.vertex(50, 200);
   building1Form.vertex(50, buildingType1height);
   building1Form.vertex(-50, buildingType1height);
+  building1Form.endShape();
 
   PShape building1Window1 = createShape();
   building1Window1.beginShape();
@@ -44,6 +45,7 @@ void createBuidlings()
   building1Window1.vertex(10, 170);
   building1Window1.vertex(10, 150);
   building1Window1.vertex(-40, 150);
+  building1Window1.endShape();
 
   PShape building1Window2 = createShape();
   building1Window2.beginShape();
@@ -52,6 +54,7 @@ void createBuidlings()
   building1Window2.vertex(40, 110);
   building1Window2.vertex(40, 90);
   building1Window2.vertex(-10, 90);
+  building1Window2.endShape();
 
   PShape building1Window3 = createShape();
   building1Window3.beginShape();
@@ -60,6 +63,7 @@ void createBuidlings()
   building1Window3.vertex(10, 40);
   building1Window3.vertex(10, 60);
   building1Window3.vertex(-40, 60);
+  building1Window3.endShape();
 
   building1.addChild(building1Form);
   building1.addChild(building1Window1);
@@ -76,6 +80,7 @@ void createBuidlings()
   building2Form.vertex(50, 200);
   building2Form.vertex(50, buildingType2height);
   building2Form.vertex(-50, buildingType2height);
+  building2Form.endShape();
 
   PShape building2Window1 = createShape();
   building2Window1.beginShape();
@@ -84,6 +89,7 @@ void createBuidlings()
   building2Window1.vertex(20, 160);
   building2Window1.vertex(20, 180);
   building2Window1.vertex(-20, 180);
+  building2Window1.endShape();
 
   PShape building2Window2 = createShape();
   building2Window2.beginShape();
@@ -92,6 +98,7 @@ void createBuidlings()
   building2Window2.vertex(30, 100);
   building2Window2.vertex(30, 120);
   building2Window2.vertex(-10, 120);
+  building2Window2.endShape();
 
   PShape building2Window3 = createShape();
   building2Window3.beginShape();
@@ -100,6 +107,7 @@ void createBuidlings()
   building2Window3.vertex(20, 50);
   building2Window3.vertex(20, 70);
   building2Window3.vertex(-40, 70);
+  building2Window3.endShape();
 
   PShape building2Window4 = createShape();
   building2Window4.beginShape();
@@ -108,6 +116,7 @@ void createBuidlings()
   building2Window4.vertex(30, -10);
   building2Window4.vertex(30, 10);
   building2Window4.vertex(-10, 10);
+  building2Window4.endShape();
 
   building2.addChild(building2Form);
   building2.addChild(building2Window1);
@@ -125,6 +134,7 @@ void createBuidlings()
   building3Form.vertex(50, 200);
   building3Form.vertex(50, buildingType3height);
   building3Form.vertex(-50, buildingType3height);
+  building3Form.endShape();
 
   PShape building3Window1 = createShape();
   building3Window1.beginShape();
@@ -133,6 +143,7 @@ void createBuidlings()
   building3Window1.vertex(40, 150);
   building3Window1.vertex(40, 170);
   building3Window1.vertex(0, 170);
+  building3Window1.endShape();
 
   PShape building3Window2 = createShape();
   building3Window2.beginShape();
@@ -141,6 +152,7 @@ void createBuidlings()
   building3Window2.vertex(20, 110);
   building3Window2.vertex(20, 130);
   building3Window2.vertex(-30, 130);
+  building3Window2.endShape();
 
   PShape building3Window3 = createShape();
   building3Window3.beginShape();
@@ -149,6 +161,7 @@ void createBuidlings()
   building3Window3.vertex(0, 90);
   building3Window3.vertex(0, 70);
   building3Window3.vertex(-40, 70);
+  building3Window3.endShape();
 
   PShape building3Window4 = createShape();
   building3Window4.beginShape();
@@ -157,6 +170,7 @@ void createBuidlings()
   building3Window4.vertex(0, 0);
   building3Window4.vertex(0, -20);
   building3Window4.vertex(40, -20);
+  building3Window4.endShape();
 
   PShape building3Window5 = createShape();
   building3Window5.beginShape();
@@ -165,6 +179,7 @@ void createBuidlings()
   building3Window5.vertex(-40, -30);
   building3Window5.vertex(-40, -50);
   building3Window5.vertex(10, -50);
+  building3Window5.endShape();
 
   building3.addChild(building3Form);
   building3.addChild(building3Window1);

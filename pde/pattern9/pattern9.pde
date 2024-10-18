@@ -65,7 +65,7 @@ PShape wheel;
 
 void setup()
 {
-  size(720, 480);
+  size(720, 480,P2D);
   frameRate(60);
   oscP5 = new OscP5(this, 6200);
   
@@ -91,8 +91,11 @@ void setup()
   wheelTire.curveVertex(-20, 0);
   wheelTire.curveVertex(-14, -14);
   wheelTire.curveVertex(0, -20);
+  wheelTire.curveVertex(14, -14);
+  wheelTire.endShape();
   //empty inside of the wheel
   wheelTire.beginContour();
+  wheelTire.curveVertex(7, -7);
   wheelTire.curveVertex(0, -10);
   wheelTire.curveVertex(-7, -7);
   wheelTire.curveVertex(-10, 0);
@@ -121,6 +124,7 @@ void setup()
   wheelFrame.vertex(-12, -2);
   wheelFrame.vertex(-2, -2);
   wheelFrame.vertex(-2, -12);
+  wheelFrame.endShape();
 
 //create the frame of the car
   PShape carFrame = createShape();
@@ -157,7 +161,7 @@ void setup()
   carLamp.vertex(200, 0);
   carLamp.vertex(200, 10);
   carLamp.vertex(230, 10);
-  endShape(CLOSE);
+  carLamp.endShape();
 
 //grouping the shapes
   car.addChild(carLamp);
@@ -193,6 +197,7 @@ void draw()
     stars[i].move();
     stars[i].appear();
   }
+  
   drawRoad();
   createBuidlings();
   drawCar(carPosXTracker, 0, 0);

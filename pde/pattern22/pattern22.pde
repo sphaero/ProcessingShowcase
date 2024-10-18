@@ -26,12 +26,22 @@ String feedback_formatted = "";
 
 float yoff=0.0;
 
+
+
+
 void setup() {
-  size(640, 360); 
+  size(720,480,P2D); 
   frameRate(60);
   oscP5 = new OscP5(this,6200);
   noStroke();  
 }
+
+
+
+
+
+
+
 
 void draw() { 
   background(1,106,136);
@@ -40,28 +50,28 @@ void draw() {
   
   if (channel1instr !=0 )
   {
-      blendMode(DIFFERENCE);
+      blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,450);
   }
   
   if (channel2instr !=0)
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,350);
   }
   
   if (channel3instr !=0)
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,250);
   }
   
   if (channel4instr !=0);
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,150);
   }
@@ -69,14 +79,14 @@ void draw() {
   
   if (channel1note !=0 )
   {
-      blendMode(DIFFERENCE);
+      blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,300);
   }
   
   if (channel2note !=0)
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,200);
    
@@ -86,7 +96,7 @@ void draw() {
   
   if (channel3note !=0)
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,100);
     
@@ -94,7 +104,7 @@ void draw() {
   
   if (channel4note !=0)
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
    fill(255);
    circle(width/2, height/2,50);
   }
@@ -103,14 +113,14 @@ void draw() {
   
   if(channel2note !=0)
   { 
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
     fill(255);
     beginShape();
     
     float xoff =0;
     
     for (float x = 0; x <= width; x += 10) {
-      float y = map(noise(xoff, yoff), 0,1,241,250); 
+      float y = map(noise(xoff, yoff), 0,1,424,226); 
       
       vertex (x,y);
       xoff += 0.05;
@@ -120,13 +130,13 @@ void draw() {
     vertex(0,height);
     endShape(CLOSE);
     
-     blendMode(DIFFERENCE);
+     blendMode(EXCLUSION);
     fill(255);
     beginShape();
     
     
     for (float x = 0; x <= width; x += 10) {
-      float y = map(noise(xoff, yoff), 0,1,252,95); 
+      float y = map(noise(xoff, yoff), 0,1,184,175); 
       
       vertex (x,y);
       xoff += 0.05;
@@ -139,14 +149,14 @@ void draw() {
   
   else
   {
-    blendMode(DIFFERENCE);
+    blendMode(EXCLUSION);
     fill(255);
     beginShape();
     
     float xoff =0;
     
     for (float x = 0; x <= width; x += 10) {
-      float y = map(noise(xoff, yoff), 0,1,200,300); 
+      float y = map(noise(xoff, yoff), 0,1,352,303); 
       
       vertex (x,y);
       xoff += 0.05;
@@ -156,13 +166,13 @@ void draw() {
     vertex(0,height);
     endShape(CLOSE);
     
-     blendMode(DIFFERENCE);
+     blendMode(EXCLUSION);
     fill(255);
     beginShape();
     
     
     for (float x = 0; x <= width; x += 10) {
-      float y = map(noise(xoff, yoff), 0,1,200,100); 
+      float y = map(noise(xoff, yoff), 0,1,196,74); 
       
       vertex (x,y);
       xoff += 0.05;

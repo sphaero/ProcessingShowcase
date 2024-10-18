@@ -10,11 +10,10 @@ float speed = 0.08;
 PShape wereld;
 PImage gradientImage; 
 
-void setup() { //<>//
+void setup() {   //<>//
   size(720, 480, P2D);
   wereld = loadShape("Wereld.svg");
-  gradientImage = loadImage("Wereld.png");  
-  
+  gradientImage = loadImage("Wereld.png");   
 }
 
 void draw() {
@@ -93,7 +92,6 @@ void draw() {
   popMatrix();
   
   rotation += 0.120;
-  
 }
 
 
@@ -102,24 +100,66 @@ void drawTile() {
 }
 
 void drawTriangles(float xpos, float ypos) { 
-  for (int triDuplicate = 0; triDuplicate < 30; triDuplicate++ ) {
+//Opgedeeld in rijen
+
+  //1 Oranje
+  for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
     fill(254, 149, 119);
     noStroke();
     triangle(xpos  + 0 + triDuplicate * 45, ypos + 0, xpos + 0 + triDuplicate * 45, ypos + 45, xpos + 45 + triDuplicate * 45, ypos + 45);
   }
-   for (int triDuplicate = 0; triDuplicate <30; triDuplicate++ ) {
+  //2 Blauw
+   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
     fill(1, 106, 136);
     noStroke();
     triangle(xpos  + 45 + triDuplicate * 45, ypos + 90, xpos + 0 + triDuplicate * 45, ypos + 90, xpos + 45 + triDuplicate * 45, ypos + 45);
   }
-   for (int triDuplicate = 0; triDuplicate <30; triDuplicate++ ) {
+  //3 Oranje
+   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
     fill(254, 149, 119);
     noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 390, xpos + 0 + triDuplicate * 45, ypos + 435, xpos + 45 + triDuplicate * 45, ypos + 435);
+    triangle(xpos  + 0 + triDuplicate * 45, ypos + 180, xpos + 0 + triDuplicate * 45, ypos + 225, xpos + 45 + triDuplicate * 45, ypos + 225);
   }
-  for (int triDuplicate = 0; triDuplicate < 30; triDuplicate++ ) {
+  //4 Blauw
+   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
     fill(1, 106, 136);
     noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 480, xpos + 0 + triDuplicate * 45, ypos + 435, xpos + 45 + triDuplicate * 45, ypos + 480);
+    triangle(xpos  + 45 + triDuplicate * 45, ypos + 225, xpos + 0 + triDuplicate * 45, ypos + 270, xpos + 45 + triDuplicate * 45, ypos + 270);
+  }
+  //5 Oranje
+   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+    fill(254, 149, 119);
+    noStroke();
+    triangle(xpos  + 0 + triDuplicate * 45, ypos + 90, xpos + 0 + triDuplicate * 45, ypos + 135, xpos + 45 + triDuplicate * 45, ypos + 135);
+  }
+  //6 Blauw
+   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+    fill(1, 106, 136);
+    noStroke();
+    triangle(xpos  + 45 + triDuplicate * 45, ypos + 135, xpos + 0 + triDuplicate * 45, ypos + 180, xpos + 45 + triDuplicate * 45, ypos + 180);
+  }
+   //7 Oranje
+   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+    fill(254, 149, 119);
+    noStroke();
+    triangle(xpos  + 0 + triDuplicate * 45, ypos + 270, xpos + 0 + triDuplicate * 45, ypos + 315, xpos + 45 + triDuplicate * 45, ypos + 315);
+  }
+  //8 Blauw
+   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+    fill(1, 106, 136);
+    noStroke();
+    triangle(xpos  + 45 + triDuplicate * 45, ypos + 315, xpos + 0 + triDuplicate * 45, ypos + 360, xpos + 45 + triDuplicate * 45, ypos + 360);
+  }
+   //9 Oranje
+   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+    fill(254, 149, 119);
+    noStroke();
+    triangle(xpos  + 0 + triDuplicate * 45, ypos + 405, xpos + 0 + triDuplicate * 45, ypos + 360, xpos + 45 + triDuplicate * 45, ypos + 405);
+  }
+   //10 Blauw
+   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+    fill(1, 106, 136);
+    noStroke();
+    triangle(xpos  + 45 + triDuplicate * 45, ypos + 460, xpos + 0 + triDuplicate * 45, ypos + 460, xpos + 45 + triDuplicate * 45, ypos + 410);
   }
 }
