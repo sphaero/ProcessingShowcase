@@ -26,7 +26,7 @@ String feedback_formatted = "";
 
 void setup()
 {
-  size(720, 480);
+  size(720, 480,);
   frameRate(60);
   oscP5 = new OscP5(this,6200);
 }
@@ -48,7 +48,7 @@ void draw()
   rect(180 , 65, channel2note, channel2note);
   rect(180 , 65 , channel2note , channel2note);  
   fill (255, 0, 0);
-  blendMode(DIFFERENCE);
+  blendMode(REPLACE);
   
   rect(180 +channel2note , 65 + channel2note, channel2note , channel2note );
   rect(180 +channel2note, 65 + channel2note, channel2note, channel2note );
@@ -56,7 +56,7 @@ void draw()
   rect(180 +channel2note, 65 + channel2note, channel2note, channel2note);
   rect(180 +channel2note, 65 + channel2note, channel2note , channel2note);  
   fill (255, 0, 100);
-  blendMode(DIFFERENCE);
+  blendMode(REPLACE);
   
   rect(130 +channel2note , 30 + channel2note, channel2note , channel2note );
   rect(130 +channel2note, 30 + channel2note, channel2note, channel2note );
@@ -64,7 +64,7 @@ void draw()
   rect(130 +channel2note, 30 + channel2note, channel2note, channel2note);
   rect(130 +channel2note, 30 + channel2note, channel2note , channel2note);  
   fill (255, 0, 50);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
     
     
     //ellipses
@@ -76,7 +76,7 @@ void draw()
   ellipse(10 - 150, 10 - 150, channel2note / 10, channel2note / 10);
   ellipse(10 - 200, 10 - 200, channel2note / 10, channel2note / 10);
   fill (255);
-  blendMode(DIFFERENCE); 
+  blendMode(REPLACE); 
     
   ellipse(500, 500, channel2note, channel2note);
   ellipse(500 - 50, 500 - 50, channel2note , channel2note);
@@ -84,7 +84,7 @@ void draw()
   ellipse(500 - 150, 500 - 150, channel2note , channel2note );
   ellipse(500 - 200, 500 - 200, channel2note , channel2note );
   fill (100, 100, 100);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
   
   ellipse(500, 500, channel3note, channel3note);
   ellipse(500 - 50, 500 - 50, channel3note -50, channel3note -50);
@@ -92,7 +92,7 @@ void draw()
   ellipse(500 - 150, 500 - 150, channel3note -150, channel3note -150);
   ellipse(500 - 200, 500 - 200, channel3note -200 , channel3note -200);
   fill (0, 0, 0);
-  blendMode(DIFFERENCE);
+  blendMode(REPLACE);
   
   ellipse(450, 500, channel3note + 50, channel3note + 50);
   ellipse(450 + channel2note, 450 + channel2note, channel3note -100, channel3note - 100);
@@ -100,7 +100,7 @@ void draw()
   ellipse(450 + channel2note, 450 + channel2note, channel3note - 200, channel3note - 200);
   ellipse(450 + channel2note,450 + channel2note, channel3note - 250, channel3note - 250);
   fill (255, channel3note - 100, channel4instr);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
    // rect(width - widthkwart*3, 0,  widthkwart, channel2note);
   }
   if (channel3instr != 0 )
@@ -114,7 +114,7 @@ void draw()
   ellipse(1000 - 150, 1000 - 150, channel3note, channel3note );
   ellipse(1000 - 200, 1000 - 200, channel3note , channel3note);  
   fill (200, channel1note, 100);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
   
   ellipse(1000 - 200, 1000 - 200, channel3note , channel3note);
   ellipse(1000 - 250, 1000 - 250, channel3note, channel3note );
@@ -122,7 +122,7 @@ void draw()
   ellipse(1000 - 350, 1000 - 350, channel3note, channel3note );
   ellipse(1000 - 400, 1000 - 400, channel3note , channel3note);  
   fill (200, channel1note, 100);
-  blendMode(DIFFERENCE);
+  blendMode(REPLACE);
 }
   if (channel4instr != 0 )
   { 
@@ -132,7 +132,7 @@ void draw()
   rect(360 , 180, channel4note, channel4note);
   rect(360 , 180 , channel4note , channel4note);  
   fill (255, 0, 0);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
   
   rect(360 +channel4note , 130 + channel4note, channel4note , channel4note );
   rect(360 +channel4note, 130 + channel4note, channel4note, channel4note );
@@ -140,7 +140,7 @@ void draw()
   rect(360 +channel4note, 130 + channel4note, channel4note, channel4note);
   rect(360 +channel4note, 130 + channel4note, channel4note , channel4note);  
   fill (255, 0, 100);
-  blendMode(DIFFERENCE);
+  blendMode(REPLACE);
   
   rect(260 +channel4note , 30 + channel4note, channel4note , channel4note );
   rect(260 +channel4note, 30 + channel4note, channel4note, channel4note );
@@ -148,7 +148,7 @@ void draw()
   rect(260 +channel4note, 30 + channel4note, channel4note, channel4note);
   rect(260 +channel4note, 30 + channel4note, channel4note , channel4note);  
   fill (255, 0, 50);
-  blendMode(DIFFERENCE);
+  blendMode(EXCLUSION);
   
   
     //fill(1, 186, 239);
