@@ -1,19 +1,25 @@
+//made by Thomas Wind
+
+// Gebruik van ChatGPT: Uit vogelen waarom SVG's niet werkte in P2D en hoe ik dat moest oplossen.
+// Gebruik van ChatGPT: Een opzetje voor hoe ik de achtergrond van kleur kon veranderen middels shape scaling.
+
 float rectSize = 0;
 boolean isOranje = false;
 float angle = radians(45);
 
 float rotation = 0;
-float amplitudeVertical = 250;
-float amplitudeHorizontal = 150;
-float speed = 0.08;
+float rotationMain = 0;
+float amplitudeHorizontal = 265; //285 als waarde zonder P2D
+float amplitudeVertical = 135; //170 als waarde zonder P2D
+float speed = 0.05;
 
 PShape wereld;
-PImage gradientImage; 
+PImage gradientImage; //<>//
 
-void setup() {   //<>//
+void setup() {
   size(720, 480, P2D);
   wereld = loadShape("Wereld.svg");
-  gradientImage = loadImage("Wereld.png");   
+  gradientImage = loadImage("Wereld.png");
 }
 
 void draw() {
@@ -40,126 +46,175 @@ void draw() {
   }
 
   resetMatrix();
-  
+
+  //Triangle ACHTERGROND
   drawTriangles(0, 0);
 
-  float countHorizontalA = height / 2 + sin(frameCount * speed) * amplitudeHorizontal;
+  //6 Mini WERELDEN
+  float countVerticalA = height / 2 + sin(frameCount * speed) * amplitudeVertical;
   pushMatrix();
-  translate(width / 2 - 240, countHorizontalA); 
+  translate(width / 2 - 260, countVerticalA); //290 als waarde zonder P2D
   rotate(rotation);
-  rectMode(CENTER);
-  drawTile();
-  popMatrix();
-  
-  float countHorizontalB = height / 2 - sin(frameCount * speed) * amplitudeHorizontal;
-  pushMatrix();
-  translate(width / 2 + 240, countHorizontalB); 
-  rotate(rotation);
-  rectMode(CENTER);
+  shapeMode(CENTER);
   drawTile();
   popMatrix();
 
-  float countVerticalA = width / 2 + sin(frameCount * speed) * amplitudeVertical;
+  float countVerticalB = height / 2 - sin(frameCount * speed) * amplitudeVertical;
   pushMatrix();
-  translate(countVerticalA, height / 2 - 150); 
+  translate(width / 2 + 260, countVerticalB); //290 als waarde zonder P2D
   rotate(rotation);
-  rectMode(CENTER);
+  shapeMode(CENTER);
   drawTile();
   popMatrix();
 
-  float countVerticalB = width / 2 - sin(frameCount * speed) * amplitudeVertical;
+  float countHorizontalA = width / 2 + sin(frameCount * speed) * amplitudeHorizontal;
   pushMatrix();
-  translate(countVerticalB, height / 2 + 150); 
+  translate(countHorizontalA, height / 2 - 135); //165 als waarde zonder P2D
   rotate(rotation);
-  rectMode(CENTER);
+  shapeMode(CENTER);
   drawTile();
   popMatrix();
-  
-  float countVerticalC = width / 2 - sin(frameCount * speed) * amplitudeVertical;
+
+  float countHorizontalB = width / 2 - sin(frameCount * speed) * amplitudeHorizontal;
   pushMatrix();
-  translate(countVerticalC, height / 2 - 150); 
+  translate(countHorizontalB, height / 2 + 135); //165 als waarde zonder P2D
   rotate(rotation);
-  rectMode(CENTER);
+  shapeMode(CENTER);
   drawTile();
   popMatrix();
-  
-  float countVerticalD = width / 2 + sin(frameCount * speed) * amplitudeVertical;
+
+  float countHorizontalC = width / 2 - sin(frameCount * speed) * amplitudeHorizontal;
   pushMatrix();
-  translate(countVerticalD, height / 2 + 150); 
+  translate(countHorizontalC, height / 2 - 135); //165 als waarde zonder P2D
   rotate(rotation);
-  rectMode(CENTER);
+  shapeMode(CENTER);
   drawTile();
   popMatrix();
-  
+
+  float countHorizontalD = width / 2 + sin(frameCount * speed) * amplitudeHorizontal;
+  pushMatrix();
+  translate(countHorizontalD, height / 2 + 135); //165 als waarde zonder P2D
+  rotate(rotation);
+  shapeMode(CENTER);
+  drawTile();
+  popMatrix();
+
   rotation += 0.120;
+
+  //Main WERELD
+  pushMatrix();
+  translate(width / 2, height / 2);
+  rotate(rotationMain);
+  translate(0, 0);
+  drawTileMiddle();
+  popMatrix();
+  rotationMain += -0.01;
 }
 
+//DESIGN ELEMENTEN
 
+//6 Mini WERELD Design
 void drawTile() {
-  image(gradientImage, -75, -75, 150, 150);  
+  wereld.disableStyle(); 
+  shapeMode(CENTER);
+  fill(254, 149, 119);
+  stroke(1, 106, 136);
+  strokeWeight(5);
+  shape(wereld, 0, 0, 150, 150);
 }
 
-void drawTriangles(float xpos, float ypos) { 
-//Opgedeeld in rijen
+//Main WERELD Design
+void drawTileMiddle() {
+  image(gradientImage, -175, -175, 350, 350);
+}
 
-  //1 Oranje
-  for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+//Triangles Pattern DESIGN
+int count = 0;
+
+void drawTriangles(float xpos, float ypos) {
+  int spacing = 80;
+
+  // 1 Oranje rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(254, 149, 119);
     noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 0, xpos + 0 + triDuplicate * 45, ypos + 45, xpos + 45 + triDuplicate * 45, ypos + 45);
+    triangle(
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 0,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 80,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 80
+      );
   }
-  //2 Blauw
-   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+
+  //2 Blauwe rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(1, 106, 136);
     noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 90, xpos + 0 + triDuplicate * 45, ypos + 90, xpos + 45 + triDuplicate * 45, ypos + 45);
+    triangle(
+      xpos  + 80 + triDuplicate * (80 + spacing),
+      ypos + 160,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 160,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 80
+      );
   }
-  //3 Oranje
-   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+
+  // 3 Oranje rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(254, 149, 119);
     noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 180, xpos + 0 + triDuplicate * 45, ypos + 225, xpos + 45 + triDuplicate * 45, ypos + 225);
+    triangle(
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 160,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 240,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 240
+      );
   }
-  //4 Blauw
-   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+
+  //4 Blauwe rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(1, 106, 136);
     noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 225, xpos + 0 + triDuplicate * 45, ypos + 270, xpos + 45 + triDuplicate * 45, ypos + 270);
+    triangle(
+      xpos  + 80 + triDuplicate * (80 + spacing),
+      ypos + 240,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 320,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 320
+      );
   }
-  //5 Oranje
-   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
+
+  // 5 Oranje rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(254, 149, 119);
     noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 90, xpos + 0 + triDuplicate * 45, ypos + 135, xpos + 45 + triDuplicate * 45, ypos + 135);
+    triangle(
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 320,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 400,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 400
+      );
   }
-  //6 Blauw
-   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
+
+  //4 Blauwe rij
+  for (int triDuplicate = 0; triDuplicate < 9; triDuplicate++) {
     fill(1, 106, 136);
     noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 135, xpos + 0 + triDuplicate * 45, ypos + 180, xpos + 45 + triDuplicate * 45, ypos + 180);
-  }
-   //7 Oranje
-   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
-    fill(254, 149, 119);
-    noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 270, xpos + 0 + triDuplicate * 45, ypos + 315, xpos + 45 + triDuplicate * 45, ypos + 315);
-  }
-  //8 Blauw
-   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
-    fill(1, 106, 136);
-    noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 315, xpos + 0 + triDuplicate * 45, ypos + 360, xpos + 45 + triDuplicate * 45, ypos + 360);
-  }
-   //9 Oranje
-   for (int triDuplicate = 0; triDuplicate < 8; triDuplicate++) {
-    fill(254, 149, 119);
-    noStroke();
-    triangle(xpos  + 0 + triDuplicate * 45, ypos + 405, xpos + 0 + triDuplicate * 45, ypos + 360, xpos + 45 + triDuplicate * 45, ypos + 405);
-  }
-   //10 Blauw
-   for (int triDuplicate = 8; triDuplicate < 16; triDuplicate++) {
-    fill(1, 106, 136);
-    noStroke();
-    triangle(xpos  + 45 + triDuplicate * 45, ypos + 460, xpos + 0 + triDuplicate * 45, ypos + 460, xpos + 45 + triDuplicate * 45, ypos + 410);
+    triangle(
+      xpos  + 80 + triDuplicate * (80 + spacing),
+      ypos + 400,
+      xpos + 0 + triDuplicate * (80 + spacing),
+      ypos + 480,
+      xpos + 80 + triDuplicate * (80 + spacing),
+      ypos + 480
+      );
   }
 }

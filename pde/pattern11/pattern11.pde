@@ -26,61 +26,84 @@ String channel2effect_param = "00";
 String channel3effect_param = "00";
 String channel4effect_param = "00";
 String feedback_formatted = "";
-
+int samplePlayed = 0;
+String[] nicknames = {
+        "sphaero",
+        "bibs",
+        "IK",
+        "Naadkat",
+        "Kaakje katkit",
+        "Stokvis",
+        "Meerlol",
+        "Copper",
+        "AC",
+        "Venno",
+        "Bolt",
+        "ThipixZ",
+        "Fleydz"
+      };
+      
 void setup() 
 {
   size(720,480, P2D);
-  startLines = 0;
   f = createFont("Amiga-Regular.ttf", 48);
-  lines = loadStrings("intro.txt");
   oscP5 = new OscP5(this,6200);
   //textAlign(CENTER);
+  samplePlayed = 0;
 }
 
 void draw() {
+  if (channel2instr == 5)
+  {
+    samplePlayed = frameCount;
+  }
   float r = (-cos(frameCount*0.01)*127+127)*0.7;
   float rb = r*0.7;
   //println(rb);
   float g = (-cos(frameCount*0.005)*127+127)*0.7;
   float gb = g*0.7;
   background(rb, gb,0);
-  if (channel2instr == 7 && startLines == 0)
-    startLines = frameCount;
-  textFont(f);
-    
-  if (startLines > 0)
+  if (samplePlayed > 0 && frameCount % 5 > 2)
   {
-    textAlign(LEFT);
-    fill(200,r,g);
-    translate(0, -(frameCount-startLines));
-    for (int i = 0 ; i < lines.length; i++) 
-    {
-      text(lines[i], 32, height+(i+1)*64);
-    }
+    background(255);
   }
-  else
-  {
-    pushMatrix();
-    translate(width/2, height/2);
-    rotate(frameCount*0.01);
-    for (int i=0;i<30;i++)
-    {
-      rotate(0.1*sin(frameCount*0.01));
 
-      rectMode(CENTER);
-      noFill();
-      strokeWeight(1);
-      stroke((i+frameCount*0.1)*19%255, 96);
-      rect(0, 0, i*25, i*25);
-      rect(1, 1, i*25, i*25);
-      rect(-1, -1, i*25, i*25);
-    }
-    popMatrix();
-    fill(200,r,g, frameCount);
-    textSize(148);
-    textAlign(CENTER);
-    text("LIMITLESS", width/2, 300);
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(frameCount*0.01);
+  for (int i=0;i<30;i++)
+  {
+    rotate(0.1*sin(frameCount*0.01));
+
+    rectMode(CENTER);
+    noFill();
+    strokeWeight(1);
+    stroke((i+frameCount*0.1)*19%255, 96);
+    rect(0, 0, i*25, i*25);
+    rect(1, 1, i*25, i*25);
+    rect(-1, -1, i*25, i*25);
   }
+  popMatrix();
+  
+  textFont(f);
+  textSize(48);
+  textAlign(CENTER);
+  translate(width/2, height/2);
+  fill(200,r,g);
+  float cirkelsectie=6.28/nicknames.length;
+  for (int i=0; i<nicknames.length;i++)
+  {
+    float circlepos = cirkelsectie*i+(frameCount*0.01);
+    float radius = min(frameCount*10,190);
+    text(nicknames[i], sin(circlepos)*radius, cos(circlepos)*radius);
+  }  
+  if (samplePlayed > 0)
+  {
+      textSize(148);
+      textAlign(CENTER);
+      text("LIMITLESS", 0, 20);
+  }
+
 }
 
 void oscEvent(OscMessage message) 
@@ -118,6 +141,6 @@ void oscEvent(OscMessage message)
                                       channel3note, channel3instr, channel3effect, channel3effect_param,
                                       channel4note, channel4instr, channel4effect, channel4effect_param
                                       );
-    //println( feedback_formatted );
+    println( feedback_formatted );
   }
 }

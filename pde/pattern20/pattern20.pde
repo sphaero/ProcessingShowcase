@@ -26,8 +26,8 @@ String feedback_formatted = "";
 
 void setup()
 {
-  size(720, 480,);
-  frameRate(60);
+  size(720, 480,P2D);
+  //frameRate(60);
   oscP5 = new OscP5(this,6200);
 }
 

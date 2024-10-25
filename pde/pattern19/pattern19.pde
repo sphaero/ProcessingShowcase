@@ -29,6 +29,21 @@ String feedback_formatted = "";
 
 int x = 320;
 int y = 345;
+int horizon = 160;
+
+PVector[] eindpunt = new PVector[3];
+PVector[] eindpunt2 = new PVector[5];
+PVector location = new PVector(x+30,y+80);
+PVector location2 = new PVector(x+70,y+80);;
+PVector velocity = new PVector(0,0);;
+PVector velocity2 = new PVector(0,0);;
+PVector acceleration;
+PVector acceleration2;
+PVector top;
+PVector top2;
+float topspeed = 5;
+int counter;
+int counter2;
 
 void setup()
 {
@@ -40,104 +55,121 @@ void setup()
 void draw() 
 {
   background(0,168,243);
+  stroke(9,134,190);  
+  fill(9,134,190);
+  rect(0,0,720,horizon-1);
   afbeelding_jet(x,y);
+  strokeWeight(4);
   
   if(channel1note == 160){
   stroke(255,255,255);
-  strokeWeight(4);
-  line(x+30,y+80, 20,0); 
+  line(x+30,y+80, 20,horizon); 
   }
   if(channel1note == 180){
   stroke(255,0,255);
-  strokeWeight(4);
-  line(x+30,y+80, 120,0); 
+  line(x+30,y+80, 120,horizon); 
   }
   if(channel1note == 190){
    stroke(0,255,255);
-   strokeWeight(4);
-   line(x+30,y+80, 280,0); 
+   line(x+30,y+80, 220,horizon); 
   }
   
   if(channel1note == 214){
   stroke(255,0,0);
-  strokeWeight(4);
-  line(x+70,y+80, 500,0); 
+  line(x+70,y+80, 500,horizon); 
   }
   if(channel1note == 254){
   stroke(0,255,0);
-  strokeWeight(4);
-  line(x+70,y+80, 600,0); 
+  line(x+70,y+80, 600,horizon); 
   }
   if(channel1note == 381){
   stroke(255,255,0);
-  strokeWeight(4);
-  line(x+70,y+80, 700,0); 
+  line(x+70,y+80, 700,horizon); 
+  } 
+  
+  if(channel2note == 285){
+   counter = 0; 
   }
-  
-  //noStroke();
-  //int widthkwart = width/4;
-  //if (channel1instr != 0 )
-  //{ 
-  //  fill(70, 35, 122);
-  //  rect(0, 0,  widthkwart, height);  
-  //  fill(255, 255, 0);
-  //  rect(10,10, channel1note/3, channel1note/3);
-  //}
-  //if (channel2instr != 0 )
-  //{ 
-  //  fill(61, 220, 151);
-  //  rect(width - widthkwart*3, 0,  widthkwart, height);  
-  //  fill(255, 0, 255);
-  //  rect(210,10, channel2note/3, channel2note/3);
-  //}
-  //if (channel3instr != 0 )
-  //{ 
-  //  fill(243, 167, 18);
-  //  rect(width - widthkwart*2, 0,  widthkwart, height);    
-  //  if(channel3instr == 13){
-  //    fill(255, 255, 255);
-  //    rect(400,10,channel3note/3, channel3note/3);
-  //  }
-  //  if(channel3instr == 14){
-  //    fill(255, 10, 255);
-  //    rect(400,110,channel3note/3, channel3note/3);
-  //  }
-  //  if(channel3instr == 15){
-  //    fill(10, 255, 255);
-  //    rect(400,210,channel3note/3, channel3note/3);
-  //  }
-  //}
-  //if (channel4instr != 0 )
-  //{ 
-  //  fill(1, 186, 239);
-  //  rect(width - widthkwart, 0, widthkwart, height);    
-  //  if(channel4instr == 13){
-  //    fill(255, 255, 255);
-  //    rect(600,10,channel4note/3, channel4note/3);
-  //  }
-  //  if(channel4instr == 24){
-  //    fill(10, 10, 255);
-  //    rect(600,110,channel4note/3, channel4note/3);
-  //  }
-  //}
-  
-  //textAlign(CENTER);
-  //textSize(32);
-  //text("PAT:" + patternnr, width/2, height/2);
+  if(channel2note == 269){
+   counter = 1; 
+  }
+  if(channel2note == 226){
+   counter = 2; 
+  }  
+  if(channel3note == 113){
+   counter2 = 0; 
+  }
+  if(channel3note == 269){
+   counter2 = 1; 
+  }
+  if(channel3note == 285){
+   counter2 = 2; 
+  }
+  if(channel3note == 381){
+   counter2 = 3; 
+  }
+  if(channel3note == 453){
+   counter2 = 4; 
+  }
+  update();
+  display();
 }
 
 void afbeelding_jet(int x, int y){
   stroke(0);
   strokeWeight(1);
   fill(178,178,178);
-  triangle(x+0,y+100,x+50,y+70,x+101,y+100);
+  triangle(x+0,y+100,x+50,y+75,x+101,y+100);
   fill(220,220,220);
-  triangle(x+40,y+110,x+50,y+46,x+60,y+110);
+  triangle(x+40,y+110,x+50,y+66,x+60,y+110);
+  if(channel4instr!= 0){
+  fill(255,0,0);
+  }
+  else{
+   fill(255,141,0); 
+  }
+  ellipse(x+50,y+110,13,8);
 }
 
+ void update() {
+    eindpunt[0] = new PVector(90,horizon);
+    eindpunt[1] = new PVector(200,horizon);
+    eindpunt[2] = new PVector(310,horizon);
+    eindpunt2[0] = new PVector(340,horizon);
+    eindpunt2[1] = new PVector(415,horizon);
+    eindpunt2[2] = new PVector(490,horizon);
+    eindpunt2[3] = new PVector(575,horizon);
+    eindpunt2[4] = new PVector(640,horizon);
+    
+    
+    PVector acceleration = PVector.sub(eindpunt[counter],location);
+    PVector acceleration2 = PVector.sub(eindpunt2[counter2],location2);
+    // Set magnitude of acceleration
+    acceleration.setMag(0.2);
+    acceleration2.setMag(0.2);
+    
+    // Velocity changes according to acceleration
+    velocity.add(acceleration);
+    velocity2.add(acceleration2);
+    // Limit the velocity by topspeed
+    velocity.limit(topspeed);
+    velocity2.limit(topspeed);
+    // Location changes by velocity
+    location.add(velocity);
+    location2.add(velocity2);
+    top = location.copy();
+    top2 = location2.copy();
+    top.add(velocity);
+    top2.add(velocity2);
+  }
 
-
-
+  void display() {
+    strokeWeight(4);
+    stroke(217, 252, 219);
+    line(location.x,location.y,top.x,top.y);
+    stroke(217, 252, 250);
+    line(location2.x,location2.y,top2.x,top2.y);
+  }
 
 //uitlezen van waardes
 void oscEvent(OscMessage message) 

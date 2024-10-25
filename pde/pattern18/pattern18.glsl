@@ -1,8 +1,7 @@
 uniform vec4 iMouse;
 uniform vec2 iResolution;
 uniform float iTime;
-
-
+          
 #define PI 3.14159265359
 #define period (2.0 * PI)
 
@@ -93,19 +92,14 @@ vec2 sdCreature(vec3 p)
 {
     float x = 1.1;
     
-    vec3 q = p;
-    q.xz = rotateY(0.27 * period) * q.xz;
-    q -= vec3(0.12, 0.03, -0.1);
-    if(iTime > 2.5) q.xz = rotateY(0.27 * period) * q.xz;
-    if(iTime > 3.0) q += vec3(0.0, 0.0, -(iTime - 3.0) / 2.0);
-    else if(iTime > 3.7) q += vec3(0.0, 0.0, -(iTime - 3.7) / 6.0);
+    vec3 cen = vec3(0.0, 0.0, 0.0);
+    
+    vec3 q = p - cen;
     
     vec3 cheJP = q - vec3(0.0, 0.0, 0.1);
     vec3 cheJS = vec3(abs(cheJP.x), cheJP.yz);
     
         vec3 necJP = cheJP - vec3(0.0, 0.005, 0.02);
-        if(iTime > 0.5 && iTime < 1.5) necJP.xz = rotateY(-0.1 * period) * necJP.xz;
-        else if(iTime > 1.8 && iTime < 2.5) necJP.xz = rotateY(0.13 * period) * necJP.xz;
                         
             vec3 heaJP = necJP - vec3(0.0, 0.08, 0.01);
             
@@ -298,29 +292,58 @@ float sdBox( vec3 p, vec3 b, float r )
   return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0) - r;
 }
 
+vec2 sdFlag(vec3 p)
+{
+    vec3 polePos = vec3(-0.4, -0.5, 802.0);
+    float pole = sdCylinder(p - polePos - vec3(0.0, -0.2, 0.0), 0.55, 0.01);
+    
+    vec3 ballPos = polePos + vec3(0.0, 0.35, 0.0);
+    vec3 ballSize = vec3(0.02, 0.012, 0.02);
+    float ball = sdElipsoid(p - ballPos, ballSize);
+
+    float d = min(pole, ball);
+    vec2 res = vec2(d, 7.0);
+
+    vec3 q = p - polePos;
+    q.xz = rotateY(0.25 * period) * q.xz;
+    vec3 flagPos = q + vec3(0.0, -0.24, -0.18);
+    float flag = sdBox(flagPos, vec3(0.002, 0.1, 0.18), 0.02);
+    
+    if(flag<d)
+    {
+        res = vec2(flag, 8.0);
+    }
+    
+    return res;
+}
+
+
 float sdFence(vec3 p) {
-    float poleRadius = 0.03; 
+    float poleRadius = 0.1; 
     float poleHeight = 1.1;  
-    float poleSpacing = 4.996; 
-    float barThickness = 0.32; 
-    float barHeight1 = 1.1;       
+    float poleSpacing = 2.0; 
+    float barThickness = 0.22; 
+    float barHeight1 = 0.5;       
     float barLength = 20.0;
 
-    vec3 spot = vec3(802.0, 0.6, 1.6);
-    vec3 polePos = spot - vec3(802.0 + mod(p.x + poleSpacing * 0.5, poleSpacing) - poleSpacing * 0.5, p.y + 1.0, p.z);
-    float pole = sdCylinder(polePos, poleHeight * 2.0, poleRadius * 4.0);
+    //vec3 spot = vec3(-0.4, -0.5, 802.0);
+    vec3 spot = vec3(-5.4, -0.4, 802.0);
+    vec3 polePos = spot - vec3(p.x, p.y + 1.0, 802.0 + mod(p.z + poleSpacing * 0.5, poleSpacing) - poleSpacing * 0.5);
+    float pole = sdCylinder(polePos, poleHeight, poleRadius);
 
     vec3 bar1Pos = spot - vec3(p.x, p.y - barHeight1 + 0.8, p.z); 
+    bar1Pos.xz = rotateY(0.25 * period) * bar1Pos.xz;
     float bar1 = sdBox(bar1Pos, vec3(barLength, barThickness, poleRadius), 0.01);
 
-    vec3 bar2Pos = bar1Pos - vec3(0.0, 0.8, 0.0);
+    vec3 bar2Pos = bar1Pos - vec3(0.0, 0.55, 0.0);
     float bar2 = sdBox(bar2Pos, vec3(barLength, barThickness, poleRadius), 0.01);
     
-    vec3 bar3Pos = bar2Pos - vec3(0.0, 0.8, 0.0);
+    vec3 bar3Pos = bar2Pos - vec3(0.0, 0.55, 0.0);
     float bar3 = sdBox(bar3Pos, vec3(barLength, barThickness, poleRadius), 0.01);
 
     return min(pole, min(bar1, min(bar2, bar3)));
 }
+
 
 vec2 map(vec3 p)
 {
@@ -331,24 +354,23 @@ vec2 map(vec3 p)
     
     float fence = sdFence(p);
     if(fence < res.x) res = vec2(fence, 7.0);
-    
 
-    vec3 cen2 = vec3(799.5, -0.8, 2.5);
-    
-    vec2 creature = sdCreature(p - cen2);
+    vec3 cen = vec3(0.0, 0.0, 0.0);
+    cen.y -= -0.2 + sdTerrain(cen) * 1.67;
+    vec2 creature = sdCreature(p - cen);
     if(creature.x < res.x) res = creature;
     
-    vec3 cen = vec3(-2.0, -0.5, 800.0);
-    cen.y -= -0.2 + sdTerrain(cen) * 1.67;
     for (float x = -20.0; x <= 20.0; x += 10.0) {
         for (float z = -20.0; z <= 20.0; z += 8.0) {
             vec3 pos = vec3(cen.xy, 800.0) + vec3(x, 0.0, z);
-            pos.xz = rotateY(0.251 * period) * pos.xz;
             pos.y -= sdTerrain(pos) / 0.6;
             vec2 tree = sdTree(p - pos); 
             if (tree.x < res.x) res = tree; 
         }
     }
+    
+    vec2 flag = sdFlag(p);
+    if(flag.x < res.x) res = flag;
     
     return res;    
 }
@@ -435,19 +457,17 @@ void main()
     //----------------------
     // camera
     //----------------------
-    
-    
-    vec3 ta = vec3(-2.0, -0.5, 800.0);
-    if(iTime > 5.5) ta += vec3((iTime - 5.5) * 1.2, 0.0, 0.0);
-    ta.xz = rotateY(0.25 * period) * ta.xz;
-    float dCamTa = 1.0;
-    vec3 ro = ta + vec3(dCamTa * sin(-0.125 * period), -0.2, dCamTa * cos(-0.125 * period));
 
+    float flagY = -1.25; // polePos.y - 0.75
+    //vec3 ta = vec3(0.0, 0.25, 800.0);
+    vec3 ta = vec3(0.0 - iTime * 0.14 - 0.4, -0.25, 800.0 + iTime * 0.2 + 0.4);
+    float dCamTa = 1.0;
+    vec3 ro = ta + vec3(dCamTa * sin(0.37 * period), -0.2, dCamTa * cos(0.37 * period));
+    
     // cam navigation
-    //dCamTa = 3.0;
     //float an = 10.0 * iMouse.x / iResolution.x;
     //ro = ta + vec3(dCamTa * sin(an), 0.0, dCamTa * cos(an));
-    
+
     vec3 ww = normalize(ta - ro);
     vec3 uu = normalize(cross(ww, vec3(0.0, 1.0, 0.0)));
     vec3 vv = normalize(cross(uu, ww));
@@ -478,20 +498,51 @@ void main()
         //----------------------
         
         vec3 mat = vec3(0.2, 0.2, 0.2);
-        if(tm.y < 1.5)
+        if(tm.y < 1.5) // terrain
         {
             mat = vec3(0.4, 0.45, 0.1);
             mat *= 0.5 + 0.5 * vec3(fbm(p.xz, 93242.7114), fbm(p.xz, 34791.486), fbm(p.xz, 2462.6304));
         }
-        else if(tm.y < 2.5)
+        else if(tm.y < 2.5) // creature
         {
             mat = vec3(0.7, 0.6, 0.6);
         }
         else if(tm.y < 3.5) mat = vec3(0.2, 0.1, 0.1);
-        else if(tm.y < 4.5) mat = vec3(0.2, 0.1, 0.1);
+        
+        else if(tm.y < 4.5) mat = vec3(0.2, 0.1, 0.1); // trees
         else if(tm.y < 5.5) mat = vec3(0.2,0.4,0.3);
         
-        else if(tm.y < 6.5) mat = vec3(0.043,0.114,0.176);
+        else if(tm.y < 6.5) mat = vec3(0.043,0.114,0.176); // water
+        
+        else if(tm.y < 7.5) mat = vec3(0.518,0.227,0.102); // flag
+        else if(tm.y < 8.5)
+        {
+            mat = vec3(0.8, 0.8, 0.8); //Dutch
+            if(p.y > 1.008 + flagY)
+            {
+                mat = vec3(0.5, 0.08, 0.08);
+            }
+            if(p.y < 0.95 + flagY)
+            {
+                mat = vec3(0.06, 0.07, 0.4);
+            }
+            
+            float flashPeriod = 1.0;
+            float flashDuration = 0.48;
+            float flash = mod(iTime, flashPeriod);
+            if (flash < flashDuration) //German
+            {
+                mat = vec3(0.5, 0.08, 0.08);
+                if(p.y > 1.008 + flagY)
+                {
+                    mat = vec3(0.01, 0.01, 0.01);
+                }
+                if(p.y < 0.95 + flagY)
+                {
+                    mat = vec3(0.5, 0.5, 0.06);
+                }
+            } 
+        }
         
         
         

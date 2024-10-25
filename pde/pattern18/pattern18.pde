@@ -2,7 +2,7 @@ PShader shader;
 
 void setup() {
   size(720, 480, P2D);
-  shader = loadShader("pattern16.glsl");
+  shader = loadShader("pattern18.glsl");
 }
 
 void draw() {

@@ -91,23 +91,19 @@ float sdElipsoid(vec3 p, vec3 rad)
 
 vec2 sdCreature(vec3 p)
 {
-    float x = 1.1;
+    float x = 1.1; //scaling head
+    float sp = period * 25.0 / 12.0; //speed of run 
     
     vec3 q = p;
-    q.xz = rotateY(0.27 * period) * q.xz;
-    q -= vec3(0.12, 0.03, -0.1);
-    if(iTime > 2.5) q.xz = rotateY(0.27 * period) * q.xz;
-    if(iTime > 3.0) q += vec3(0.0, 0.0, -(iTime - 3.0) / 2.0);
-    else if(iTime > 3.7) q += vec3(0.0, 0.0, -(iTime - 3.7) / 6.0);
     
-    vec3 cheJP = q - vec3(0.0, 0.0, 0.1);
+    vec3 cheJP = q - vec3(0.0, 0.015 * sin(iTime * sp), 0.1);
     vec3 cheJS = vec3(abs(cheJP.x), cheJP.yz);
     
-        vec3 necJP = cheJP - vec3(0.0, 0.005, 0.02);
-        if(iTime > 0.5 && iTime < 1.5) necJP.xz = rotateY(-0.1 * period) * necJP.xz;
-        else if(iTime > 1.8 && iTime < 2.5) necJP.xz = rotateY(0.13 * period) * necJP.xz;
+        vec3 necJP = cheJP - vec3(0.0, 0.005 - 0.015 + 0.005 * sin(iTime * sp - 0.05 * period), 0.02);
+        necJP.yz = rotateY(0.02 * period * sin(iTime * sp + 0.45 * period)) * necJP.yz;
                         
-            vec3 heaJP = necJP - vec3(0.0, 0.08, 0.01);
+            vec3 heaJP = necJP - vec3(0.0, 0.06 + (0.006 * sin(iTime * sp + 0.2 * period)), 0.04);
+            heaJP.yz = rotateY(0.02 * period * sin(iTime * sp - 0.05 * period)) * heaJP.yz;
             
             vec3 heaJS = vec3(abs(heaJP.x), heaJP.yz);
             
@@ -131,6 +127,7 @@ vec2 sdCreature(vec3 p)
         vec3 shoJP = cheJS - vec3(0.03, -0.01, 0.01);
             
             vec3 fL1JP = shoJP - vec3(0.0, -0.02, -0.03);
+            fL1JP.yz = rotateY(0.7 * sin(iTime * sp + 0.3 * period)) * fL1JP.yz;
             
                 vec3 fL2JP = fL1JP - vec3(0.0, -0.14, 0.03);
                 
@@ -140,7 +137,7 @@ vec2 sdCreature(vec3 p)
                                 fL2P.yz = rotateY(-0.03 * period) * fL2P.yz;
                                 vec3 fPaP = fL2JP - vec3(0.0, -0.01, 0.02);
     
-    vec3 hipJP = q - vec3(0.0, 0.0, -0.08);
+    vec3 hipJP = q - vec3(0.0, 0.015 * sin(iTime * sp - 0.25 * period), -0.08);
     vec3 hipJS = vec3(abs(hipJP.x), hipJP.yz);
     
                                 vec3 to1P = 0.68 * cheJP + 0.32 * hipJP;
@@ -149,21 +146,24 @@ vec2 sdCreature(vec3 p)
                                 to2P.yz = rotateY(-0.04 * period) * to2P.yz;
     
         vec3 ta1JP = hipJP - vec3(0.0, 0.02, -0.02);
+        ta1JP.yz = rotateY(0.2 * sin(iTime * sp - 0.55 * period)) * ta1JP.yz;
             
             vec3 ta2JP = ta1JP - vec3(0.0, 0.00, -0.1);
             
                                 vec3 ta1P = 0.5 * ta1JP + 0.5 * ta2JP;
                                 vec3 ta2P = ta2JP - vec3(0.0, 0.0, -0.03);
+                                ta2P.yz = rotateY(0.3 * sin(iTime * sp - 0.75 * period)) * ta2P.yz;
     
-        vec3 pelJP = hipJS - vec3(0.035, -0.01, -0.01);
+        vec3 pelJP = hipJS - vec3(0.035, -0.01, -0.01 + (-0.005 + 0.025 * sin(iTime * sp + 0.3 * period)));
             
             vec3 hL1JP = pelJP - vec3(0.0, -0.05, 0.04);
+            hL1JP.yz = rotateY(0.2 + 0.7 * sin(iTime * sp + -0.2 * period)) * hL1JP.yz;
             
-                vec3 hL2JP = hL1JP - vec3(0.0, -0.06, -0.06);
+                vec3 hL2JP = hL1JP - vec3(0.0, -0.06, -0.06);                
                 
                     vec3 hL3JP = hL2JP - vec3(0.0, -0.05, 0.02);
                 
-                                vec3 hL1P = 0.6 * pelJP + 0.4 * hL1JP;
+                                vec3 hL1P = 0.6 * pelJP + 0.4 * hL1JP - vec3(0.0, -0.01, 0.0);
                                 hL1P.yz = rotateY(-0.06 * period) * hL1P.yz;
                                 vec3 hL2P = 0.5 * hL1JP + 0.5 * hL2JP;
                                 hL2P.yz = rotateY(0.1 * period) * hL2P.yz;
@@ -172,14 +172,10 @@ vec2 sdCreature(vec3 p)
                                 vec3 hPaP = hL3JP - vec3(0.0, -0.01, 0.018);
                 
     
-    float r = 0.01;
-    float cheJ = sdSphere(cheJP, r);
-    float d = cheJ;
-    
     //torso
     vec3 rad = vec3(0.05, 0.05, 0.085);
     float to1 = sdElipsoid(to1P, rad);
-    d = smin(d, to1, 0.01);
+    float d = to1;
     
     rad = vec3(0.035, 0.038, 0.07);
     float to2 = sdElipsoid(to2P, rad);
@@ -235,9 +231,9 @@ vec2 sdCreature(vec3 p)
         d = smin(d, fL2, 0.01);
     
         //hL
-        rad = vec3(0.022, 0.05, 0.026);
+        rad = vec3(0.02, 0.045, 0.026);
         float hL1 = sdElipsoid(hL1P, rad);
-        d = smin(d, hL1, 0.03);
+        d = smin(d, hL1, 0.04);
 
         rad = vec3(0.018, 0.04, 0.018);
         float hL2 = sdElipsoid(hL2P, rad);
@@ -254,8 +250,8 @@ vec2 sdCreature(vec3 p)
         float hPa = sdElipsoid(hPaP, rad);
         d = smin(d, hPa, 0.012);
     
-    
     vec2 res = vec2(d, 2.0); // everything above is mat 2
+    
     
     
     rad = vec3(0.007, 0.004, 0.005) * x;
@@ -292,35 +288,6 @@ vec2 sdTree(vec3 p)
     return res;
 }
 
-float sdBox( vec3 p, vec3 b, float r )
-{
-  vec3 q = abs(p) - b + r;
-  return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0) - r;
-}
-
-float sdFence(vec3 p) {
-    float poleRadius = 0.03; 
-    float poleHeight = 1.1;  
-    float poleSpacing = 4.996; 
-    float barThickness = 0.32; 
-    float barHeight1 = 1.1;       
-    float barLength = 20.0;
-
-    vec3 spot = vec3(802.0, 0.6, 1.6);
-    vec3 polePos = spot - vec3(802.0 + mod(p.x + poleSpacing * 0.5, poleSpacing) - poleSpacing * 0.5, p.y + 1.0, p.z);
-    float pole = sdCylinder(polePos, poleHeight * 2.0, poleRadius * 4.0);
-
-    vec3 bar1Pos = spot - vec3(p.x, p.y - barHeight1 + 0.8, p.z); 
-    float bar1 = sdBox(bar1Pos, vec3(barLength, barThickness, poleRadius), 0.01);
-
-    vec3 bar2Pos = bar1Pos - vec3(0.0, 0.8, 0.0);
-    float bar2 = sdBox(bar2Pos, vec3(barLength, barThickness, poleRadius), 0.01);
-    
-    vec3 bar3Pos = bar2Pos - vec3(0.0, 0.8, 0.0);
-    float bar3 = sdBox(bar3Pos, vec3(barLength, barThickness, poleRadius), 0.01);
-
-    return min(pole, min(bar1, min(bar2, bar3)));
-}
 
 vec2 map(vec3 p)
 {
@@ -329,22 +296,19 @@ vec2 map(vec3 p)
     
     if(p.y < -2.2) res.y = 6.0;
     
-    float fence = sdFence(p);
-    if(fence < res.x) res = vec2(fence, 7.0);
-    
 
-    vec3 cen2 = vec3(799.5, -0.8, 2.5);
-    
-    vec2 creature = sdCreature(p - cen2);
+    vec3 cen = vec3(0.0, 0.0, iTime + 800.0);
+    cen.y -= -0.2 + sdTerrain(cen) * 1.67;
+    vec2 creature = sdCreature(p - cen);
     if(creature.x < res.x) res = creature;
     
-    vec3 cen = vec3(-2.0, -0.5, 800.0);
-    cen.y -= -0.2 + sdTerrain(cen) * 1.67;
     for (float x = -20.0; x <= 20.0; x += 10.0) {
         for (float z = -20.0; z <= 20.0; z += 8.0) {
-            vec3 pos = vec3(cen.xy, 800.0) + vec3(x, 0.0, z);
-            pos.xz = rotateY(0.251 * period) * pos.xz;
-            pos.y -= sdTerrain(pos) / 0.6;
+            vec3 pos = vec3(x, 0.0, z + 800.0);
+            pos.xz = rotateY(0.0005 * period) * pos.xz;
+            pos.y -= sdTerrain(pos) * 1.67;
+            //float sphere = sdSphere(p - pos, 0.5); 
+            //if (sphere < res.x) res = vec2(sphere, 2.0); 
             vec2 tree = sdTree(p - pos); 
             if (tree.x < res.x) res = tree; 
         }
@@ -435,18 +399,23 @@ void main()
     //----------------------
     // camera
     //----------------------
-    
-    
-    vec3 ta = vec3(-2.0, -0.5, 800.0);
-    if(iTime > 5.5) ta += vec3((iTime - 5.5) * 1.2, 0.0, 0.0);
-    ta.xz = rotateY(0.25 * period) * ta.xz;
-    float dCamTa = 1.0;
-    vec3 ro = ta + vec3(dCamTa * sin(-0.125 * period), -0.2, dCamTa * cos(-0.125 * period));
 
-    // cam navigation
-    //dCamTa = 3.0;
+    float camMove = iTime + 800.0;
+    vec3 ta = vec3(0.0, -0.2, camMove);
+    ta.y -= -0.2 + sdTerrain(ta) * 1.67;
+    //float dCamTa = 1.0;
+    //vec3 ro = ta + vec3(dCamTa, 0.0, 0.0);
+    
+    // comment out to disable cam navigation
     //float an = 10.0 * iMouse.x / iResolution.x;
     //ro = ta + vec3(dCamTa * sin(an), 0.0, dCamTa * cos(an));
+    
+    // comment out to disable rotating
+        float t = iTime + 14.0;
+        float an = 200.0 * (t * 1.1 + 2.0) / iResolution.x + 0.75 * period;
+        float dCamTa = 2.25 - (1.75 * sin(t / 2.0 - 0.35 * period));
+
+        vec3 ro = ta + vec3(dCamTa * sin(an), 0.5 + (0.35 * sin(t / 2.0 + 0.15 * period)), dCamTa * cos(an));
     
     vec3 ww = normalize(ta - ro);
     vec3 uu = normalize(cross(ww, vec3(0.0, 1.0, 0.0)));
